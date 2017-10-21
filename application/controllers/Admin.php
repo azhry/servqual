@@ -27,4 +27,11 @@ class Admin extends MY_Controller
 	    $this->data['content']	= 'admin/daftar_pelamar';
 	    $this->template($this->data);
 	}
+
+	public function hasil_penilaian()
+  	{
+	    $this->data['title'] 	= 'Hasil Penilaian Pelamar';
+	    $this->data['content']	= 'admin/hasil_penilaian';
+	    $this->template($this->data);
+	}
 }
