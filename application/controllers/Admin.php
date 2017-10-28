@@ -11,7 +11,7 @@ class Admin extends MY_Controller
   	function __construct()
 	{
 	    parent::__construct();		
-		
+		$this->load->model('Pelamar_m');
   	}
 
   	public function index()
@@ -25,6 +25,7 @@ class Admin extends MY_Controller
   	{
 	    $this->data['title'] 	= 'Daftar Pelamar';
 	    $this->data['content']	= 'admin/daftar_pelamar';
+	    $this->data['pelamar']	= $this->Pelamar_m->get();
 	    $this->template($this->data);
 	}
 

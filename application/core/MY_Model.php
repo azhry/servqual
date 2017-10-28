@@ -103,6 +103,11 @@ class MY_Model extends CI_Model
 		return $this->db->update($this->data['table_name'], $data);
 	}
 
+	public function delete_all()
+	{
+		return $this->db->empty_table($this->data['table_name']);
+	}
+
 	public function delete($pk)
 	{
 		$this->db->where($this->data['primary_key'], $pk);

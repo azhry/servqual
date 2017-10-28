@@ -1,201 +1,193 @@
-<section class="content">
-    <div class="container-fluid">
-        <div class="block-header">
-            <h2>
-                Admin
-            </h2>
-        </div>
-        <!-- Basic Examples -->
-        <div class="row clearfix">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="card">
-                    <div class="header">
-                        <h2>
-                            Daftar Pelamar
-                        </h2>
-                    </div>
-                    <button type="button" class="btn btn-default waves-effect" data-toggle="modal" data-target="#add"><i class="material-icons">add</i> Tambah</button>
-                    <div class="body">
-                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
-                            <thead>
-                                <th>No</th>
-                                <th>Nama</th>
-                                <th style="width: 450px; text-align: justify;">Asal</th>
-                                <th>Email</th>
-                                <th style="width: 80px;">Aksi</th>
-                            </thead>
-                            <tbody>
-                                 <tr>
-                                    <td>1</td>
-                                    <td>Lorem Ipsum</td>
-                                    <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry</td>
-                                    <td>au@gemaiil.com</td>
-                                    <td>
-                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                PRIMARY <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="<?= base_url('admin/hasil_penilaian') ?>"><i class="material-icons">info</i> Hasil Penilaian</a></li>
-                                                <li><a href="javascript:void(0);" data-toggle="modal" data-target="#edit" onclick="get_buku()"><i class="material-icons">edit</i> Edit</a></li>
-                                                <li><a href="javascript:void(0);"  onclick="delete_buku()"><i class="material-icons">delete</i> Delete</a></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Daftar Pelamar <button class="btn btn-success" data-toggle="modal" data-target="#add"><i class="fa fa-plus"></i></button>
                 </div>
+                <!-- /.col-lg-12 -->
             </div>
-        </div>
-
-        <!-- Add -->
-        <div class="modal fade" tabindex="-1" role="dialog" id="add">
-          <div class="modal-dialog" role="document">
-            <?= form_open('admin/') ?>
-           <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Tambah Pelamar</h4>
-              </div>
-              <div class="modal-body">
-                     <div class="form-group form-float">
-                        <div class="form-line">
-                            <input type="text" id="Nama" name="nama" class="form-control">
-                            <label class="form-label">Nama</label>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Daftar Pelamar
                         </div>
-                    </div>
-
-                    <div class="form-group form-float">
-                        <div class="form-line">
-                            <textarea type="text" id="judul" name="judul" class="form-control"> </textarea>
-                            <label class="form-label">Judul</label>
+                        <div>
+                            <?= $this->session->flashdata('msg') ?>
                         </div>
-                    </div>
-
-                    <div class="form-group form-float">
-                        <div class="form-line">
-                            <input type="text" id="tahun_terbit" name="tahun_terbit" class="form-control">
-                            <label class="form-label">Tahun Terbit</label>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <style type="text/css">
+                                tr th, tr td {text-align: center;}
+                            </style>
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama</th>
+                                        <th>No.HP</th>
+                                        <th>Email</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $i=1; foreach ($pelamar as $row): ?>
+                                    <tr>
+                                        <td><?= $i ?></td>
+                                        <td><?= $row->nama ?></td>
+                                        <td><?= $row->no_hp ?></td>
+                                        <td><?= $row->email ?></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                                Aksi <span class="caret"></span></button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                  <li><a href="#" data-toggle="modal" data-target="#input_nilai"><i class="fa fa-pencil"></i> Input Nilai</a></li>
+                                                  <li><a href="<?= base_url('admin/hasil_penilaian') ?>"><i class="fa fa-eye"></i> Hasil Penilaian</a></li>
+                                                  <li><a href="" onclick="delete_pelamar(<?= $row->id_pelamar ?>)"><i class="fa fa-trash"></i> Hapus </a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <?php $i++; endforeach; ?>
+                                </tbody>
+                            </table>
+                            <!-- /.table-responsive -->
                         </div>
+                        <!-- /.panel-body -->
                     </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
 
-                    <div class="form-group form-float">
-                        <div class="form-line">
-                            <input type="text" id="jumlah_halaman" name="jumlah_halaman" class="form-control">
-                            <label class="form-label">Jumlah Halaman</label>
+            <div class="modal fade" tabindex="-1" role="dialog" id="add">
+              <div class="modal-dialog" role="document">
+                <?= form_open('admin/data_pelamar') ?>
+               <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Tambah Data Pelamar</h4>
+                  </div>
+                  <div class="modal-body">
+                        <div class="form-group">
+                            <label for="Nama">Nama *</label>
+                            <input type="text" class="form-control" name="nama" required>
                         </div>
-                    </div>
-
-                    <div class="form-group form-float">
-                        <div class="form-line">
-                            <input type="text" id="penerbit" name="penerbit" class="form-control">
-                            <label class="form-label">Penerbit</label>
+                        <div class="form-group">
+                            <label for="Upload Foto">Upload Foto</label>
+                            <input type="file" name="foto">
                         </div>
-                    </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default m-t-15 waves-effect" data-dismiss="modal">Batal</button>
-                <input type="submit" name="simpan" value="Simpan" class="btn btn-primary m-t-15 waves-effect">
-              </div>
-              <?= form_close() ?>
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-        <!--/End Add -->
-
-        <!-- Edit -->
-        <div class="modal fade" tabindex="-1" role="dialog" id="edit">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <?= form_open('admin/') ?>
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Edit Data Buku</h4>
-              </div>
-              <div class="modal-body">
-                    <input type="hidden" name="edit_id_buku" id="edit_id_buku">
-                    <div class="form-group form-float">
-                        <div class="form-line">
-                            <input type="text" id="edit_penulis" name="penulis" value="" class="form-control">
-                            <label class="form-label">Penulis</label>
+                        <div class="form-group">
+                            <label for="Tempat Lahir">Tempat Lahir *</label>
+                            <input type="text" class="form-control" name="tempat_lahir" required>
                         </div>
-                    </div>
-
-                    <div class="form-group form-float">
-                        <div class="form-line">
-                            <textarea type="text" id="edit_judul" name="judul" class="form-control"> </textarea>
-                            <label class="form-label">Judul</label>
+                        <div class="form-group">
+                            <label for="Tanggal Lahir">Tanggal Lahir *</label>
+                            <input type="text" class="form-control" name="tanggal_lahir" required>
                         </div>
-                    </div>
-
-                    <div class="form-group form-float">
-                        <div class="form-line">
-                            <input type="text" id="edit_tahun_terbit" name="tahun_terbit" value="" class="form-control">
-                            <label class="form-label">Tahun Terbit</label>
+                        <div class="form-group">
+                            <label for="Nomor HP">Nomor HP *</label>
+                            <input type="text" class="form-control" name="no_hp" required>
                         </div>
-                    </div>
-
-                    <div class="form-group form-float">
-                        <div class="form-line">
-                            <input type="text" id="edit_jumlah_halaman" name="jumlah_halaman" value="" class="form-control">
-                            <label class="form-label">Jumlah Halaman</label>
+                        <div class="form-group">
+                            <label for="Email">Email *</label>
+                            <input type="text" class="form-control" name="email" required>
                         </div>
-                    </div>
-
-                    <div class="form-group form-float">
-                        <div class="form-line">
-                            <input type="text" id="edit_penerbit" name="penerbit" value="" class="form-control">
-                            <label class="form-label">Penerbit</label>
+                        <div class="form-group">
+                            <label for="Alamat">Alamat *</label>
+                            <textarea class="form-control" rows="3" name="alamat" required></textarea>
                         </div>
-                    </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                <input type="submit" name="edit" value="Edit" class="btn btn-primary">
-              </div>
-              <?= form_close() ?>
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->  
-        <!--/End Edit -->
-    </div>
-</section>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <input type="submit" name="simpan" value="Simpan" class="btn btn-primary">
+                  </div>
+                  <?= form_close() ?>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
 
-<script type="text/javascript">
 
-        function get_buku(id_buku) {
-            $.ajax({
-                url: '<?= base_url('admin/') ?>',
-                type: 'POST',
-                data: {
-                    id_buku: id_buku,
-                    get: true
-                },
-                success: function(response) {
-                    response = JSON.parse(response);
-                    $('#edit_id_buku').val(response.id_buku);
-                    $('#edit_penulis').val(response.penulis);
-                    $('#edit_judul_buku').val(response.judul_buku);
-                    $('#edit_tahun_terbit').val(response.tahun_terbit);
-                    $('#edit_jumlah_halaman').val(response.jumlah_hal);
-                    $('#edit_penerbit').val(response.penerbit);
+            <div class="modal fade" tabindex="-1" role="dialog" id="input_nilai">
+              <div class="modal-dialog modal-sm" role="document">
+                <?= form_open('admin/daftar_pelamar') ?>
+               <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Input Nilai</h4>
+                  </div>
+                  <div class="modal-body">
+                        <div class="form-group">
+                            <label for="Administrasi">Administrasi</label>
+                            <select name="" id="" class="form-control form-md">
+                                <option></option>
+                                <option value="0.25">0.25</option>
+                                <option value="0.50">0.50</option>
+                                <option value="0.75">0.75</option>
+                                <option value="1">1</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="Administrasi">Wawancara</label>
+                            <select name="" id="" class="form-control">
+                                <option></option>
+                                <option value="0.25">0.25</option>
+                                <option value="0.50">0.50</option>
+                                <option value="0.75">0.75</option>
+                                <option value="1">1</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="Administrasi">Psikotes</label>
+                            <select name="" id="" class="form-control">
+                                <option></option>
+                                <option value="0.25">0.25</option>
+                                <option value="0.50">0.50</option>
+                                <option value="0.75">0.75</option>
+                                <option value="1">1</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="Administrasi">MCU</label>
+                            <select name="" id="" class="form-control">
+                                <option></option>
+                                <option value="0.25">0.25</option>
+                                <option value="0.50">0.50</option>
+                                <option value="0.75">0.75</option>
+                                <option value="1">1</option>
+                            </select>
+                        </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <input type="submit" name="simpan" value="Simpan" class="btn btn-primary">
+                  </div>
+                  <?= form_close() ?>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+
+
+            <script>
+                $(document).ready(function() {
+                    $('#dataTables-example').DataTable({
+                        responsive: true
+                    });
+                });
+
+                function delete_pelamar(id_pelamar) {
+                    $.ajax({
+                        url: '<?= base_url('kasir/pelamar') ?>',
+                        type: 'POST',
+                        data: {
+                            id_pelamar: id_pelamar,
+                            delete: true
+                        },
+                        success: function() {
+                            window.location = '<?= base_url('kasir/pelamar') ?>';
+                        }
+                    });
                 }
-            });
-        }
-
-        function delete_buku(id_buku) {
-            $.ajax({
-                url: '<?= base_url('admin/') ?>',
-                type: 'POST',
-                data: {
-                    id_buku: id_buku,
-                    delete: true
-                },
-                success: function() {
-                    window.location = '<?= base_url('admin/') ?>';
-                }
-            });   
-        }
-    </script>
+            </script>
