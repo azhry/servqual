@@ -118,46 +118,17 @@
                     <h4 class="modal-title">Input Nilai</h4>
                   </div>
                   <div class="modal-body">
+                    <?php foreach ($kriteria as $key): ?>
                         <div class="form-group">
-                            <label for="Administrasi">Administrasi</label>
+                            <label for="Administrasi"><?= $key->nama ?></label>
                             <select name="adm" id="" class="form-control form-md">
                                 <option></option>
-                                <option value="0.25">0.25</option>
-                                <option value="0.50">0.50</option>
-                                <option value="0.75">0.75</option>
-                                <option value="1">1</option>
+                                <?php foreach ($this->bobot_m->get(['id_kriteria' => $key->id_kriteria]) as $value): ?>
+                                <option value="<?= $value->nilai ?>"><?= $value->fuzzy ?></option>
+                                <?php endforeach ?>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="Administrasi">Wawancara</label>
-                            <select name="wawancara" id="" class="form-control">
-                                <option></option>
-                                <option value="0.25">0.25</option>
-                                <option value="0.50">0.50</option>
-                                <option value="0.75">0.75</option>
-                                <option value="1">1</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="Administrasi">Psikotes</label>
-                            <select name="psikotes" id="" class="form-control">
-                                <option></option>
-                                <option value="0.25">0.25</option>
-                                <option value="0.50">0.50</option>
-                                <option value="0.75">0.75</option>
-                                <option value="1">1</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="Administrasi">MCU</label>
-                            <select name="mcu" id="" class="form-control">
-                                <option></option>
-                                <option value="0.25">0.25</option>
-                                <option value="0.50">0.50</option>
-                                <option value="0.75">0.75</option>
-                                <option value="1">1</option>
-                            </select>
-                        </div>
+                    <?php endforeach ?>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>

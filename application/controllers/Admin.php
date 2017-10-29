@@ -23,11 +23,14 @@ class Admin extends MY_Controller
 
 	public function daftar_pelamar()
   	{
+  		$this->load->model('kriteria_m');
+  		$this->load->model('bobot_m');
   		if ($this->POST('simpan')) {
   			// $this->data['entry'] = [
   			// 	'adm'
   			// ];
   		}
+  		$this->data['kriteria'] = $this->kriteria_m->get();
 	    $this->data['title'] 	= 'Daftar Pelamar';
 	    $this->data['content']	= 'admin/daftar_pelamar';
 	    $this->data['pelamar']	= $this->Pelamar_m->get();
