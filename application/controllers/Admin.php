@@ -8,10 +8,17 @@ class Admin extends MY_Controller
 
 	private $data = [];
 
-  	function __construct()
+  	public function __construct()
 	{
 	    parent::__construct();		
 		$this->load->model('Pelamar_m');
+  	}
+
+  	public function test()
+  	{
+  		$this->load->model('penilaian_m');
+  		$data = $this->penilaian_m->get(['id_pelamar' => 1]);
+  		echo $this->penilaian_m->defuzzification($data);
   	}
 
   	public function index()
@@ -24,9 +31,7 @@ class Admin extends MY_Controller
 	public function daftar_pelamar()
   	{
   		if ($this->POST('simpan')) {
-  			// $this->data['entry'] = [
-  			// 	'adm'
-  			// ];
+  			
   		}
 	    $this->data['title'] 	= 'Daftar Pelamar';
 	    $this->data['content']	= 'admin/daftar_pelamar';

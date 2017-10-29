@@ -119,43 +119,43 @@
                   </div>
                   <div class="modal-body">
                         <div class="form-group">
-                            <label for="Administrasi">Administrasi</label>
-                            <select name="adm" id="" class="form-control form-md">
+                            <label for="administrasi">Administrasi</label>
+                            <select name="administrasi" id="" class="form-control form-md">
                                 <option></option>
-                                <option value="0.25">0.25</option>
-                                <option value="0.50">0.50</option>
-                                <option value="0.75">0.75</option>
-                                <option value="1">1</option>
+                                <option value="0.25">Tidak Ada Keahlian</option>
+                                <option value="0.50">Kurang Ahli</option>
+                                <option value="0.75">Ada Keahlian</option>
+                                <option value="1">Banyak Keahlian</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="Administrasi">Wawancara</label>
+                            <label for="wawancara">Wawancara</label>
                             <select name="wawancara" id="" class="form-control">
                                 <option></option>
-                                <option value="0.25">0.25</option>
-                                <option value="0.50">0.50</option>
-                                <option value="0.75">0.75</option>
-                                <option value="1">1</option>
+                                <option value="0.25">Tidak Memadai</option>
+                                <option value="0.50">Kurang Memadai</option>
+                                <option value="0.75">Memadai</option>
+                                <option value="1">Sangat Memadai</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="Administrasi">Psikotes</label>
+                            <label for="psikotes">Psikotes</label>
                             <select name="psikotes" id="" class="form-control">
                                 <option></option>
-                                <option value="0.25">0.25</option>
-                                <option value="0.50">0.50</option>
-                                <option value="0.75">0.75</option>
-                                <option value="1">1</option>
+                                <option value="0.25">Tidak Disarankan</option>
+                                <option value="0.50">Kurang Disarankan</option>
+                                <option value="0.75">Masih Dapat Disarankan</option>
+                                <option value="1">Dapat Disarankan</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="Administrasi">MCU</label>
+                            <label for="mcu">MCU</label>
                             <select name="mcu" id="" class="form-control">
                                 <option></option>
-                                <option value="0.25">0.25</option>
-                                <option value="0.50">0.50</option>
-                                <option value="0.75">0.75</option>
-                                <option value="1">1</option>
+                                <option value="0.25">Tidak Sehat</option>
+                                <option value="0.50">Kurang Sehat</option>
+                                <option value="0.75">Sehat</option>
+                                <option value="1">Sangat Sehat</option>
                             </select>
                         </div>
                   </div>

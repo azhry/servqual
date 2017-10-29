@@ -9,6 +9,16 @@ class Penilaian_m extends MY_Model
 		$this->data['primary_key'] = 'id_penilaian';
 	}
 
+	public function defuzzification($data)
+	{
+		$this->load->model('bobot_m');
+		$this->load->model('keputusan_m');
+		$this->load->model('kriteria_m');
+
+		// TODO: get nilai pelamar -> crisped -> keputusan
+
+	}
+
 	public function max($cond = '')
 	{
 		$this->db->select_max('hasil');
