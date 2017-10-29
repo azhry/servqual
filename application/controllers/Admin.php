@@ -23,6 +23,11 @@ class Admin extends MY_Controller
 
 	public function daftar_pelamar()
   	{
+  		if ($this->POST('simpan')) {
+  			// $this->data['entry'] = [
+  			// 	'adm'
+  			// ];
+  		}
 	    $this->data['title'] 	= 'Daftar Pelamar';
 	    $this->data['content']	= 'admin/daftar_pelamar';
 	    $this->data['pelamar']	= $this->Pelamar_m->get();

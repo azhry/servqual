@@ -120,7 +120,7 @@
                   <div class="modal-body">
                         <div class="form-group">
                             <label for="Administrasi">Administrasi</label>
-                            <select name="" id="" class="form-control form-md">
+                            <select name="adm" id="" class="form-control form-md">
                                 <option></option>
                                 <option value="0.25">0.25</option>
                                 <option value="0.50">0.50</option>
@@ -130,7 +130,7 @@
                         </div>
                         <div class="form-group">
                             <label for="Administrasi">Wawancara</label>
-                            <select name="" id="" class="form-control">
+                            <select name="wawancara" id="" class="form-control">
                                 <option></option>
                                 <option value="0.25">0.25</option>
                                 <option value="0.50">0.50</option>
@@ -140,7 +140,7 @@
                         </div>
                         <div class="form-group">
                             <label for="Administrasi">Psikotes</label>
-                            <select name="" id="" class="form-control">
+                            <select name="psikotes" id="" class="form-control">
                                 <option></option>
                                 <option value="0.25">0.25</option>
                                 <option value="0.50">0.50</option>
@@ -150,7 +150,7 @@
                         </div>
                         <div class="form-group">
                             <label for="Administrasi">MCU</label>
-                            <select name="" id="" class="form-control">
+                            <select name="mcu" id="" class="form-control">
                                 <option></option>
                                 <option value="0.25">0.25</option>
                                 <option value="0.50">0.50</option>

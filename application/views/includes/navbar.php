@@ -37,6 +37,11 @@
                         <li>
                             <a href="<?= base_url('admin/daftar_pelamar') ?>"><i class="fa fa-user fa-fw"></i> Daftar Pelamar</a>
                         </li>
+
+                        <li>
+                            <a href="<?= base_url('admin/daftar_pelamar') ?>"><i class="fa fa-user fa-fw"></i> Ranking</a>
+                        </li>
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

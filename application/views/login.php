@@ -46,11 +46,7 @@
                         <?= form_open('login') ?>
                             <fieldset>
                                 <div class="form-group">
-                                    <select name="username" class="form-control">
-                                        <?php foreach ($user as $key): ?>
-                                            <option value="<?= $key->username?>"><?= $key->username ?></option>
-                                        <?php endforeach ?>
-                                    </select>
+                                    <input class="form-control" placeholder="username" name="username" type="text" value="">
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" name="password" type="password" value="">
