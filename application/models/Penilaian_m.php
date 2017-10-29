@@ -11,7 +11,7 @@ class Penilaian_m extends MY_Model
 
 	public function max($cond = '')
 	{
-		$this->db->select_max('nilai');
+		$this->db->select_max('hasil');
 		if (is_array($cond))
 			$this->db->where($cond);
 		if (is_string($cond) && strlen($cond) > 3)
@@ -24,7 +24,7 @@ class Penilaian_m extends MY_Model
 
 	public function min($cond = '')
 	{
-		$this->db->select_min('nilai');
+		$this->db->select_min('hasil');
 		if (is_array($cond))
 			$this->db->where($cond);
 		if (is_string($cond) && strlen($cond) > 3)
@@ -37,7 +37,7 @@ class Penilaian_m extends MY_Model
 
 	public function total($cond = '')
 	{
-		$this->db->select_sum('nilai');
+		$this->db->select_sum('hasil');
 		if (is_array($cond))
 			$this->db->where($cond);
 		if (is_string($cond) && strlen($cond) > 3)
