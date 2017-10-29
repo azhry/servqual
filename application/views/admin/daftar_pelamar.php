@@ -118,46 +118,17 @@
                     <h4 class="modal-title">Input Nilai</h4>
                   </div>
                   <div class="modal-body">
+                    <?php foreach ($kriteria as $key): ?>
                         <div class="form-group">
-                            <label for="administrasi">Administrasi</label>
-                            <select name="administrasi" id="" class="form-control form-md">
+                            <label for="<?= $key->nama ?>"><?= $key->nama ?></label>
+                            <select name="<?= $key->nama ?>" id="" class="form-control form-md">
                                 <option></option>
-                                <option value="0.25">Tidak Ada Keahlian</option>
-                                <option value="0.50">Kurang Ahli</option>
-                                <option value="0.75">Ada Keahlian</option>
-                                <option value="1">Banyak Keahlian</option>
+                                <?php foreach ($this->bobot_m->get(['id_kriteria' => $key->id_kriteria]) as $value): ?>
+                                <option value="<?= $value->nilai ?>"><?= $value->fuzzy ?></option>
+                                <?php endforeach ?>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="wawancara">Wawancara</label>
-                            <select name="wawancara" id="" class="form-control">
-                                <option></option>
-                                <option value="0.25">Tidak Memadai</option>
-                                <option value="0.50">Kurang Memadai</option>
-                                <option value="0.75">Memadai</option>
-                                <option value="1">Sangat Memadai</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="psikotes">Psikotes</label>
-                            <select name="psikotes" id="" class="form-control">
-                                <option></option>
-                                <option value="0.25">Tidak Disarankan</option>
-                                <option value="0.50">Kurang Disarankan</option>
-                                <option value="0.75">Masih Dapat Disarankan</option>
-                                <option value="1">Dapat Disarankan</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="mcu">MCU</label>
-                            <select name="mcu" id="" class="form-control">
-                                <option></option>
-                                <option value="0.25">Tidak Sehat</option>
-                                <option value="0.50">Kurang Sehat</option>
-                                <option value="0.75">Sehat</option>
-                                <option value="1">Sangat Sehat</option>
-                            </select>
-                        </div>
+                    <?php endforeach ?>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
