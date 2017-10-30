@@ -1,83 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Website Percetakan Sarana Palembang">
-    <meta name="author" content="Marina Adhitia">
 
-    <title>Login | Fuzzy</title>
+    <title><?= $title ?></title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="<?= base_url('assets/sbadmin-2') ?>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="<?= base_url('assets') ?>/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="<?= base_url('assets') ?>/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="<?= base_url('assets') ?>/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="<?= base_url('assets') ?>/vendors/animate.css/animate.min.css" rel="stylesheet">
 
-    <!-- MetisMenu CSS -->
-    <link href="<?= base_url('assets/sbadmin-2') ?>/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="<?= base_url('assets') ?>/build/css/custom.min.css" rel="stylesheet">
+  </head>
 
-    <!-- Custom CSS -->
-    <link href="<?= base_url('assets/sbadmin-2') ?>/dist/css/sb-admin-2.css" rel="stylesheet">
+  <body class="login">
+    <div>
+      <a class="hiddenanchor" id="signup"></a>
+      <a class="hiddenanchor" id="signin"></a>
 
-    <!-- Custom Fonts -->
-    <link href="<?= base_url('assets/sbadmin-2') ?>/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+            <?= form_open('login') ?>
+              <h1>Login Form</h1>
+              <div>
+                <input type="text" class="form-control" placeholder="Username" name="username" required />
+              </div>
+              <div>
+                <input type="password" class="form-control" placeholder="Password" name="password" required />
+              </div>
+              <div style="margin-left: 0px !important;">
+                <input type="submit" name="login-submit" value="Login" class="btn btn-lg btn-success btn-block">
+              </div>
+              <div>
+                  <a class="reset_pass" href="#">Lost your password?</a>
+              </div>
 
-    <link rel="icon" type="image/x-icon" href="">
+              <div class="clearfix"></div>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+              <div class="separator">
+                <p class="change_link">Ingin mendaftar sebagai pelamar?
+                  <a href="<?= base_url('login/daftar') ?>" class="to_register"> Klik ini! </a>
+                </p>
 
-</head>
+                <div class="clearfix"></div>
+                <br />
 
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <div class="login-panel panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Please Sign In</h3>
-                    </div>
-                    <div class="panel-body">
-                        <?= form_open('login') ?>
-                            <fieldset>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="username" name="username" type="text" value="">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                    </label>
-                                </div>
-                                <!-- Change this to a button or input when using this as a form -->
-                                <input type="submit" name="login-submit" value="Login" class="btn btn-lg btn-success btn-block">
-                            </fieldset>
-                        <?= form_close() ?>
-                    </div>
-                </div>
-            </div>
+                <!-- <div>
+                  <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
+                  <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                </div> -->
+              </div>
+            </form>
+          </section>
         </div>
+
+        
+      </div>
     </div>
-
-    <!-- jQuery -->
-    <script src="<?= base_url('assets/sbadmin-2') ?>/vendor/jquery/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="<?= base_url('assets/sbadmin-2') ?>/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="<?= base_url('assets/sbadmin-2') ?>/vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="<?= base_url('assets/sbadmin-2') ?>/dist/js/sb-admin-2.js"></script>
-
-</body>
-
+  </body>
 </html>

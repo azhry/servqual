@@ -1,26 +1,47 @@
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Daftar Pelamar <button class="btn btn-success" data-toggle="modal" data-target="#add"><i class="fa fa-plus"></i></button>
+    <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3 class="page-header">Daftar Pelamar <button class="btn btn-success" data-toggle="modal" data-target="#add"><i class="fa fa-plus"></i></button></h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                  </div>
                 </div>
-                <!-- /.col-lg-12 -->
+              </div>
             </div>
-            <!-- /.row -->
+
+            <div class="clearfix"></div>
+
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Daftar Pelamar
-                        </div>
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <div>
+                        <h2>Daftar Pelamar</h2>
+                    </div>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
                         <div>
                             <?= $this->session->flashdata('msg') ?>
                         </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <style type="text/css">
-                                tr th, tr td {text-align: center;}
-                            </style>
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                <thead>
+
+                        <table id="datatable" class="table table-striped table-bordered">
+                            <thead>
                                     <tr>
                                         <th>No</th>
                                         <th>Nama</th>
@@ -28,38 +49,37 @@
                                         <th>Email</th>
                                         <th></th>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $i=1; foreach ($pelamar as $row): ?>
-                                    <tr>
-                                        <td><?= $i ?></td>
-                                        <td><?= $row->nama ?></td>
-                                        <td><?= $row->no_hp ?></td>
-                                        <td><?= $row->email ?></td>
-                                        <td>
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                                Aksi <span class="caret"></span></button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                  <li><a href="#" data-toggle="modal" data-target="#input_nilai"><i class="fa fa-pencil"></i> Input Nilai</a></li>
-                                                  <li><a href="<?= base_url('admin/hasil_penilaian') ?>"><i class="fa fa-eye"></i> Hasil Penilaian</a></li>
-                                                  <li><a href="" onclick="delete_pelamar(<?= $row->id_pelamar ?>)"><i class="fa fa-trash"></i> Hapus </a></li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <?php $i++; endforeach; ?>
-                                </tbody>
-                            </table>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
+                            </thead>
+
+                            <tbody>
+                                <?php $i=1; foreach ($pelamar as $row): ?>
+                                <tr>
+                                    <td><?= $i ?></td>
+                                    <td><?= $row->nama ?></td>
+                                    <td><?= $row->no_hp ?></td>
+                                    <td><?= $row->email ?></td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                            Aksi <span class="caret"></span></button>
+                                            <ul class="dropdown-menu" role="menu">
+                                              <li><a href="#" data-toggle="modal" data-target="#input_nilai"><i class="fa fa-pencil"></i> Input Nilai</a></li>
+                                              <li><a href="<?= base_url('admin/hasil_penilaian') ?>"><i class="fa fa-eye"></i> Hasil Penilaian</a></li>
+                                              <li><a href="" onclick="delete_pelamar(<?= $row->id_pelamar ?>)"><i class="fa fa-trash"></i> Hapus </a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <?php $i++; endforeach; ?>
+                            </tbody>
+                        </table>
                     </div>
-                    <!-- /.panel -->
                 </div>
-                <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
+        </div>
+    </div>
+
+
 
             <div class="modal fade" tabindex="-1" role="dialog" id="add">
               <div class="modal-dialog" role="document">
@@ -139,7 +159,7 @@
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
 
-
+</div>
 
             <script>
                 $(document).ready(function() {
