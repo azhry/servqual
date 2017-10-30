@@ -24,6 +24,7 @@ class Admin extends MY_Controller
   	public function index()
   	{
 	    $this->data['title'] 	= 'Dashboard Admin';
+	    $this->data['pelamar']	= $this->Pelamar_m->get();
 	    $this->data['content']	= 'admin/dashboard';
 	    $this->template($this->data);
 	}
