@@ -9,20 +9,35 @@ class Penilaian_m extends MY_Model
 		$this->data['primary_key'] = 'id_penilaian';
 	}
 
+	public function decide($hasil)
+	{
+		$this->load->model('keputusan_m');
+		$keputusan = $this->keputusan_m->get_row(['min <=' => $hasil, 'max >=' => $hasil]);
+		return isset($keputusan) ? $keputusan->nama : 'Tidak Layak';
+	}
+
 	public function defuzzification($data)
 	{
 		$this->load->model('bobot_m');
 		$this->load->model('keputusan_m');
 		$this->load->model('kriteria_m');
 
-		// TODO: get nilai pelamar -> crisped -> keputusan
+		$hasil = 0;
+		foreach ($data as $row)
+		{
+			$nilai = $this->bobot_m->get_row(['id_bobot' => $row->id_bobot])->nilai;
+			$bobot = $this->kriteria_m->get_row(['id_kriteria' => $row->id_kriteria])->bobot;
+			// echo $this->crisping($row->id_kriteria, $nilai) . ' * ' . $bobot . ' + ';
+			// echo $nilai . ' ';
+			$hasil += $this->crisping($row->id_kriteria, $nilai) * $bobot;
+		}
 
-
+		return $hasil;
 	}
 
 	public function crisping($id_kriteria, $bobot)
 	{
-			
+		return $bobot / $this->get_threshold($id_kriteria)->nilai_max;
 	}
 
 	public function get_nilai($cond = '')
