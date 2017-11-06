@@ -37,6 +37,16 @@
                           <span class="sparkline11 graph" style="height: 160px;">
                                <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
                           </span> -->
+                          <script type="text/javascript">
+                            document.addEventListener('DOMContentLoaded', function() {
+                              $('#chart_plot_02').plot([[1, 2], [2, 1], [3, 5]], {
+                                series: {
+                                  lines: {show: true},
+                                  points: {show: true}
+                                }
+                              });
+                            });
+                          </script>
                         </div>
                         <div class="col-md-4 tile">
                          <!--  <span>Total Revenue</span>

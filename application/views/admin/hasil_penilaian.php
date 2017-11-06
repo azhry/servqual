@@ -44,29 +44,46 @@
                   </div>
                   <div class="x_content">
                         <table id="datatable" class="table table-striped table-bordered">
-                            <tr>
-                                <th>Administrasi</th>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <th>Wawancara</th>
-                                <td>1</td>                                
-                            </tr>
-                            <tr>
-                                <th>Psikotes</th>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <th>MCU</th>
-                                <td>1</td>
-                            </tr>
+                            <?php foreach ($penilaian as $row): ?>
+                                <tr>
+                                    <th>
+                                        <?php  
+                                            $kriteria = $this->kriteria_m->get_row(['id_kriteria' => $row->id_kriteria]);
+                                            echo $kriteria ? $kriteria->nama : 'Data kriteria tidak ditemukan';
+                                        ?>
+                                    </th>
+                                    <td>
+                                        <?php
+                                            $bobot = $this->bobot_m->get_row(['id_bobot' => $row->id_bobot]);
+                                            echo $bobot ? $bobot->fuzzy : 'Data bobot tidak ditemukan';
+                                        ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
                             <tr>
                                  <th>Hasil</th>
-                                <td>aaa</td>
+                                <td>
+                                    <?php  
+                                        $hasil_penilaian = $this->hasil_penilaian_m->get_row(['id_pelamar' => $id_pelamar]);
+                                        echo $hasil_penilaian ? $hasil_penilaian->hasil : 'Data hasil tidak ditemukan';
+                                    ?>
+                                </td>
                             </tr>
                             <tr>
                                 <th>Keputusan</th>
-                                <td>aa</td>
+                                <td>
+                                    <?php 
+                                        if ($hasil_penilaian)
+                                        {
+                                            $keputusan = $this->keputusan_m->get_row(['id_keputusan' => $hasil_penilaian->id_keputusan]);
+                                            echo $keputusan ? $keputusan->nama : 'Data keputusan tidak ditemukan';
+                                        }
+                                        else
+                                        {
+                                            echo 'Data keputusan tidak ditemukan';
+                                        }
+                                    ?>
+                                </td>
                             </tr>
                         </table>
                     </div>
@@ -91,23 +108,23 @@
                             </tr>
                             <tr>
                                 <th>Nama</th>
-                                <td>aaa</td>                                
+                                <td><?= $pelamar->nama ?></td>                                
                             </tr>
                             <tr>
                                 <th>Tempat, Tanggal Lahir</th>
-                                <td>aaaa</td>
+                                <td><?= $pelamar->tempat_lahir . ', ' . $pelamar->tgl_lahir ?></td>
                             </tr>
                             <tr>
                                 <th>Nomor HP</th>
-                                <td>00910910</td>
+                                <td><?= $pelamar->no_hp ?></td>
                             </tr>
                             <tr>
                                 <th>Email</th>
-                                <td>aahaha</td>
+                                <td><?= $pelamar->email ?></td>
                             </tr>
                             <tr>
                                 <th>Alamat</th>
-                                <td>ahahaah</td>
+                                <td><?= $pelamar->alamat ?></td>
                             </tr>
                         </table>
                     </div>

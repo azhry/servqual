@@ -3,7 +3,11 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3 class="page-header">Daftar Pelamar <button class="btn btn-success" data-toggle="modal" data-target="#add"><i class="fa fa-plus"></i></button></h3>
+                <h3 class="page-header">Daftar Pelamar <button class="btn btn-success" data-toggle="modal" data-target="#add"><i class="fa fa-plus"></i></button>
+                  <?= form_open('admin/daftar-pelamar') ?>
+                    <input type="submit" value="Hitung Hasil" class="btn btn-danger" name="hitung_hasil">
+                  <?= form_close() ?>
+                </h3>
               </div>
 
               <div class="title_right">
@@ -63,8 +67,8 @@
                                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                             Aksi <span class="caret"></span></button>
                                             <ul class="dropdown-menu" role="menu">
-                                              <li><a href="#" data-toggle="modal" data-target="#input_nilai"><i class="fa fa-pencil"></i> Input Nilai</a></li>
-                                              <li><a href="<?= base_url('admin/hasil_penilaian') ?>"><i class="fa fa-eye"></i> Hasil Penilaian</a></li>
+                                              <li><a href="#" data-toggle="modal" data-target="#input_nilai" onclick="set_id_pelamar(<?= $row->id_pelamar ?>);"><i class="fa fa-pencil"></i> Input Nilai</a></li>
+                                              <li><a href="<?= base_url('admin/hasil-penilaian/' . $row->id_pelamar) ?>"><i class="fa fa-eye"></i> Hasil Penilaian</a></li>
                                               <li><a href="" onclick="delete_pelamar(<?= $row->id_pelamar ?>)"><i class="fa fa-trash"></i> Hapus </a></li>
                                             </ul>
                                         </div>
@@ -83,7 +87,7 @@
 
             <div class="modal fade" tabindex="-1" role="dialog" id="add">
               <div class="modal-dialog" role="document">
-                <?= form_open('admin/data_pelamar') ?>
+                <?= form_open_multipart('admin/daftar-pelamar') ?>
                <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -95,6 +99,14 @@
                             <input type="text" class="form-control" name="nama" required>
                         </div>
                         <div class="form-group">
+                          <label for="jk">Jenis Kelamin</label>
+                          <select class="form-control" name="jk" required>
+                            <option>-- PILIH JENIS KELAMIN --</option>
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
                             <label for="Upload Foto">Upload Foto</label>
                             <input type="file" name="foto">
                         </div>
@@ -104,7 +116,7 @@
                         </div>
                         <div class="form-group">
                             <label for="Tanggal Lahir">Tanggal Lahir *</label>
-                            <input type="text" class="form-control" name="tanggal_lahir" required>
+                            <input type="text" class="form-control" name="tgl_lahir" required>
                         </div>
                         <div class="form-group">
                             <label for="Nomor HP">Nomor HP *</label>
@@ -131,7 +143,8 @@
 
             <div class="modal fade" tabindex="-1" role="dialog" id="input_nilai">
               <div class="modal-dialog modal-sm" role="document">
-                <?= form_open('admin/daftar_pelamar') ?>
+                <?= form_open('admin/daftar-pelamar') ?>
+                <input type="hidden" id="id_pelamar" name="id_pelamar">
                <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -144,7 +157,7 @@
                             <select name="<?= $key->nama ?>" id="" class="form-control form-md">
                                 <option></option>
                                 <?php foreach ($this->bobot_m->get(['id_kriteria' => $key->id_kriteria]) as $value): ?>
-                                <option value="<?= $value->nilai ?>"><?= $value->fuzzy ?></option>
+                                <option value="<?= $value->id_bobot ?>"><?= $value->fuzzy ?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>
@@ -152,7 +165,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                    <input type="submit" name="simpan" value="Simpan" class="btn btn-primary">
+                    <input type="submit" name="input_nilai" value="Simpan" class="btn btn-primary">
                   </div>
                   <?= form_close() ?>
                 </div><!-- /.modal-content -->
@@ -180,5 +193,9 @@
                             window.location = '<?= base_url('kasir/pelamar') ?>';
                         }
                     });
+                }
+
+                function set_id_pelamar(id_pelamar) {
+                  $('#id_pelamar').val(id_pelamar);
                 }
             </script>
