@@ -28,7 +28,7 @@ class MY_Controller extends CI_Controller
 	{
 		if ($_FILES[$tag_name])
 		{
-			$upload_path = realpath(APPPATH . '../assets/img/' . $directory . '/');
+			$upload_path = realpath(APPPATH . '../assets/' . $directory . '/');
 			@unlink($upload_path . '/' . $id . '.jpg');
 			$config = [
 				'file_name' 		=> $id . '.jpg',
