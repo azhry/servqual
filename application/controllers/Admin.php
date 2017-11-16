@@ -11,13 +11,6 @@ class Admin extends MY_Controller
 		$this->load->model('pelamar_m');
   	}
 
-  	public function test()
-  	{
-  		$this->load->model('penilaian_m');
-  		$data = $this->penilaian_m->get(['id_pelamar' => 1]);
-  		echo $this->penilaian_m->defuzzification($data);
-  	}
-
   	public function index()
   	{
 	    $this->data['title'] 	= 'Dashboard Admin';
@@ -145,4 +138,16 @@ class Admin extends MY_Controller
 	    $this->data['content']		= 'admin/hasil_penilaian';
 	    $this->template($this->data);
 	}
+
+    public function ranking_penilaian()
+    {
+        $this->load->model('pelamar_m');
+        $this->load->model('hasil_penilaian_m');
+        $this->load->model('keputusan_m');
+
+        $this->data['hasil']    = $this->hasil_penilaian_m->get_by_order('hasil', 'DESC');
+        $this->data['title']    = 'Ranking Pelamar';
+        $this->data['content']  = 'admin/ranking_penilaian';
+        $this->template($this->data);
+    }
 }

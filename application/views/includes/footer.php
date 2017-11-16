@@ -9,8 +9,10 @@
       </div>
     </div>
 
-    <!-- jQuery -->
-    <script src="<?= base_url('assets') ?>/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- DataTables -->
+    <script src="<?= base_url('assets') ?>/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <!-- ChartJS -->
+    <script src="<?= base_url('assets') ?>/vendors/Chart.js/dist/Chart.js"></script>
     <!-- Bootstrap -->
     <script src="<?= base_url('assets') ?>/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->

@@ -15,7 +15,7 @@
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>John Doe</h2>
+                <h2>Ina</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -31,11 +31,11 @@
                     <ul class="nav child_menu">
                     </ul>
                   </li>
-                  <li><a href="#" onclick="pelamar()"><i class="fa fa-user fa-fw"></i> Daftar Pelamar</a>
+                  <li><a href="<?= base_url('admin/daftar-pelamar') ?>"><i class="fa fa-user fa-fw"></i> Daftar Pelamar</a>
                     <ul class="nav child_menu">
                     </ul>
                   </li>
-                  <li><a href="?" onclick="ranking()"><i class="fa fa-bar-chart-o"></i> Ranking </a>
+                  <li><a href="<?= base_url('admin/ranking-penilaian') ?>"><i class="fa fa-bar-chart-o"></i> Ranking </a>
                     <ul class="nav child_menu">
                     </ul>
                   </li>
@@ -46,12 +46,3 @@
             <!-- /sidebar menu -->
           </div>
         </div>
-
-        <script type="text/javascript">
-          function pelamar(){
-            window.location = '<?= base_url('admin/daftar_pelamar') ?>';
-          }
-          function ranking(){
-            window.location = '<?= base_url('admin/ranking') ?>';
-          }
-        </script>

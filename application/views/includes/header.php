@@ -20,6 +20,9 @@
 
     <!-- Custom Theme Style -->
     <link href="<?= base_url('assets') ?>/build/css/custom.min.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="<?= base_url('assets') ?>/vendors/jquery/dist/jquery.min.js"></script>
   </head>
 
   <body class="nav-md">
