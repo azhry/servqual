@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 30, 2017 at 05:52 AM
+-- Generation Time: Nov 16, 2017 at 04:32 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -30,6 +30,13 @@ CREATE TABLE `admin` (
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`username`, `password`) VALUES
+('ina', '827ccb0eea8a706c4c34a16891f84e7b');
 
 -- --------------------------------------------------------
 
@@ -141,13 +148,6 @@ CREATE TABLE `pelamar` (
   `jk` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `pelamar`
---
-
-INSERT INTO `pelamar` (`id_pelamar`, `nama`, `alamat`, `tempat_lahir`, `tgl_lahir`, `no_hp`, `email`, `jk`) VALUES
-(1, 'Ayu', 'hah ahahaa', 'Lahat', '1998-08-10', '082372348888', 'lestariayu669@gmail.com', 'perempuan');
-
 -- --------------------------------------------------------
 
 --
@@ -160,16 +160,6 @@ CREATE TABLE `penilaian` (
   `id_kriteria` int(11) NOT NULL,
   `id_pelamar` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `penilaian`
---
-
-INSERT INTO `penilaian` (`id_penilaian`, `id_bobot`, `id_kriteria`, `id_pelamar`) VALUES
-(1, 3, 1, 1),
-(2, 7, 2, 1),
-(3, 11, 3, 1),
-(4, 15, 4, 1);
 
 --
 -- Indexes for dumped tables
@@ -234,7 +224,7 @@ ALTER TABLE `bobot`
 -- AUTO_INCREMENT for table `hasil_penilaian`
 --
 ALTER TABLE `hasil_penilaian`
-  MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `keputusan`
 --
@@ -249,12 +239,12 @@ ALTER TABLE `kriteria`
 -- AUTO_INCREMENT for table `pelamar`
 --
 ALTER TABLE `pelamar`
-  MODIFY `id_pelamar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pelamar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `penilaian`
 --
 ALTER TABLE `penilaian`
-  MODIFY `id_penilaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_penilaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

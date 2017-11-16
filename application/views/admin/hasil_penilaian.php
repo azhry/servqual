@@ -104,7 +104,7 @@
                         <table id="datatable" class="table table-striped table-bordered">
                             <tr>
                                 <th>Foto</th>
-                                <td>aa</td>
+                                <td><img src="<?= base_url('assets/foto/' . $pelamar->id_pelamar . '.jpg') ?>" width="150" height="150"></td>
                             </tr>
                             <tr>
                                 <th>Nama</th>

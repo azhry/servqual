@@ -183,14 +183,14 @@
 
                 function delete_pelamar(id_pelamar) {
                     $.ajax({
-                        url: '<?= base_url('kasir/pelamar') ?>',
+                        url: '<?= base_url('admin/daftar-pelamar') ?>',
                         type: 'POST',
                         data: {
                             id_pelamar: id_pelamar,
                             delete: true
                         },
                         success: function() {
-                            window.location = '<?= base_url('kasir/pelamar') ?>';
+                            window.location = '<?= base_url('admin/daftar-pelamar') ?>';
                         }
                     });
                 }

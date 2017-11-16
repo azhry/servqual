@@ -1,14 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-/**
- *
- */
+
 class Login extends MY_Controller
 {
-
 	private $data = [];
 
-  	function __construct()
+  	public function __construct()
 	{
 	    parent::__construct();	
 	    $username = $this->session->userdata('username');
@@ -67,8 +64,8 @@ class Login extends MY_Controller
 			}
 			
 			$this->data = [
-			'username'	=> $this->POST('username'),
-			'password'	=> md5($this->POST('password'))
+    			'username'	=> $this->POST('username'),
+    			'password'	=> md5($this->POST('password'))
 			];
 
 			$result = $this->admin_m->login($this->data);

@@ -8,11 +8,22 @@ class Admin extends MY_Controller
   	public function __construct()
 	{
 	    parent::__construct();		
+
+        $this->data['username'] = $this->session->userdata('username');
+        if (!isset($this->data['username']))
+        {
+            $this->session->sess_destroy();
+            redirect('login');
+            exit;
+        }
+
 		$this->load->model('pelamar_m');
   	}
 
   	public function index()
   	{
+        $this->load->model('hasil_penilaian_m');
+        $this->data['hasil']    = $this->hasil_penilaian_m->get();
 	    $this->data['title'] 	= 'Dashboard Admin';
 	    $this->data['pelamar']	= $this->pelamar_m->get();
 	    $this->data['content']	= 'admin/dashboard';
@@ -40,10 +51,21 @@ class Admin extends MY_Controller
   			];
 
   			$this->pelamar_m->insert($this->data['entri']);
+            $this->upload($this->db->insert_id(), 'foto', 'foto');
+
   			$this->flashmsg('<i class="fa fa-check"></i> Data pelamar berhasil ditambahkan');
   			redirect('admin/daftar-pelamar');
   			exit;
   		}
+
+        if ($this->POST('delete') && $this->POST('id_pelamar'))
+        {
+            $this->hasil_penilaian_m->delete_by(['id_pelamar' => $this->POST('id_pelamar')]);
+            $this->penilaian_m->delete_by(['id_pelamar' => $this->POST('id_pelamar')]);
+            $this->pelamar_m->delete($this->POST('id_pelamar'));
+            @unlink(APPPATH . '../assets/foto/' . $this->POST('id_pelamar') . '.jpg');
+            exit;
+        }
 
   		if ($this->POST('hitung_hasil'))
   		{
