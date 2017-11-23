@@ -175,7 +175,6 @@ class Admin extends MY_Controller
 
     public function user()
     {
-        $username_admin;
 
         $this->load->model('Admin_m');
 
@@ -203,7 +202,7 @@ class Admin extends MY_Controller
           }
         }
 
-        if ($this->POST('edit') && $this->POST('edit_username')) 
+        if ($this->POST('edit') && $this->POST('username')) 
         {
 
           $pass1 = $this->POST('password1');
@@ -215,7 +214,7 @@ class Admin extends MY_Controller
                 'password'    => md5($this->POST('password1'))
               ];
 
-              $this->Admin_m->update($this->username_admin, $this->data['entri']);
+              $this->Admin_m->update($this->POST('username'), $this->data['entri']);
 
               $this->flashmsg('<i class="fa fa-check"></i> Data admin berhasil diedit!');
               redirect('admin/user');

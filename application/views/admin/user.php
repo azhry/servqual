@@ -118,6 +118,7 @@
                     <h4 class="modal-title">Edit User</h4>
                   </div>
                   <div class="modal-body">
+                        <input type="hidden" name="username" id="username_lama">
                         <div class="form-group">
                             <label for="Username">Username *</label>
                             <input type="text" class="form-control" name="edit_username" id="edit_username" required>
@@ -159,7 +160,7 @@
                       },
                       success: function(response) {
                           response = JSON.parse(response);
-                          // console.log(response);
+                          $('#username_lama').val(response.username);
                           $('#edit_username').val(response.username);
                       },
                       error: function(e) {console.log(e.responseText);}
