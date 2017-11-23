@@ -60,7 +60,7 @@
                                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                             Aksi <span class="caret"></span></button>
                                             <ul class="dropdown-menu" role="menu">
-                                              <li><a href="#" data-toggle="modal" data-target="#edit" onclick="get_data(<?= $row->username ?>)"><i class="fa fa-pencil"></i> Edit</li>
+                                              <li><a href="#" data-toggle="modal" data-target="#edit" onclick="get_data('<?= $row->username ?>')"><i class="fa fa-pencil"></i> Edit</li>
                                               <li><a href="" onclick="delete_data(<?= $row->username ?>)"><i class="fa fa-trash"></i> Hapus </a></li>
                                             </ul>
                                         </div>
@@ -112,7 +112,6 @@
             <div class="modal fade" tabindex="-1" role="dialog" id="edit">
               <div class="modal-dialog modal-sm" role="document">
                 <?= form_open('admin/user') ?>
-                <input type="hidden" id="edit_username" name="edit_username">
                <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -160,8 +159,10 @@
                       },
                       success: function(response) {
                           response = JSON.parse(response);
+                          // console.log(response);
                           $('#edit_username').val(response.username);
-                      }
+                      },
+                      error: function(e) {console.log(e.responseText);}
                   });
                 }
 

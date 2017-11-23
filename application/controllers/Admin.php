@@ -173,8 +173,10 @@ class Admin extends MY_Controller
         $this->template($this->data);
     }
 
-     public function user()
+    public function user()
     {
+        $username_admin;
+
         $this->load->model('Admin_m');
 
         if ($this->POST('simpan')) 
@@ -201,8 +203,9 @@ class Admin extends MY_Controller
           }
         }
 
-        if ($this->POST('edit')) 
+        if ($this->POST('edit') && $this->POST('edit_username')) 
         {
+
           $pass1 = $this->POST('password1');
           $pass2 = $this->POST('password2');
 
@@ -212,7 +215,7 @@ class Admin extends MY_Controller
                 'password'    => md5($this->POST('password1'))
               ];
 
-              $this->Admin_m->update($this->POST('username'), $this->data['entri']);
+              $this->Admin_m->update($this->username_admin, $this->data['entri']);
 
               $this->flashmsg('<i class="fa fa-check"></i> Data admin berhasil diedit!');
               redirect('admin/user');
@@ -227,9 +230,8 @@ class Admin extends MY_Controller
 
         if ($this->POST('get') && $this->POST('username'))
         {
-          echo "hay";exit;
+          $this->username_admin = $this->POST('username');
           $this->data['admin'] = $this->Admin_m->get_row(['username' => $this->POST('username')]);
-          echo $this->data['admin']->username;exit;
           echo json_encode($this->data['admin']);
           exit;
         }
