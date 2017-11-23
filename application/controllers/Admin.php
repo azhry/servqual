@@ -172,4 +172,76 @@ class Admin extends MY_Controller
         $this->data['content']  = 'admin/ranking_penilaian';
         $this->template($this->data);
     }
+
+     public function user()
+    {
+        $this->load->model('Admin_m');
+
+        if ($this->POST('simpan')) 
+        {
+          $pass1 = $this->POST('password1');
+          $pass2 = $this->POST('password2');
+
+          if($pass1 == $pass2){
+            $this->data['entri'] = [
+                'username'      => $this->POST('username'),
+                'password'    => md5($this->POST('password1'))
+              ];
+
+              $this->Admin_m->insert($this->data['entri']);
+
+              $this->flashmsg('<i class="fa fa-check"></i> Data admin berhasil ditambahkan');
+              redirect('admin/user');
+              exit;
+          }
+          else {
+              $this->flashmsg('<i class="fa fa-close"></i> Password yang dimasukkan dengan konfirmasi password berbeda! Silahkan Input Ulang!','danger');
+              redirect('admin/user');
+              exit;
+          }
+        }
+
+        if ($this->POST('edit')) 
+        {
+          $pass1 = $this->POST('password1');
+          $pass2 = $this->POST('password2');
+
+          if($pass1 == $pass2){
+            $this->data['entri'] = [
+                'username'      => $this->POST('edit_username'),
+                'password'    => md5($this->POST('password1'))
+              ];
+
+              $this->Admin_m->update($this->POST('username'), $this->data['entri']);
+
+              $this->flashmsg('<i class="fa fa-check"></i> Data admin berhasil diedit!');
+              redirect('admin/user');
+              exit;
+          }
+          else {
+              $this->flashmsg('<i class="fa fa-close"></i> Password yang dimasukkan dengan konfirmasi password berbeda! Silahkan Input Ulang!','danger');
+              redirect('admin/user');
+              exit;
+          }
+        }
+
+        if ($this->POST('get') && $this->POST('username'))
+        {
+          echo "hay";exit;
+          $this->data['admin'] = $this->Admin_m->get_row(['username' => $this->POST('username')]);
+          echo $this->data['admin']->username;exit;
+          echo json_encode($this->data['admin']);
+          exit;
+        }
+
+        if ($this->POST('delete') && $this->POST('username')){
+              $this->Admin_m->delete($this->POST('username'));
+              exit;
+        }
+
+        $this->data['user']    = $this->Admin_m->get();
+        $this->data['title']    = 'Daftar User';
+        $this->data['content']  = 'admin/user';
+        $this->template($this->data);
+    }
 }
