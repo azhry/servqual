@@ -139,6 +139,56 @@ class Admin extends MY_Controller
 	    $this->template($this->data);
 	}
 
+  public function kriteria()
+  {
+    $this->load->model('Kriteria_m');
+    if ($this->POST('insert'))
+    {
+      $this->data['entry'] = [
+        "nama" => $this->POST("nama"),
+        "benefit" => $this->POST("benefit"),
+        "bobot" => $this->POST("bobot"),
+      ];
+      $this->Kriteria_m->insert($this->data['entry']);
+      $this->flashmsg('<i class="fa fa-check"></i> Data Kriteria berhasil ditambahkan');
+      redirect('admin/kriteria');
+      exit;
+    }
+    
+    if ($this->POST('delete') && $this->POST('id_kriteria'))
+    {
+      $this->Kriteria_m->delete($this->POST('id_kriteria'));
+      $this->flashmsg('<i class="fa fa-check"></i> Data Kriteria berhasil dihapus');
+      exit;
+    }
+        
+    if ($this->POST('edit') && $this->POST('edit_id_kriteria'))
+    {
+      $this->data['entry'] = [
+        "nama" => $this->POST("nama"),
+        "benefit" => $this->POST("benefit"),
+        "bobot" => $this->POST("bobot"),
+      ];
+      $this->Kriteria_m->update($this->POST('edit_id_kriteria'), $this->data['entry']);
+       $this->flashmsg('<i class="fa fa-check"></i> Data Kriteria berhasil diedit');
+      redirect('admin/kriteria');
+      exit;
+    }
+
+    if ($this->POST('get') && $this->POST('id_kriteria'))
+    {
+      $this->data['kriteria'] = $this->Kriteria_m->get_row(['id_kriteria' => $this->POST('id_kriteria')]);
+      echo json_encode($this->data['kriteria']);
+      exit;
+    }
+        
+    $this->data['data']   = $this->Kriteria_m->get();
+    $this->data['columns']  = ["id_kriteria","nama","benefit","bobot",];
+    $this->data['title']  = 'Kriteria';
+    $this->data['content']  = 'admin/kriteria_all';
+    $this->template($this->data);
+  }
+
 	public function hasil_penilaian()
   	{
   		$this->data['id_pelamar']	= $this->uri->segment(3);
