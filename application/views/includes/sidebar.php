@@ -31,6 +31,10 @@
                     <ul class="nav child_menu">
                     </ul>
                   </li>
+                  <li><a href="<?= base_url('admin/kriteria') ?>"><i class="fa fa-book"></i> Kriteria </a>
+                    <ul class="nav child_menu">
+                    </ul>
+                  </li>
                   <li><a href="<?= base_url('admin/daftar-pelamar') ?>"><i class="fa fa-user fa-fw"></i> Daftar Pelamar</a>
                     <ul class="nav child_menu">
                     </ul>
