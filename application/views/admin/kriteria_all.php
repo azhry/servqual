@@ -7,17 +7,6 @@
                     Kriteria
                 </h3>
               </div>
-
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <div class="clearfix"></div>
@@ -34,7 +23,7 @@
                                 tr th, tr td {text-align: center;}
                             </style>
                                                                                          
-                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#add"><i class="glyphicon glyphicon-plus"></i> Tambah</button><hr>
+                            <!-- <button type="button" class="btn btn-default" data-toggle="modal" data-target="#add"><i class="glyphicon glyphicon-plus"></i> Tambah</button><hr> -->
                             
                             <table class="table table-bordered table-striped table-hover" id="table">
                                 <thead>
@@ -62,7 +51,7 @@
                                             </td>
                                         <?php endforeach; ?>
                                         <td align="center">
-                                            <button class="btn btn-info" data-toggle="modal" data-target="#edit" onclick="get_kriteria(<?= $row['id_kriteria'] ?>)"><i class="fa fa-edit"></i></button>
+                                            <!-- <button class="btn btn-info" data-toggle="modal" data-target="#edit" onclick="get_kriteria(<?= $row['id_kriteria'] ?>)"><i class="fa fa-edit"></i></button> -->
                                             <button class="btn btn-danger" onclick="delete_kriteria(<?= $row['id_kriteria'] ?>)"><i class="glyphicon glyphicon-trash"></i></button>
                                         
                                         </td>

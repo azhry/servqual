@@ -3,7 +3,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3 class="page-header">Daftar Pelamar <button class="btn btn-success" data-toggle="modal" data-target="#add"><i class="fa fa-plus"></i></button>
+                <h3 class="page-header">Daftar Pelamar <!-- <button class="btn btn-success" data-toggle="modal" data-target="#add"><i class="fa fa-plus"></i></button> -->
                   <?= form_open('admin/daftar-pelamar') ?>
                     <input type="submit" value="Hitung Hasil" class="btn btn-danger" name="hitung_hasil">
                   <?= form_close() ?>
@@ -67,7 +67,7 @@
                                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                             Aksi <span class="caret"></span></button>
                                             <ul class="dropdown-menu" role="menu">
-                                              <li><a href="#" data-toggle="modal" data-target="#input_nilai" onclick="set_id_pelamar(<?= $row->id_pelamar ?>);"><i class="fa fa-pencil"></i> Input Nilai</a></li>
+                                              <li><a href="<?= base_url('admin/input-penilaian/' . $row->id_pelamar) ?>"><i class="fa fa-pencil"></i> Input Nilai</a></li>
                                               <li><a href="<?= base_url('admin/hasil-penilaian/' . $row->id_pelamar) ?>"><i class="fa fa-eye"></i> Hasil Penilaian</a></li>
                                               <li><a href="" onclick="delete_pelamar(<?= $row->id_pelamar ?>)"><i class="fa fa-trash"></i> Hapus </a></li>
                                             </ul>
@@ -171,8 +171,7 @@
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
-
-</div>
+          </div>
 
             <script>
                 $(document).ready(function() {

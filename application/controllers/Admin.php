@@ -23,9 +23,13 @@ class Admin extends MY_Controller
   	public function index()
   	{
         $this->load->model('hasil_penilaian_m');
+        $this->load->model('admin_m');
+        $this->load->model('kriteria_m');
+        $this->data['kriteria'] = $this->kriteria_m->get();
+        $this->data['pengguna']	= $this->admin_m->get();
         $this->data['hasil']    = $this->hasil_penilaian_m->get();
-	    $this->data['title'] 	= 'Dashboard Admin';
 	    $this->data['pelamar']	= $this->pelamar_m->get();
+	    $this->data['title'] 	= 'Dashboard Admin';
 	    $this->data['content']	= 'admin/dashboard';
 	    $this->template($this->data);
 	}
@@ -139,55 +143,55 @@ class Admin extends MY_Controller
 	    $this->template($this->data);
 	}
 
-  public function kriteria()
-  {
-    $this->load->model('Kriteria_m');
-    if ($this->POST('insert'))
+    public function kriteria()
     {
-      $this->data['entry'] = [
-        "nama" => $this->POST("nama"),
-        "benefit" => $this->POST("benefit"),
-        "bobot" => $this->POST("bobot"),
-      ];
-      $this->Kriteria_m->insert($this->data['entry']);
-      $this->flashmsg('<i class="fa fa-check"></i> Data Kriteria berhasil ditambahkan');
-      redirect('admin/kriteria');
-      exit;
-    }
-    
-    if ($this->POST('delete') && $this->POST('id_kriteria'))
-    {
-      $this->Kriteria_m->delete($this->POST('id_kriteria'));
-      $this->flashmsg('<i class="fa fa-check"></i> Data Kriteria berhasil dihapus');
-      exit;
-    }
-        
-    if ($this->POST('edit') && $this->POST('edit_id_kriteria'))
-    {
-      $this->data['entry'] = [
-        "nama" => $this->POST("nama"),
-        "benefit" => $this->POST("benefit"),
-        "bobot" => $this->POST("bobot"),
-      ];
-      $this->Kriteria_m->update($this->POST('edit_id_kriteria'), $this->data['entry']);
-       $this->flashmsg('<i class="fa fa-check"></i> Data Kriteria berhasil diedit');
-      redirect('admin/kriteria');
-      exit;
-    }
+	    $this->load->model('Kriteria_m');
+	    if ($this->POST('insert'))
+	    {
+	      $this->data['entry'] = [
+	        "nama" => $this->POST("nama"),
+	        "benefit" => $this->POST("benefit"),
+	        "bobot" => $this->POST("bobot"),
+	      ];
+	      $this->Kriteria_m->insert($this->data['entry']);
+	      $this->flashmsg('<i class="fa fa-check"></i> Data Kriteria berhasil ditambahkan');
+	      redirect('admin/kriteria');
+	      exit;
+	    }
+	    
+	    if ($this->POST('delete') && $this->POST('id_kriteria'))
+	    {
+	      $this->Kriteria_m->delete($this->POST('id_kriteria'));
+	      $this->flashmsg('<i class="fa fa-check"></i> Data Kriteria berhasil dihapus');
+	      exit;
+	    }
+	        
+	    if ($this->POST('edit') && $this->POST('edit_id_kriteria'))
+	    {
+	      $this->data['entry'] = [
+	        "nama" => $this->POST("nama"),
+	        "benefit" => $this->POST("benefit"),
+	        "bobot" => $this->POST("bobot"),
+	      ];
+	      $this->Kriteria_m->update($this->POST('edit_id_kriteria'), $this->data['entry']);
+	       $this->flashmsg('<i class="fa fa-check"></i> Data Kriteria berhasil diedit');
+	      redirect('admin/kriteria');
+	      exit;
+	    }
 
-    if ($this->POST('get') && $this->POST('id_kriteria'))
-    {
-      $this->data['kriteria'] = $this->Kriteria_m->get_row(['id_kriteria' => $this->POST('id_kriteria')]);
-      echo json_encode($this->data['kriteria']);
-      exit;
+	    if ($this->POST('get') && $this->POST('id_kriteria'))
+	    {
+	      $this->data['kriteria'] = $this->Kriteria_m->get_row(['id_kriteria' => $this->POST('id_kriteria')]);
+	      echo json_encode($this->data['kriteria']);
+	      exit;
+	    }
+	        
+	    $this->data['data']   = $this->Kriteria_m->get();
+	    $this->data['columns']  = ["id_kriteria","nama","benefit","bobot",];
+	    $this->data['title']  = 'Kriteria';
+	    $this->data['content']  = 'admin/kriteria_all';
+	    $this->template($this->data);
     }
-        
-    $this->data['data']   = $this->Kriteria_m->get();
-    $this->data['columns']  = ["id_kriteria","nama","benefit","bobot",];
-    $this->data['title']  = 'Kriteria';
-    $this->data['content']  = 'admin/kriteria_all';
-    $this->template($this->data);
-  }
 
 	public function hasil_penilaian()
   	{
@@ -216,7 +220,11 @@ class Admin extends MY_Controller
         $this->load->model('pelamar_m');
         $this->load->model('hasil_penilaian_m');
         $this->load->model('keputusan_m');
+        $this->load->model('kriteria_m');
+        $this->load->model('bobot_m');
+        $this->load->model('penilaian_m');
 
+        $this->data['kriteria']	= $this->kriteria_m->get();
         $this->data['hasil']    = $this->hasil_penilaian_m->get_by_order('hasil', 'DESC');
         $this->data['title']    = 'Ranking Pelamar';
         $this->data['content']  = 'admin/ranking_penilaian';
@@ -294,5 +302,159 @@ class Admin extends MY_Controller
         $this->data['title']    = 'Daftar User';
         $this->data['content']  = 'admin/user';
         $this->template($this->data);
+    }
+
+    public function input_penilaian()
+    {
+    	$this->data['id_pelamar'] = $this->uri->segment(3);
+    	if (!isset($this->data['id_pelamar']))
+    	{
+    		$this->flashmsg('<i class="fa fa-warning"></i> Required parameter is missing', 'danger');
+    		redirect('admin/daftar-pelamar');
+    		exit;
+    	}
+
+    	$this->load->model('pelamar_m');
+    	$this->data['pelamar'] = $this->pelamar_m->get_row(['id_pelamar' => $this->data['id_pelamar']]);
+    	if (!isset($this->data['pelamar']))
+    	{
+    		$this->flashmsg('<i class="fa fa-warning"></i> Maaf, data pelamar tidak ditemukan.', 'danger');
+    		redirect('admin/daftar-pelamar');
+    		exit;
+    	}
+
+    	$this->load->model('kriteria_m');
+    	$this->load->model('bobot_m');
+
+    	$this->data['kriteria']	= $this->kriteria_m->get();
+
+    	if ($this->POST('submit'))
+    	{
+    		foreach ($this->data['kriteria'] as $kriteria)
+  			{
+  				$this->data['entri'] = [
+  					'id_bobot'		=> $this->POST($kriteria->nama),
+  					'id_kriteria'	=> $kriteria->id_kriteria,
+  					'id_pelamar'	=> $this->data['id_pelamar']
+  				];
+
+  				$this->penilaian_m->insert($this->data['entri']);
+  			}
+
+  			$this->flashmsg('<i class="fa fa-check"></i> Nilai pelamar berhasil dimasukan');
+  			redirect('admin/input-penilaian/' . $this->data['id_pelamar']);
+  			exit;
+    	}
+
+    	$this->data['title']	= 'Input Penilaian' . $this->title; 
+    	$this->data['content']	= 'admin/input_penilaian';
+    	$this->template($this->data);
+    }
+
+    public function input_data_pelamar()
+    {
+    	$this->load->model('pelamar_m');
+    	if ($this->POST('submit'))
+    	{
+    		$this->data['entri'] = [
+  				'nama'			=> $this->POST('nama'),
+  				'alamat'		=> $this->POST('alamat'),
+  				'tempat_lahir'	=> $this->POST('tempat_lahir'),
+  				'tgl_lahir'		=> $this->POST('tgl_lahir'),
+  				'no_hp'			=> $this->POST('no_hp'),
+  				'email'			=> $this->POST('email'),
+  				'jk'			=> $this->POST('jk')
+  			];
+
+  			$this->pelamar_m->insert($this->data['entri']);
+            $this->upload($this->db->insert_id(), 'foto', 'foto');
+
+  			$this->flashmsg('<i class="fa fa-check"></i> Data pelamar berhasil ditambahkan');
+  			redirect('admin/daftar-pelamar');
+  			exit;
+    	}
+
+    	$this->data['title']	= 'Input Data Pelamar' . $this->title;
+    	$this->data['content']	= 'admin/input_data_pelamar';
+    	$this->template($this->data);
+    }
+
+    public function edit_profile()
+    {
+    	$this->load->model('admin_m');
+    	if ($this->POST('submit'))
+    	{
+    		$username 		= $this->POST('username');
+    		$old_password	= $this->POST('old_password');
+    		$check_pass 	= $this->admin_m->get_row(['username' => $this->data['username'], 'password' => md5($old_password)]);
+    		if ($check_pass)
+    		{
+    			$new_password 			= $this->POST('new_password');
+    			$confirm_new_password	= $this->POST('confirm_new_password');
+    			if ($new_password === $confirm_new_password)
+    			{
+    				$this->data['entri'] = [
+    					'username'	=> $username,
+    					'password'	=> md5($new_password)
+    				];
+
+    				$this->admin_m->update($this->data['username'], $this->data['entri']);
+    				$this->session->set_userdata(['username' => $username]);
+    				$this->flashmsg('<i class="fa fa-check"></i> Profil berhasil di-edit');
+    			}
+    			else
+    			{
+    				$this->flashmsg('<i class="fa fa-warning"></i> Password baru anda tidak cocok dengan password konfirmasi', 'danger');		
+    			}
+    		}
+    		else
+    		{
+    			$this->flashmsg('<i class="fa fa-warning"></i> Password lama anda tidak cocok', 'danger');
+    		}
+
+    		redirect('admin/edit-profile');
+    		exit;
+    	}
+
+    	$this->data['title']	= 'Edit Profile' . $this->title;
+    	$this->data['content']	= 'admin/edit_profile';
+    	$this->template($this->data);
+    }
+
+    public function input_data_kriteria()
+    {
+    	$this->load->model('kriteria_m');
+    	$this->load->model('bobot_m');
+
+    	if ($this->POST('submit'))
+    	{
+    		$this->data['kriteria'] = [
+    			'nama'		=> $this->POST('nama'),
+    			'benefit'	=> $this->POST('benefit'),
+    			'bobot'		=> $this->POST('bobot')
+    		];
+    		$this->kriteria_m->insert($this->data['kriteria']);
+
+    		$fuzzy 			= $this->POST('fuzzy');
+    		$nilai 			= $this->POST('nilai');
+    		$id_kriteria 	= $this->db->insert_id();
+    		for ($i = 0; $i < count($fuzzy); $i++)
+    		{
+    			$this->data['bobot'] = [
+    				'id_kriteria'	=> $id_kriteria,
+    				'fuzzy'			=> $fuzzy[$i],
+    				'nilai'			=> $nilai[$i]
+    			];
+    			$this->bobot_m->insert($this->data['bobot']);
+    		}
+
+    		$this->flashmsg('<i class="fa fa-check"></i> Kriteria berhasil disimpan');
+    		redirect('admin/input-data-kriteria');
+    		exit;
+    	}
+
+    	$this->data['title']	= 'Input Data Kriteria' . $this->title;
+    	$this->data['content']	= 'admin/input_data_kriteria';
+    	$this->template($this->data);
     }
 }

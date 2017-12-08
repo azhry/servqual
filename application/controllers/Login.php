@@ -17,40 +17,6 @@ class Login extends MY_Controller
 		$this->load->model('admin_m');	
   	}
 
-  	public function test()
-  	{
-  		$this->load->model('penilaian_m');
-  		$data = [
-  			[
-  				'id_bobot' 		=> 3,
-  				'id_kriteria'	=> 1,
-  				'id_pelamar'	=> 1
-  			],
-  			[
-  				'id_bobot' 		=> 7,
-  				'id_kriteria'	=> 2,
-  				'id_pelamar'	=> 1
-  			],
-  			[
-  				'id_bobot' 		=> 11,
-  				'id_kriteria'	=> 3,
-  				'id_pelamar'	=> 1
-  			],
-  			[
-  				'id_bobot' 		=> 15,
-  				'id_kriteria'	=> 4,
-  				'id_pelamar'	=> 1
-  			]
-  		];
-  		$temp = [];
-  		foreach ($data as $row)
-  		{
-  			$temp []= (object)$row;
-  		}
-  		$data = $temp;
-  		echo $this->penilaian_m->defuzzification($data);
-  		echo $this->penilaian_m->decide($this->penilaian_m->defuzzification($data));
-  	}
 
   	public function index()
   	{
