@@ -48,14 +48,17 @@
                         </script>
                         <table id="datatable" class="table table-striped table-bordered">
                             <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nama</th>
-                                        <th>No.HP</th>
-                                        <th>Email</th>
-                                        <th>Hasil</th>
-                                        <th>Keputusan</th>
-                                    </tr>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>No.HP</th>
+                                    <th>Email</th>
+                                    <?php foreach($kriteria as $row): ?>
+                                    <th><?= $row->nama ?></th>
+                                    <?php endforeach; ?>
+                                    <th>Hasil</th>
+                                    <th>Keputusan</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 <?php $i=1; foreach ($hasil as $row): ?>
@@ -71,6 +74,27 @@
                                     <td><?= $data->nama ?></td>
                                     <td><?= $data->no_hp ?></td>
                                     <td><?= $data->email ?></td>
+                                    <?php foreach($kriteria as $krow): ?>
+                                        <?php  
+                                            $check_penilaian = $this->penilaian_m->get_row(['id_pelamar' => $data->id_pelamar, 'id_kriteria' => $krow->id_kriteria]);
+                                            if (isset($check_penilaian))
+                                            {
+                                                $bobot = $this->bobot_m->get_row(['id_bobot' => $check_penilaian->id_bobot]);
+                                                if (isset($bobot))
+                                                {
+                                                    echo '<td>' . $bobot->fuzzy . '</td>';
+                                                }
+                                                else
+                                                {
+                                                    echo '<td>-</td>';
+                                                }
+                                            }
+                                            else
+                                            {
+                                                echo '<td>-</td>';
+                                            }
+                                        ?>
+                                    <?php endforeach; ?>
                                     <td><?= $row->hasil ?></td>
                                     <td><?= $keputusan->nama ?></td>
                                 </tr>
@@ -90,9 +114,9 @@
 
             <script>
                 $(document).ready(function() {
-                    $('#dataTables-example').DataTable({
-                        responsive: true
-                    });
+                    // $('#dataTables').DataTable({
+                    //     responsive: true
+                    // });
 
                     var ctx = document.getElementById('line-chart');
 

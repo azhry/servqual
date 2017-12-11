@@ -31,15 +31,27 @@
                     <ul class="nav child_menu">
                     </ul>
                   </li>
-                  <li><a href="<?= base_url('admin/kriteria') ?>"><i class="fa fa-book"></i> Kriteria </a>
+                  <li><a href="<?= base_url('admin/daftar-pelamar') ?>"><i class="fa fa-users fa-fw"></i> Daftar Pelamar</a>
                     <ul class="nav child_menu">
                     </ul>
                   </li>
-                  <li><a href="<?= base_url('admin/daftar-pelamar') ?>"><i class="fa fa-user fa-fw"></i> Daftar Pelamar</a>
+                  <li><a href="<?= base_url('admin/input-data-pelamar') ?>"><i class="fa fa-user-plus"></i> Input Data Pelamar</a>
                     <ul class="nav child_menu">
                     </ul>
                   </li>
-                  <li><a href="<?= base_url('admin/ranking-penilaian') ?>"><i class="fa fa-bar-chart-o"></i> Ranking </a>
+                  <li><a href="<?= base_url('admin/ranking-penilaian') ?>"><i class="fa fa-line-chart"></i> Ranking Pelamar</a>
+                    <ul class="nav child_menu">
+                    </ul>
+                  </li>
+                  <li><a href="<?= base_url('admin/kriteria') ?>"><i class="fa fa-list"></i> Data Kriteria</a>
+                    <ul class="nav child_menu">
+                    </ul>
+                  </li>
+                  <li><a href="<?= base_url('admin/input-data-kriteria') ?>"><i class="fa fa-list-alt"></i> Input Data Kriteria</a>
+                    <ul class="nav child_menu">
+                    </ul>
+                  </li>
+                  <li><a href="<?= base_url('admin/user') ?>"><i class="fa fa-database"></i> Data Pengguna</a>
                     <ul class="nav child_menu">
                     </ul>
                   </li>
