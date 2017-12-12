@@ -60,6 +60,15 @@
                   </div>
                 </a>
               </div>
+              <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <a href="<?= base_url('admin/perhitungan') ?>">
+                  <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-calculator"></i></div>
+                    <div class="count">#</div>
+                    <h3>FSAW</h3>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </div>

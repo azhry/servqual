@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class MY_Controller extends CI_Controller
 {
-  	public $title = ' | Fuzzy SAW';
+  	public $title = ' | PT. Sumatera Prima Fibreboard';
 	public function __construct()
 	{
 		parent::__construct();

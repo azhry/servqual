@@ -3,7 +3,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="<?= base_url('') ?>" class="site_title"><i class="fa fa-paw"></i> <span>Fuzzy</span></a>
+               <a href="<?= base_url('') ?>" class="site_title"><i class="fa fa-paw"></i> <!-- <span>PT. Sumatera Prima Fibreboard</span> --></a>
             </div>
 
             <div class="clearfix"></div>
@@ -31,27 +31,24 @@
                     <ul class="nav child_menu">
                     </ul>
                   </li>
-                  <li><a href="<?= base_url('admin/daftar-pelamar') ?>"><i class="fa fa-users fa-fw"></i> Daftar Pelamar</a>
+                  <li><a href="#"><i class="fa fa-user"></i> Pelamar</a>
                     <ul class="nav child_menu">
+                      <li><a href="<?= base_url('admin/daftar-pelamar') ?>"><i class="fa fa-users"></i> Daftar Pelamar</a></li>
+                      <li><a href="<?= base_url('admin/input-data-pelamar') ?>"><i class="fa fa-user-plus"></i> Input Data Pelamar</a></li>
+                      <li><a href="<?= base_url('admin/ranking-penilaian') ?>"><i class="fa fa-line-chart"></i> Ranking Pelamar</a></li>
                     </ul>
                   </li>
-                  <li><a href="<?= base_url('admin/input-data-pelamar') ?>"><i class="fa fa-user-plus"></i> Input Data Pelamar</a>
+                  <li><a href="#"><i class="fa fa-th-list"></i> Kriteria</a>
                     <ul class="nav child_menu">
-                    </ul>
-                  </li>
-                  <li><a href="<?= base_url('admin/ranking-penilaian') ?>"><i class="fa fa-line-chart"></i> Ranking Pelamar</a>
-                    <ul class="nav child_menu">
-                    </ul>
-                  </li>
-                  <li><a href="<?= base_url('admin/kriteria') ?>"><i class="fa fa-list"></i> Data Kriteria</a>
-                    <ul class="nav child_menu">
-                    </ul>
-                  </li>
-                  <li><a href="<?= base_url('admin/input-data-kriteria') ?>"><i class="fa fa-list-alt"></i> Input Data Kriteria</a>
-                    <ul class="nav child_menu">
+                      <li><a href="<?= base_url('admin/kriteria') ?>"><i class="fa fa-list"></i> Data Kriteria</a></li>
+                      <li><a href="<?= base_url('admin/input-data-kriteria') ?>"><i class="fa fa-list-alt"></i> Input Data Kriteria</a></li>
                     </ul>
                   </li>
                   <li><a href="<?= base_url('admin/user') ?>"><i class="fa fa-database"></i> Data Pengguna</a>
+                    <ul class="nav child_menu">
+                    </ul>
+                  </li>
+                  <li><a href="<?= base_url('admin/perhitungan') ?>"><i class="fa fa-calculator"></i> Perhitungan FSAW</a>
                     <ul class="nav child_menu">
                     </ul>
                   </li>

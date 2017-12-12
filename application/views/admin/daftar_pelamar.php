@@ -4,9 +4,6 @@
             <div class="page-title">
               <div class="title_left">
                 <h3 class="page-header">Daftar Pelamar <!-- <button class="btn btn-success" data-toggle="modal" data-target="#add"><i class="fa fa-plus"></i></button> -->
-                  <?= form_open('admin/daftar-pelamar') ?>
-                    <input type="submit" value="Hitung Hasil" class="btn btn-danger" name="hitung_hasil">
-                  <?= form_close() ?>
                 </h3>
               </div>
 
