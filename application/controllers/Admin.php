@@ -291,6 +291,7 @@ class Admin extends MY_Controller
 
     	$this->load->model('kriteria_m');
     	$this->load->model('bobot_m');
+        $this->load->model('penilaian_m');
 
     	$this->data['kriteria']	= $this->kriteria_m->get();
 
@@ -466,10 +467,11 @@ class Admin extends MY_Controller
             exit;
         }
 
-        $this->data['kriteria'] = $this->kriteria_m->get();
-        $this->data['pelamar']  = $this->pelamar_m->get();
-        $this->data['title']    = 'Perhitungan Fuzzy Simple Additive Weighting' . $this->title;
-        $this->data['content']  = 'admin/perhitungan';
+        $this->data['penilaian']    = $this->penilaian_m->get();
+        $this->data['kriteria']     = $this->kriteria_m->get();
+        $this->data['pelamar']      = $this->pelamar_m->get();
+        $this->data['title']        = 'Perhitungan Fuzzy Simple Additive Weighting' . $this->title;
+        $this->data['content']      = 'admin/perhitungan';
         $this->template($this->data);
     }
 }

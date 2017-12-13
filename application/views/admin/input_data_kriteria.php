@@ -35,7 +35,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label for="nilai">Nilai<span class="required">*</span></label>
-                                        <input type="number" name="nilai[]" class="form-control" required>
+                                        <input type="number" step="any" name="nilai[]" class="form-control" required>
                                     </div>    
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
             '</div>' +
             '<div class="col-md-6">' +
                 '<label for="nilai">Nilai<span class="required">*</span></label>' +
-                '<input type="number" name="nilai[]" class="form-control" required>' +
+                '<input type="number" step="any" name="nilai[]" class="form-control" required>' +
             '</div>' +    
         '</div>');
     }

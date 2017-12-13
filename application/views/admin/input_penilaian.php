@@ -15,7 +15,7 @@
                         <h3>Pelamar</h3>
                         <p>Nama: <?= $pelamar->nama ?></p>
                         <p>Email: <?= $pelamar->email ?></p>
-                        <?= form_open('admin/input-penilaian') ?>
+                        <?= form_open('admin/input-penilaian/' . $id_pelamar) ?>
                             <?php foreach ($kriteria as $key): ?>
                                 <div class="form-group">
                                     <label for="<?= $key->nama ?>"><?= $key->nama ?></label>

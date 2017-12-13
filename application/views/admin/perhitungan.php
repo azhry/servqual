@@ -23,6 +23,7 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
+                    <?php if (count($penilaian) >= count($kriteria)): ?>
                     <div class="x_content">
                         <table class="table table-striped table-hover">
                             <thead>
@@ -262,6 +263,11 @@
                         </div>
                         <hr>
                     </div>
+                    <?php else: ?>
+                    <div class="x_content">
+                        Belum ada laporan penilaian. Silahkan beri nilai pelamar terlebih dahulu, kemudian hitung hasil penilaian dengan klik tombol merah yang ada di atas
+                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
