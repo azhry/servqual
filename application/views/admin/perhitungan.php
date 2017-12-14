@@ -114,7 +114,7 @@
                                     ?>
                                     <?php for ($j = 0; $j < count($kriteria); $j++): ?>
                                         <?php  
-                                            $nilai_pelamar = $this->penilaian_m->get_row(['id_kriteria' => $kriteria[$j]->id_kriteria, 'id_pelamar' => $row->id_pelamar]);
+                                            $nilai_pelamar = $this->penilaian_m->get_row(['id_kriteria' => $kriteria[$j]->id_kriteria, 'id_pelamar' => $pelamar[$i]->id_pelamar]);
                                             if (!isset($nilai_pelamar))
                                             {
                                                 echo '0';

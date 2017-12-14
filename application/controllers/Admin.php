@@ -10,7 +10,9 @@ class Admin extends MY_Controller
 	    parent::__construct();		
 
         $this->data['username'] = $this->session->userdata('username');
-        if (!isset($this->data['username']))
+        $this->data['role']     = $this->session->userdata('role');
+        
+        if (!isset($this->data['username'], $this->data['role']) or $this->data['role'] != 'admin')
         {
             $this->session->sess_destroy();
             redirect('login');
@@ -114,42 +116,42 @@ class Admin extends MY_Controller
 	    $this->load->model('Kriteria_m');
 	    if ($this->POST('insert'))
 	    {
-	      $this->data['entry'] = [
-	        "nama" => $this->POST("nama"),
-	        "benefit" => $this->POST("benefit"),
-	        "bobot" => $this->POST("bobot"),
-	      ];
-	      $this->Kriteria_m->insert($this->data['entry']);
-	      $this->flashmsg('<i class="fa fa-check"></i> Data Kriteria berhasil ditambahkan');
-	      redirect('admin/kriteria');
-	      exit;
+	        $this->data['entry'] = [
+                "nama"      => $this->POST("nama"),
+                "benefit"   => $this->POST("benefit"),
+                "bobot"     => $this->POST("bobot"),
+            ];
+            $this->Kriteria_m->insert($this->data['entry']);
+            $this->flashmsg('<i class="fa fa-check"></i> Data Kriteria berhasil ditambahkan');
+            redirect('admin/kriteria');
+            exit;
 	    }
 	    
 	    if ($this->POST('delete') && $this->POST('id_kriteria'))
 	    {
-	      $this->Kriteria_m->delete($this->POST('id_kriteria'));
-	      $this->flashmsg('<i class="fa fa-check"></i> Data Kriteria berhasil dihapus');
-	      exit;
+            $this->Kriteria_m->delete($this->POST('id_kriteria'));
+            $this->flashmsg('<i class="fa fa-check"></i> Data Kriteria berhasil dihapus');
+            exit;
 	    }
 	        
 	    if ($this->POST('edit') && $this->POST('edit_id_kriteria'))
 	    {
-	      $this->data['entry'] = [
-	        "nama" => $this->POST("nama"),
-	        "benefit" => $this->POST("benefit"),
-	        "bobot" => $this->POST("bobot"),
-	      ];
-	      $this->Kriteria_m->update($this->POST('edit_id_kriteria'), $this->data['entry']);
-	       $this->flashmsg('<i class="fa fa-check"></i> Data Kriteria berhasil diedit');
-	      redirect('admin/kriteria');
-	      exit;
+            $this->data['entry'] = [
+                "nama"      => $this->POST("nama"),
+                "benefit"   => $this->POST("benefit"),
+                "bobot"     => $this->POST("bobot"),
+            ];
+            $this->Kriteria_m->update($this->POST('edit_id_kriteria'), $this->data['entry']);
+            $this->flashmsg('<i class="fa fa-check"></i> Data Kriteria berhasil diedit');
+            redirect('admin/kriteria');
+            exit;
 	    }
 
 	    if ($this->POST('get') && $this->POST('id_kriteria'))
 	    {
-	      $this->data['kriteria'] = $this->Kriteria_m->get_row(['id_kriteria' => $this->POST('id_kriteria')]);
-	      echo json_encode($this->data['kriteria']);
-	      exit;
+            $this->data['kriteria'] = $this->Kriteria_m->get_row(['id_kriteria' => $this->POST('id_kriteria')]);
+            echo json_encode($this->data['kriteria']);
+            exit;
 	    }
 	        
 	    $this->data['data']   = $this->Kriteria_m->get();
@@ -300,12 +302,24 @@ class Admin extends MY_Controller
     		foreach ($this->data['kriteria'] as $kriteria)
   			{
   				$this->data['entri'] = [
-  					'id_bobot'		=> $this->POST($kriteria->nama),
+  					'id_bobot'		=> $this->POST(str_replace(' ', '_', $kriteria->nama)),
   					'id_kriteria'	=> $kriteria->id_kriteria,
   					'id_pelamar'	=> $this->data['id_pelamar']
   				];
 
-  				$this->penilaian_m->insert($this->data['entri']);
+                $check_penilaian = $this->penilaian_m->get_row([
+                    'id_pelamar'    => $this->data['id_pelamar'], 
+                    'id_kriteria'   => $this->data['entri']['id_kriteria']
+                ]);
+                
+                if (isset($check_penilaian))
+                {
+                    $this->penilaian_m->update($check_penilaian->id_penilaian, $this->data['entri']);
+                }
+                else
+                {
+                    $this->penilaian_m->insert($this->data['entri']);
+                }
   			}
 
   			$this->flashmsg('<i class="fa fa-check"></i> Nilai pelamar berhasil dimasukan');
@@ -323,11 +337,14 @@ class Admin extends MY_Controller
     	$this->load->model('pelamar_m');
     	if ($this->POST('submit'))
     	{
+            $tgl_lahir = $this->POST('tgl_lahir');
+            $tgl_lahir = explode('/', $tgl_lahir);
+            $tgl_lahir = $tgl_lahir[2] . '-' . $tgl_lahir[1] . '-' . $tgl_lahir[0];
     		$this->data['entri'] = [
   				'nama'			=> $this->POST('nama'),
   				'alamat'		=> $this->POST('alamat'),
   				'tempat_lahir'	=> $this->POST('tempat_lahir'),
-  				'tgl_lahir'		=> $this->POST('tgl_lahir'),
+  				'tgl_lahir'		=> $tgl_lahir,
   				'no_hp'			=> $this->POST('no_hp'),
   				'email'			=> $this->POST('email'),
   				'jk'			=> $this->POST('jk')

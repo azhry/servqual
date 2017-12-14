@@ -8,13 +8,25 @@ class Login extends MY_Controller
   	public function __construct()
 	{
 	    parent::__construct();	
-	    $username = $this->session->userdata('username');
-		if (isset($username))
+	    $username 	= $this->session->userdata('username');
+	    $role		= $this->session->userdata('role');
+		if (isset($username, $role))
 		{
-			redirect('admin');
+			switch ($role) 
+			{
+				case 'admin':
+					redirect('admin');
+					break;
+
+				case 'supervisor':
+					redirect('supervisor');
+					break;
+			}
+
 			exit;
 		}
 		$this->load->model('admin_m');	
+		$this->load->model('supervisor_m');
   	}
 
 
@@ -37,7 +49,11 @@ class Login extends MY_Controller
 			$result = $this->admin_m->login($this->data);
 			if (!isset($result)) 
 			{
-				$this->flashmsg('Username atau password salah','danger');
+				$result = $this->supervisor_m->login($this->data);
+				if (!isset($result))
+				{
+					$this->flashmsg('Username atau password salah','danger');
+				}
 			}
 			redirect('login');
 			exit;

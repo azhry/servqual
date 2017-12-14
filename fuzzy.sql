@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2017 at 04:32 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Generation Time: Dec 14, 2017 at 05:09 PM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -71,7 +73,13 @@ INSERT INTO `bobot` (`id_bobot`, `id_kriteria`, `fuzzy`, `nilai`) VALUES
 (13, 4, 'Tidak Sehat', 0.25),
 (14, 4, 'Kurang Sehat', 0.5),
 (15, 4, 'Sehat', 0.75),
-(16, 4, 'Sangat Sehat', 1);
+(16, 4, 'Sangat Sehat', 1),
+(17, 5, 'Sehat', 1),
+(18, 5, 'Sakit', 0),
+(19, 6, 'Tidak Sehat', 0.25),
+(20, 6, 'Kurang Sehat', 0.5),
+(21, 6, 'Sehat', 0.75),
+(22, 6, 'Sangat Sehat', 1);
 
 -- --------------------------------------------------------
 
@@ -129,7 +137,7 @@ INSERT INTO `kriteria` (`id_kriteria`, `nama`, `benefit`, `bobot`) VALUES
 (1, 'Administrasi', 'benefit', 0.15),
 (2, 'Wawancara', 'benefit', 0.25),
 (3, 'Psikotes', 'benefit', 0.35),
-(4, 'MCU', 'benefit', 0.25);
+(6, 'Medical Check Up', 'benefit', 0.25);
 
 -- --------------------------------------------------------
 
@@ -148,6 +156,15 @@ CREATE TABLE `pelamar` (
   `jk` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `pelamar`
+--
+
+INSERT INTO `pelamar` (`id_pelamar`, `nama`, `alamat`, `tempat_lahir`, `tgl_lahir`, `no_hp`, `email`, `jk`) VALUES
+(1, 'Azhary Arliansyah', 'Bougenville', 'Palembang', '1996-08-05', '0812345', 'arliansyah_azhary@yahoo.com', 'Laki-laki'),
+(2, 'Test', 'sadsf', 'asdas', '0000-00-00', '4534534', 'arliansyah_azhary@yahoo.com', 'Laki-laki'),
+(3, 'Test 2', 'asdasd', 'asdass', '0000-00-00', 'sdf', 'fdsf', 'Laki-laki');
+
 -- --------------------------------------------------------
 
 --
@@ -160,6 +177,24 @@ CREATE TABLE `penilaian` (
   `id_kriteria` int(11) NOT NULL,
   `id_pelamar` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `supervisor`
+--
+
+CREATE TABLE `supervisor` (
+  `username` varchar(50) NOT NULL,
+  `password` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `supervisor`
+--
+
+INSERT INTO `supervisor` (`username`, `password`) VALUES
+('supervisor', '827ccb0eea8a706c4c34a16891f84e7b');
 
 --
 -- Indexes for dumped tables
@@ -212,6 +247,12 @@ ALTER TABLE `penilaian`
   ADD KEY `id_pelamar` (`id_pelamar`);
 
 --
+-- Indexes for table `supervisor`
+--
+ALTER TABLE `supervisor`
+  ADD PRIMARY KEY (`username`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -219,32 +260,39 @@ ALTER TABLE `penilaian`
 -- AUTO_INCREMENT for table `bobot`
 --
 ALTER TABLE `bobot`
-  MODIFY `id_bobot` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_bobot` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
 --
 -- AUTO_INCREMENT for table `hasil_penilaian`
 --
 ALTER TABLE `hasil_penilaian`
-  MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `keputusan`
 --
 ALTER TABLE `keputusan`
   MODIFY `id_keputusan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `kriteria`
 --
 ALTER TABLE `kriteria`
-  MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT for table `pelamar`
 --
 ALTER TABLE `pelamar`
-  MODIFY `id_pelamar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pelamar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT for table `penilaian`
 --
 ALTER TABLE `penilaian`
-  MODIFY `id_penilaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_penilaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

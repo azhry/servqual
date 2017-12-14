@@ -1,12 +1,12 @@
-<?php defined('BASEPATH') || exit('No direct script allowed');
+<?php 
 
-class Admin_m extends MY_Model
+class Supervisor_m extends MY_Model
 {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->data['table_name']  = 'admin';
-		$this->data['primary_key'] = 'username';
+		$this->data['table_name']	= 'supervisor';
+		$this->data['primary_key']	= 'username';
 	}
 
 	public function login($data)
@@ -16,9 +16,8 @@ class Admin_m extends MY_Model
 			return $result;
 		$this->session->set_userdata([
 			'username'	=> $result->username,
-			'role'		=> 'admin'
+			'role'		=> 'supervisor'
 		]);
 		return $result;
 	}
 }
-

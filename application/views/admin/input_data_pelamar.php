@@ -32,7 +32,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="Tanggal Lahir">Tanggal Lahir<span class="required">*</span></label>
-                                <input type="text" class="form-control" name="tgl_lahir" required>
+                                <input type="text" id="single_cal2" class="form-control" name="tgl_lahir" required>
                             </div>
                             <div class="form-group">
                                 <label for="Nomor HP">Nomor HP<span class="required">*</span></label>

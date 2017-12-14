@@ -18,8 +18,8 @@
                         <?= form_open('admin/input-penilaian/' . $id_pelamar) ?>
                             <?php foreach ($kriteria as $key): ?>
                                 <div class="form-group">
-                                    <label for="<?= $key->nama ?>"><?= $key->nama ?></label>
-                                    <select name="<?= $key->nama ?>" id="" class="form-control form-md">
+                                    <label for="<?= str_replace(' ', '_', $key->nama) ?>"><?= $key->nama ?></label>
+                                    <select name="<?= str_replace(' ', '_', $key->nama) ?>" id="" class="form-control form-md" required>
                                         <option></option>
                                         <?php foreach ($this->bobot_m->get(['id_kriteria' => $key->id_kriteria]) as $value): ?>
                                         <option value="<?= $value->id_bobot ?>"><?= $value->fuzzy ?></option>
