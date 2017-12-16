@@ -433,7 +433,7 @@ class Admin extends MY_Controller
     		}
 
     		$this->flashmsg('<i class="fa fa-check"></i> Kriteria berhasil disimpan');
-    		redirect('admin/input-data-kriteria');
+    		redirect('admin/perhitungan');
     		exit;
     	}
 
