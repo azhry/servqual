@@ -132,4 +132,20 @@ class Supervisor extends MY_Controller
     	$this->data['content']	= 'supervisor/edit_profile';
     	$this->template($this->data);
     }
+
+    public function laporan()
+    {
+        @unlink(realpath(APPPATH . '../laporan.pdf'));
+        header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+        header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
+        header("Content-disposition: attachment; filename=laporan.pdf");
+        header("Content-type: application/pdf");
+        ini_set('max_execution_time', 0);
+        ini_set('memory_limit', -1);
+        $rand = mt_rand(1000, 2000);
+        $cmd = 'assets\phantomjs-2.1.1\bin\phantomjs.exe assets\phantomjs-2.1.1\generate_pdf.js ' . base_url('login/laporan?nocache='.mt_rand(0, 9999999) . '^&kepala-bagian=true') . ' laporan.pdf ' . mt_rand(2000, 2500);
+        echo exec($cmd);
+        readfile(base_url('laporan.pdf'));
+        // redirect(base_url('laporan.pdf'));
+    }
 }

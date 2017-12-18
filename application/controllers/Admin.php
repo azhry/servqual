@@ -323,7 +323,8 @@ class Admin extends MY_Controller
   			}
 
   			$this->flashmsg('<i class="fa fa-check"></i> Nilai pelamar berhasil dimasukan');
-  			redirect('admin/input-penilaian/' . $this->data['id_pelamar']);
+            redirect('admin/perhitungan');
+  			// redirect('admin/input-penilaian/' . $this->data['id_pelamar']);
   			exit;
     	}
 

@@ -1,3 +1,5 @@
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.min.js"></script>
     <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
@@ -6,6 +8,7 @@
                 <h3 class="page-header">
                     Ranking Pelamar
                 </h3>
+                <a class="btn btn-primary" href="<?= base_url('supervisor/laporan') ?>"><i class="fa fa-download"></i> Download Laporan Penilaian</a>
               </div>
 
               <div class="title_right">
@@ -152,6 +155,11 @@
                                     scaleLabel: {
                                         display: true,
                                         labelString: 'Nama Pelamar'
+                                    },
+                                    ticks: {
+                                        autoSkip: false,
+                                        maxRotation: 90,
+                                        minRotation: 80
                                     }
                                 }]
                             }
