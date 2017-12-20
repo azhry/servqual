@@ -201,8 +201,8 @@ class Admin extends MY_Controller
 
     public function user()
     {
-
         $this->load->model('Admin_m');
+        $this->load->model('supervisor_m');
 
         if ($this->POST('simpan')) 
         {
@@ -215,7 +215,15 @@ class Admin extends MY_Controller
                 'password'    => md5($this->POST('password1'))
               ];
 
-              $this->Admin_m->insert($this->data['entri']);
+              $role = $this->POST('role');
+              if ($role == 'Admin')
+              {
+                $this->Admin_m->insert($this->data['entri']);
+              }
+              else if ($role == 'Supervisor')
+              {
+                $this->supervisor_m->insert($this->data['entri']);
+              }
 
               $this->flashmsg('<i class="fa fa-check"></i> Data admin berhasil ditambahkan');
               redirect('admin/user');
@@ -240,7 +248,16 @@ class Admin extends MY_Controller
                 'password'    => md5($this->POST('password1'))
               ];
 
-              $this->Admin_m->update($this->POST('username'), $this->data['entri']);
+              $role = $this->POST('role');
+
+              if ($role == 'Admin')
+              {
+                $this->Admin_m->update($this->POST('username'), $this->data['entri']);
+              }
+              else if ($role == 'Supervisor')
+              {
+                $this->supervisor_m->update($this->POST('username'), $this->data['entri']);
+              }
 
               $this->flashmsg('<i class="fa fa-check"></i> Data admin berhasil diedit!');
               redirect('admin/user');
@@ -255,20 +272,39 @@ class Admin extends MY_Controller
 
         if ($this->POST('get') && $this->POST('username'))
         {
+
           $this->username_admin = $this->POST('username');
-          $this->data['admin'] = $this->Admin_m->get_row(['username' => $this->POST('username')]);
-          echo json_encode($this->data['admin']);
+          $role = $this->POST('role');
+          if ($role == 'Admin')
+          {
+            $this->data['entri'] = $this->Admin_m->get_row(['username' => $this->POST('username')]);
+          }
+          else if ($role == 'Supervisor')
+          {
+            $this->data['entri'] = $this->supervisor_m->get_row(['username' => $this->POST('username')]);
+          }
+          echo json_encode($this->data['entri']);
           exit;
         }
 
-        if ($this->POST('delete') && $this->POST('username')){
-              $this->Admin_m->delete($this->POST('username'));
-              exit;
+        if ($this->POST('delete') && $this->POST('username'))
+        {
+            $role = $this->POST('role');
+            if ($role == 'Admin')
+            {
+                $this->Admin_m->delete($this->POST('username'));
+            }
+            else if ($role == 'Supervisor')
+            {
+                $this->supervisor_m->delete($this->POST('username'));
+            }
+            exit;
         }
 
-        $this->data['user']    = $this->Admin_m->get();
-        $this->data['title']    = 'Daftar User';
-        $this->data['content']  = 'admin/user';
+        $this->data['supervisor']   = $this->supervisor_m->get();
+        $this->data['user']         = $this->Admin_m->get();
+        $this->data['title']        = 'Daftar User';
+        $this->data['content']      = 'admin/user';
         $this->template($this->data);
     }
 
