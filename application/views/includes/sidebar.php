@@ -51,6 +51,7 @@
                             <?php endif; ?>
                         </ul>
                     </li>
+                    <?php if (isset($role) && $role == 'admin'): ?>
                     <li><a href="#"><i class="fa fa-th-list"></i> Kriteria</a>
                     <ul class="nav child_menu">
                         <?php if (isset($role) && $role == 'admin'): ?>
@@ -62,6 +63,7 @@
                             <li><a href="<?= base_url('admin/input-data-kriteria') ?>"><i class="fa fa-list-alt"></i> Input Data Kriteria</a></li>
                         <?php endif; ?>
                     </ul>
+                    <?php endif; ?>
                 </li>
             <li>
                 <?php if (isset($role) && $role == 'admin'): ?>
