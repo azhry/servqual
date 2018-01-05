@@ -8,25 +8,23 @@ class Login extends MY_Controller
   	public function __construct()
 	{
 	    parent::__construct();	
-	    $username 	= $this->session->userdata('username');
-	    $role		= $this->session->userdata('role');
-		if (isset($username, $role))
+	    $username 		= $this->session->userdata('username');
+	    $id_hak_akses	= $this->session->userdata('id_hak_akses');
+		if (isset($username, $id_hak_akses))
 		{
-			switch ($role) 
+			switch ($id_hak_akses) 
 			{
-				case 'admin':
+				case 1:
 					redirect('admin');
 					break;
 
-				case 'supervisor':
+				case 2:
 					redirect('supervisor');
 					break;
 			}
 
 			exit;
 		}
-		$this->load->model('admin_m');	
-		$this->load->model('supervisor_m');
   	}
 
 
@@ -34,7 +32,8 @@ class Login extends MY_Controller
   	{
   		if ($this->POST('login-submit'))
 		{
-			if (!$this->admin_m->required_input(['username','password'])) 
+			$this->load->model('user_m');
+			if (!$this->user_m->required_input(['username','password'])) 
 			{
 				$this->flashmsg('Data harus lengkap','warning');
 				redirect('login');
@@ -46,14 +45,10 @@ class Login extends MY_Controller
     			'password'	=> md5($this->POST('password'))
 			];
 
-			$result = $this->admin_m->login($this->data);
+			$result = $this->user_m->login($this->data);
 			if (!isset($result)) 
 			{
-				$result = $this->supervisor_m->login($this->data);
-				if (!isset($result))
-				{
-					$this->flashmsg('Username atau password salah','danger');
-				}
+				$this->flashmsg('Username atau password salah','danger');
 			}
 			redirect('login');
 			exit;

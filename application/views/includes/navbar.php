@@ -13,9 +13,9 @@
                     </a>
                     <ul class="dropdown-menu dropdown-usermenu pull-right">
                         <li>
-                            <?php if (isset($role) && $role == 'admin'): ?>
+                            <?php if (isset($id_hak_akses) && $id_hak_akses == 1): ?>
                                 <a href="<?= base_url('admin/edit-profile') ?>"><i class="fa fa-cog"></i> Edit Profile</a>
-                            <?php elseif (isset($role) && $role == 'supervisor'): ?>
+                            <?php elseif (isset($id_hak_akses) && $id_hak_akses == 2): ?>
                                 <a href="<?= base_url('supervisor/edit-profile') ?>"><i class="fa fa-cog"></i> Edit Profile</a>
                             <?php endif; ?>
                         </li>

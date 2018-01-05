@@ -8,11 +8,10 @@ class Admin extends MY_Controller
   	public function __construct()
 	{
 	    parent::__construct();		
-
-        $this->data['username'] = $this->session->userdata('username');
-        $this->data['role']     = $this->session->userdata('role');
+        $this->data['username']     = $this->session->userdata('username');
+        $this->data['id_hak_akses'] = $this->session->userdata('id_hak_akses');
         
-        if (!isset($this->data['username'], $this->data['role']) or $this->data['role'] != 'admin')
+        if (!isset($this->data['username'], $this->data['id_hak_akses']) or $this->data['id_hak_akses'] != 1)
         {
             $this->session->sess_destroy();
             redirect('login');
@@ -25,10 +24,10 @@ class Admin extends MY_Controller
   	public function index()
   	{
         $this->load->model('hasil_penilaian_m');
-        $this->load->model('admin_m');
+        $this->load->model('user_m');
         $this->load->model('kriteria_m');
         $this->data['kriteria'] = $this->kriteria_m->get();
-        $this->data['pengguna']	= $this->admin_m->get();
+        $this->data['pengguna']	= $this->user_m->get();
         $this->data['hasil']    = $this->hasil_penilaian_m->get();
 	    $this->data['pelamar']	= $this->pelamar_m->get();
 	    $this->data['title'] 	= 'Dashboard Admin';
@@ -201,7 +200,7 @@ class Admin extends MY_Controller
 
     public function user()
     {
-        $this->load->model('Admin_m');
+        $this->load->model('user_m');
         $this->load->model('supervisor_m');
 
         if ($this->POST('simpan')) 
@@ -215,12 +214,12 @@ class Admin extends MY_Controller
                 'password'    => md5($this->POST('password1'))
               ];
 
-              $role = $this->POST('role');
-              if ($role == 'Admin')
+              $id_hak_akses = $this->POST('id_hak_akses');
+              if ($id_hak_akses == 'Admin')
               {
-                $this->Admin_m->insert($this->data['entri']);
+                $this->user_m->insert($this->data['entri']);
               }
-              else if ($role == 'Supervisor')
+              else if ($id_hak_akses == 'Supervisor')
               {
                 $this->supervisor_m->insert($this->data['entri']);
               }
@@ -248,13 +247,13 @@ class Admin extends MY_Controller
                 'password'    => md5($this->POST('password1'))
               ];
 
-              $role = $this->POST('role');
+              $id_hak_akses = $this->POST('id_hak_akses');
 
-              if ($role == 'Admin')
+              if ($id_hak_akses == 'Admin')
               {
-                $this->Admin_m->update($this->POST('username'), $this->data['entri']);
+                $this->user_m->update($this->POST('username'), $this->data['entri']);
               }
-              else if ($role == 'Supervisor')
+              else if ($id_hak_akses == 'Supervisor')
               {
                 $this->supervisor_m->update($this->POST('username'), $this->data['entri']);
               }
@@ -274,12 +273,12 @@ class Admin extends MY_Controller
         {
 
           $this->username_admin = $this->POST('username');
-          $role = $this->POST('role');
-          if ($role == 'Admin')
+          $id_hak_akses = $this->POST('id_hak_akses');
+          if ($id_hak_akses == 'Admin')
           {
-            $this->data['entri'] = $this->Admin_m->get_row(['username' => $this->POST('username')]);
+            $this->data['entri'] = $this->user_m->get_row(['username' => $this->POST('username')]);
           }
-          else if ($role == 'Supervisor')
+          else if ($id_hak_akses == 'Supervisor')
           {
             $this->data['entri'] = $this->supervisor_m->get_row(['username' => $this->POST('username')]);
           }
@@ -289,12 +288,12 @@ class Admin extends MY_Controller
 
         if ($this->POST('delete') && $this->POST('username'))
         {
-            $role = $this->POST('role');
-            if ($role == 'Admin')
+            $id_hak_akses = $this->POST('id_hak_akses');
+            if ($id_hak_akses == 'Admin')
             {
-                $this->Admin_m->delete($this->POST('username'));
+                $this->user_m->delete($this->POST('username'));
             }
-            else if ($role == 'Supervisor')
+            else if ($id_hak_akses == 'Supervisor')
             {
                 $this->supervisor_m->delete($this->POST('username'));
             }
@@ -302,7 +301,7 @@ class Admin extends MY_Controller
         }
 
         $this->data['supervisor']   = $this->supervisor_m->get();
-        $this->data['user']         = $this->Admin_m->get();
+        $this->data['user']         = $this->user_m->get();
         $this->data['title']        = 'Daftar User';
         $this->data['content']      = 'admin/user';
         $this->template($this->data);
@@ -402,12 +401,12 @@ class Admin extends MY_Controller
 
     public function edit_profile()
     {
-    	$this->load->model('admin_m');
+    	$this->load->model('user_m');
     	if ($this->POST('submit'))
     	{
     		$username 		= $this->POST('username');
     		$old_password	= $this->POST('old_password');
-    		$check_pass 	= $this->admin_m->get_row(['username' => $this->data['username'], 'password' => md5($old_password)]);
+    		$check_pass 	= $this->user_m->get_row(['username' => $this->data['username'], 'password' => md5($old_password)]);
     		if ($check_pass)
     		{
     			$new_password 			= $this->POST('new_password');
@@ -419,7 +418,7 @@ class Admin extends MY_Controller
     					'password'	=> md5($new_password)
     				];
 
-    				$this->admin_m->update($this->data['username'], $this->data['entri']);
+    				$this->user_m->update($this->data['username'], $this->data['entri']);
     				$this->session->set_userdata(['username' => $username]);
     				$this->flashmsg('<i class="fa fa-check"></i> Profil berhasil di-edit');
     			}

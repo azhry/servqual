@@ -6,10 +6,10 @@ class Supervisor extends MY_Controller
 	{
 		parent::__construct();
 
-		$this->data['username'] = $this->session->userdata('username');
-        $this->data['role']     = $this->session->userdata('role');
+		$this->data['username']       = $this->session->userdata('username');
+        $this->data['id_hak_akses']   = $this->session->userdata('id_hak_akses');
         
-        if (!isset($this->data['username'], $this->data['role']) or $this->data['role'] != 'supervisor')
+        if (!isset($this->data['username'], $this->data['id_hak_akses']) or $this->data['id_hak_akses'] != 2)
         {
             $this->session->sess_destroy();
             redirect('login');
@@ -21,11 +21,11 @@ class Supervisor extends MY_Controller
 	public function index()
   	{
         $this->load->model('hasil_penilaian_m');
-        $this->load->model('admin_m');
+        $this->load->model('user_m');
         $this->load->model('kriteria_m');
         $this->load->model('pelamar_m');
         $this->data['kriteria'] = $this->kriteria_m->get();
-        $this->data['pengguna']	= $this->admin_m->get();
+        $this->data['pengguna']	= $this->user_m->get();
         $this->data['hasil']    = $this->hasil_penilaian_m->get();
 	    $this->data['pelamar']	= $this->pelamar_m->get();
 	    $this->data['title'] 	= 'Dashboard Supervisor';
@@ -143,7 +143,7 @@ class Supervisor extends MY_Controller
         ini_set('max_execution_time', 0);
         ini_set('memory_limit', -1);
         $rand = mt_rand(1000, 2000);
-        $cmd = 'assets\phantomjs-2.1.1\bin\phantomjs.exe assets\phantomjs-2.1.1\generate_pdf.js ' . base_url('login/laporan?nocache='.mt_rand(0, 9999999) . '^&kepala-bagian=true') . ' laporan.pdf ' . mt_rand(2000, 2500);
+        $cmd = 'assets\phantomjs-2.1.1\bin\phantomjs.exe assets\phantomjs-2.1.1\generate_pdf.js ' . base_url('login/laporan?nocache='.mt_rand(0, 9999999)) . ' laporan.pdf ' . 1;
         echo exec($cmd);
         readfile(base_url('laporan.pdf'));
         // redirect(base_url('laporan.pdf'));
