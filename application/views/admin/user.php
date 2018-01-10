@@ -57,30 +57,13 @@
 									<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 									Aksi <span class="caret"></span></button>
 									<ul class="dropdown-menu" role="menu">
-										<li><a href="#" data-toggle="modal" data-target="#edit" onclick="get_data('<?= $row->username ?>', 'Admin')"><i class="fa fa-pencil"></i> Edit</li>
-										<li><a href="" onclick="delete_data(<?= $row->username ?>, 'Admin')"><i class="fa fa-trash"></i> Hapus </a></li>
+										<li><a href="#" data-toggle="modal" data-target="#edit" onclick="get_data('<?= $row->id_user ?>')"><i class="fa fa-pencil"></i> Edit</li>
+										<li><a href="" onclick="delete_data(<?= $row->id_user ?>, 'Admin')"><i class="fa fa-trash"></i> Hapus </a></li>
 									</ul>
 								</div>
 							</td>
 						</tr>
 						<?php $i++; endforeach; ?>
-						<?php foreach ($supervisor as $row): ?>
-							<tr>
-								<td><?= $i ?></td>
-								<td><?= $row->username ?></td>
-								<td>Supervisor</td>
-								<td>
-									<div class="btn-group">
-										<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-										Aksi <span class="caret"></span></button>
-										<ul class="dropdown-menu" role="menu">
-											<li><a href="#" data-toggle="modal" data-target="#edit" onclick="get_data('<?= $row->username ?>', 'Supervisor')"><i class="fa fa-pencil"></i> Edit</li>
-											<li><a href="" onclick="delete_data(<?= $row->username ?>, 'Supervisor')"><i class="fa fa-trash"></i> Hapus </a></li>
-										</ul>
-									</div>
-								</td>
-							</tr>
-						<?php endforeach; ?>
 					</tbody>
 				</table>
 			</div>
@@ -134,9 +117,8 @@
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						<h4 class="modal-title">Edit User</h4>
 					</div>
+					<input type="hidden" name="id_user" id="edit_id_user">
 					<div class="modal-body">
-						<input type="hidden" name="role" id="role">
-						<input type="hidden" name="username" id="username_lama">
 						<div class="form-group">
 							<label for="Username">Username *</label>
 							<input type="text" class="form-control" name="edit_username" id="edit_username" required>
@@ -167,31 +149,29 @@
                     });
                 });
 
-                function get_data(username, role) {
+                function get_data(id_user) {
                   $.ajax({
                       url: '<?= base_url('admin/user') ?>',
                       type: 'POST',
                       data: {
-                          username: username,
-                          role: role,
+                          id_user: id_user,
                           get: true
                       },
                       success: function(response) {
                           response = JSON.parse(response);
-                          $('#username_lama').val(response.username);
                           $('#edit_username').val(response.username);
-                          $('#role').val(role);
+                          $('#edit_id_user').val(id_user);
                       },
                       error: function(e) {console.log(e.responseText);}
                   });
                 }
 
-                function delete_data(username) {
+                function delete_data(id_user) {
                     $.ajax({
                         url: '<?= base_url('admin/user') ?>',
                         type: 'POST',
                         data: {
-                            username: username,
+                            id_user: id_user,
                             delete: true
                         },
                         success: function() {
