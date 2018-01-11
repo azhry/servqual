@@ -86,7 +86,7 @@
 			</div>
 			<div class="form-group">
 				<label for="Role">Role</label>
-				<select name="role" class="form-control" required>
+				<select name="id_hak_akses" class="form-control" required>
 					<option>Select role</option>
 					<option value="Admin">Admin</option>
 					<option value="Supervisor">Supervisor</option>
