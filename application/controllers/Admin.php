@@ -213,15 +213,7 @@ class Admin extends MY_Controller
                 'password'    => md5($this->POST('password1'))
               ];
 
-              $id_hak_akses = $this->POST('id_hak_akses');
-              if ($id_hak_akses == 'Admin')
-              {
-                $this->user_m->insert($this->data['entri']);
-              }
-              else if ($id_hak_akses == 'Supervisor')
-              {
-                $this->user_m->insert($this->data['entri']);
-              }
+            $this->user_m->insert($this->data['entri']);
 
               $this->flashmsg('<i class="fa fa-check"></i> Data admin berhasil ditambahkan');
               redirect('admin/user');
