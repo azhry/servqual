@@ -49,7 +49,7 @@
 
               <div class="separator">
                 <p class="change_link">Ingin mendaftar sebagai pelamar?
-                  <a href="<?= base_url('login/daftar') ?>" class="to_register"> Klik ini! </a>
+                  <a href="<?= base_url('login/pelamar') ?>" class="to_register"> Klik ini! </a>
                 </p>
 
                 <div class="clearfix"></div>

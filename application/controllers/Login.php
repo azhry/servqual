@@ -57,10 +57,41 @@ class Login extends MY_Controller
 		$this->load->view('login',$this->data);
 	}
 
-	public function daftar()
+	public function pelamar()
   	{
-	    $this->load->view('daftar');
-	}	
+
+  		if ($this->POST('login-submit'))
+		{
+
+			$this->load->model('pelamar_m');
+			if (!$this->pelamar_m->required_input(['username','password'])) 
+			{
+				$this->flashmsg('Data harus lengkap','warning');
+				redirect('login/pelamar');
+				exit;
+			}
+			
+			$this->data = [
+    			'username'	=> $this->POST('username'),
+    			'password'	=> md5($this->POST('password'))
+			];
+
+			$result = $this->pelamar_m->login($this->data);
+			if (!isset($result)) 
+			{
+				$this->flashmsg('Username atau password salah','danger');
+			}
+			redirect('pendaftaran');
+			exit;
+		}
+		$this->data['title'] = 'LOGIN'.$this->title;
+		$this->load->view('login_pelamar',$this->data);
+	}
+
+	// public function daftar()
+ //  	{
+	//     $this->load->view('daftar');
+	// }	
 
 	public function laporan()
     {

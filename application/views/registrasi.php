@@ -38,64 +38,34 @@
                 <div class="login-panel panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title">Selamat Datang di Website Pendaftaran Pelamar</h3>
-                        <a href="<?= base_url('logout/pelamar') ?>" class="navbar-link">Logout</a>
                     </div>
                     <div class="panel-body">
                         <div class="row" style="padding: 3%;">
                             <div class="col-md-8 col-md-offset-2">
-                                <h3 style="color: blue; padding: 3%; text-align: center;">Lengkapi biodata diri pada formulir berikut</h3>
+                                <h3 style="color: blue; padding: 3%; text-align: center;">Daftar</h3>
 
                                 <div style="padding: 3%;">
                                     <?= $this->session->flashdata('msg') ?>
                                 </div>
 
-                                <?= form_open_multipart('pendaftaran') ?>
+                                <?= form_open('Registrasi') ?>
+                                    <div class="form-group">
+                                        <label for="Username">Username * <span class="text-danger">ingat username dan password untuk login</span></label>
+                                        <input type="text" class="form-control" name="username" required>
+                                    </div><br>
+                                    <div class="form-group">
+                                        <label for="Password">Password *</label>
+                                        <input type="password" class="form-control" name="password" required>
+                                    </div><br>
                                     <div class="form-group">
                                         <label for="Nama">Nama *</label>
-                                        <input type="text" class="form-control" name="nama" value="<?= $pelamar->nama ?>" required>
+                                        <input type="text" class="form-control" name="nama" required>
                                     </div><br>
-                                    <div class="form-group">
-                                        <label for="Upload Foto">Upload Foto</label>
-                                        <input type="file" name="foto">
-                                    </div><br>
-                                    <div class="form-group">
-                                        <label for="Jenis Kelamin">Jenis Kelamin *</label><br>
-                                        <?php if($pelamar->jk == "perempuan"): ?>
-                                            <input type="radio" name="jk" value="laki-laki" required> Laki-Laki  <br>
-                                            <input type="radio" name="jk" value="perempuan" required checked> Perempuan <br>
-                                        <?php elseif($pelamar->jk == "laki-laki"): ?>
-                                            <input type="radio" name="jk" value="laki-laki" required checked> Laki-Laki  <br>
-                                            <input type="radio" name="jk" value="perempuan" required> Perempuan <br>
-                                        <?php else: ?>
-                                            <input type="radio" name="jk" value="laki-laki" required> Laki-Laki  <br>
-                                            <input type="radio" name="jk" value="perempuan" required> Perempuan <br>
-                                        <?php endif; ?>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="Tempat Lahir">Tempat Lahir *</label>
-                                        <input type="text" class="form-control" name="tempat_lahir"  value="<?= $pelamar->tempat_lahir ?>" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="Tanggal Lahir">Tanggal Lahir *</label>
-                                        <div class="input-group date">
-                                              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                              <input type="text" name="tgl_lahir" id="tgl_lahir" class="form-control" placeholder="YYYY-MM-DD" value="<?= $pelamar->tgl_lahir ?>" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="Nomor HP">Nomor HP *</label>
-                                        <input type="text" class="form-control" name="no_hp" value="<?= $pelamar->no_hp ?>" required>
-                                    </div>
                                     <div class="form-group">
                                         <label for="Email">Email *</label>
-                                        <input type="text" class="form-control" name="email" value="<?= $pelamar->email ?>" required>
+                                        <input type="text" class="form-control" name="email" required>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="Alamat">Alamat *</label>
-                                        <textarea class="form-control" rows="3" name="alamat" required><?= $pelamar->alamat ?></textarea>
-                                    </div>
-                                    <!-- Change this to a button or input when using this as a form -->
-                                    <input type="submit" name="daftar" value="Simpan" class="btn btn-lg btn-primary btn-block" style="margin-top: 5%;">
+                                    <input type="submit" name="daftar" value="Daftar" class="btn btn-lg btn-primary btn-block" style="margin-top: 5%;">
                                 <?= form_close() ?>
                             </div>
                         </div>
