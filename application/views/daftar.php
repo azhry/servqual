@@ -55,7 +55,7 @@
                     </div>
                     <div class="collapse navbar-collapse" style="margin-top: 2%;">
                         <ul class="navbar-right">
-                            <li style="list-style: none;"><a href="<?= base_url('logout/pelamar') ?>" class="btn btn-info"><i class="fa fa-sign-out"></i> Logout</a></li>
+                            <li style="list-style: none;"><a href="<?= base_url('logout') ?>" class="btn btn-info"><i class="fa fa-sign-out"></i> Logout</a></li>
                         </ul>
                     </div>
                     <div class="panel-body">
@@ -70,7 +70,7 @@
                                 <?= form_open_multipart('pendaftaran') ?>
                                     <div class="form-group">
                                         <label for="Nama">Nama *</label>
-                                        <input type="text" class="form-control" name="nama" required>
+                                        <input type="text" class="form-control" name="nama" value="<?= $pelamar->nama ?>" required>
                                     </div><br>
                                     <div class="form-group">
                                         <label for="Upload Foto">Upload Foto</label>
@@ -81,31 +81,39 @@
                                     </div><br>
                                     <div class="form-group">
                                         <label for="Jenis Kelamin">Jenis Kelamin *</label><br>
-                                        <input type="radio" name="jk" value="laki-laki" required> Laki-Laki  <br>
-                                        <input type="radio" name="jk" value="perempuan" required> Perempuan <br>
+                                        <?php if($pelamar->jk == "laki-laki"): ?>
+                                            <input type="radio" name="jk" value="laki-laki" required checked> Laki-Laki  <br>
+                                            <input type="radio" name="jk" value="perempuan" required> Perempuan <br>
+                                        <?php elseif($pelamar->jk == "perempuan"): ?>
+                                            <input type="radio" name="jk" value="laki-laki" required> Laki-Laki  <br>
+                                            <input type="radio" name="jk" value="perempuan" required checked> Perempuan <br>
+                                        <?php else: ?>
+                                            <input type="radio" name="jk" value="laki-laki" required> Laki-Laki  <br>
+                                            <input type="radio" name="jk" value="perempuan" required> Perempuan <br>
+                                        <?php endif; ?>
                                     </div>
                                     <div class="form-group">
                                         <label for="Tempat Lahir">Tempat Lahir *</label>
-                                        <input type="text" class="form-control" name="tempat_lahir" required>
+                                        <input type="text" class="form-control" name="tempat_lahir" value="<?= $pelamar->tempat_lahir ?>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="Tanggal Lahir">Tanggal Lahir *</label>
                                         <div class="input-group date">
                                               <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                              <input type="text" name="tgl_lahir" id="tgl_lahir" class="form-control" placeholder="YYYY-MM-DD" required>
+                                              <input type="text" name="tgl_lahir" value="<?= $pelamar->tgl_lahir ?>" id="tgl_lahir" class="form-control" placeholder="YYYY-MM-DD" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="Nomor HP">Nomor HP *</label>
-                                        <input type="text" class="form-control" name="no_hp" required>
+                                        <input type="text" class="form-control" name="no_hp" value="<?= $pelamar->no_hp ?>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="Email">Email *</label>
-                                        <input type="text" class="form-control" name="email" required>
+                                        <input type="text" class="form-control" name="email" value="<?= $pelamar->email ?>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="Alamat">Alamat *</label>
-                                        <textarea class="form-control" rows="3" name="alamat" required></textarea>
+                                        <textarea class="form-control" rows="3" name="alamat" required><?= $pelamar->alamat ?></textarea>
                                     </div>
                                     <!-- Change this to a button or input when using this as a form -->
                                     <input type="submit" name="daftar" value="Daftar" class="btn btn-lg btn-primary btn-block" style="margin-top: 5%;">

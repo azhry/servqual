@@ -5,15 +5,27 @@ class Pendaftaran extends MY_Controller
 {
 	private $data = [];
 
-  	public function __construct()
+  public function __construct()
 	{
-	    parent::__construct();		
+	    parent::__construct();	
+
+      $this->data['username']     = $this->session->userdata('username');
+      $this->data['id_pelamar'] = $this->session->userdata('id_pelamar');
+      
+      if (!isset($this->data['username'], $this->data['id_pelamar']))
+      {
+          $this->session->sess_destroy();
+          redirect('login');
+          exit;
+      }
+
   	}
 
   	public function index()
   	{
   		$this->load->model('pelamar_m');
-      
+      $id = $this->session->userdata('id_pelamar');
+
   		if ($this->POST('daftar')) 
   		{
   			$this->data['entri'] = [
@@ -26,16 +38,16 @@ class Pendaftaran extends MY_Controller
   				'jk'			      => $this->POST('jk')
   			];
 
-  			$this->pelamar_m->insert($this->data['entri']);
-  			$id = $this->pelamar_m->get_row(['nama' => $this->POST('nama'), 'email' => $this->POST('email')])->id_pelamar;
+  			$this->pelamar_m->update($id, $this->data['entri']);
+  			
   			$this->upload($id, 'foto', 'foto');
 
-  			$this->flashmsg('<i class="fa fa-check"></i> Anda berhasil mendaftar!');
+  			$this->flashmsg('<i class="fa fa-check"></i> Data berhasil disimpan!');
   			redirect('pendaftaran');
   			exit;
   		}
 
-
-	    $this->load->view('daftar');
+      $this->data['pelamar'] = $this->pelamar_m->get_row(['id_pelamar' => $id]);
+	    $this->load->view('daftar', $this->data);
 	}
 }

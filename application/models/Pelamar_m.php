@@ -8,7 +8,6 @@ class Pelamar_m extends MY_Model
 		$this->data['table_name']  = 'pelamar';
 		$this->data['primary_key'] = 'id_pelamar';
 	}
-<<<<<<< HEAD
 
 	public function login($data)
 	{
@@ -16,13 +15,10 @@ class Pelamar_m extends MY_Model
 		if (!isset($result))
 			return $result;
 		$this->session->set_userdata([
-			'email'		=> $result->username,
-			'password'	=> $result->password,
+			'username'	=> $result->username,
 			'id_pelamar'=> $result->id_pelamar
 		]);
 		return $result;
 	}
-=======
->>>>>>> parent of 59db19b... login pelamar
 }
 

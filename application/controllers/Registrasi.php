@@ -12,29 +12,39 @@ class Registrasi extends MY_Controller
 
   	public function index()
   	{
-  		$this->load->model('user_m');
   		$this->load->model('pelamar_m');
 
   		if ($this->POST('daftar')) 
   		{
-  			$this->data['user'] = [
-  				'username'		=> $this->POST('username'),
-  				'password'		=> md5($this->POST('password')),
-  				'id_hak_akses'	=> 3
-  			];
+        $username   = $this->POST('username'  );
+        $password1  = $this->POST('password1') ;
+        $password2  = $this->POST('password2') ;
 
-  			$this->user_m->insert($this->data['user']);
+        if(!isset($password1) && !isset($password2) && !isset($username)){
+          $this->flashmsg('<i class="fa fa-check"></i> Username dan password harus diisi!', 'danger');
+          redirect('registrasi');
+          exit;
+        }
+        else {
 
-  			$this->data['pelamar'] = [
-  				'nama'			=> $this->POST('nama'),
-  				'email'			=> $this->POST('email')
-  			];
+          if($password1 == $password2) {
+            $this->data['pelamar'] = [
+              'username'    => $this->POST('username'),
+              'password'    => md5($this->POST('password1'))
+            ];
 
-  			$this->pelamar_m->insert($this->data['pelamar']);
+            $this->pelamar_m->insert($this->data['pelamar']);
 
-  			$this->flashmsg('<i class="fa fa-check"></i> Anda berhasil mendaftar, silahkan login dan lengkapi biodata diri!');
-  			redirect('registrasi');
-  			exit;
+            $this->flashmsg('<i class="fa fa-check"></i> Anda berhasil mendaftar, silahkan login dan lengkapi biodata diri!');
+            redirect('registrasi');
+            exit;
+          }
+          else {
+            $this->flashmsg('<i class="fa fa-check"></i> Password dan konfirmasi password tidak sama!', 'warning');
+            redirect('registrasi');
+            exit;
+          }
+        }
   		}
 
 	    $this->load->view('login_pelamar');

@@ -10,18 +10,15 @@ class Logout extends MY_Controller
 	public function index()
 	{
 		$this->session->unset_userdata('username');
+		$this->session->unset_userdata('id_pelamar');
 		redirect('login');
 		exit;
 	}
-<<<<<<< HEAD
 
-	public function pelamar()
+	public function admin()
 	{
 		$this->session->unset_userdata('username');
-		$this->session->unset_userdata('id_hak_akses');
-		redirect('login/pelamar');
+		redirect('login/admin');
 		exit;
 	}
-=======
->>>>>>> parent of 59db19b... login pelamar
 }

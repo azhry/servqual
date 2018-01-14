@@ -14,7 +14,7 @@ class Admin extends MY_Controller
         if (!isset($this->data['username'], $this->data['id_hak_akses']) or $this->data['id_hak_akses'] != 1)
         {
             $this->session->sess_destroy();
-            redirect('login');
+            redirect('login/admin');
             exit;
         }
 

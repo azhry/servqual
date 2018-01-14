@@ -30,8 +30,11 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <?= form_open('login') ?>
+            <?= form_open('login/admin') ?>
               <h1>Login Form</h1>
+              <div>
+                <?= $this->session->flashdata('msg') ?>
+              </div>
               <div>
                 <input type="text" class="form-control" placeholder="Username" name="username" required />
               </div>
