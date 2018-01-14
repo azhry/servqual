@@ -21,6 +21,10 @@ class Login extends MY_Controller
 				case 2:
 					redirect('supervisor');
 					break;
+
+				case 3:
+					redirect('pendaftaran');
+					break;
 			}
 
 			exit;
@@ -62,9 +66,8 @@ class Login extends MY_Controller
 
   		if ($this->POST('login-submit'))
 		{
-
-			$this->load->model('pelamar_m');
-			if (!$this->pelamar_m->required_input(['username','password'])) 
+			$this->load->model('user_m');
+			if (!$this->user_m->required_input(['username','password'])) 
 			{
 				$this->flashmsg('Data harus lengkap','warning');
 				redirect('login/pelamar');
@@ -76,7 +79,7 @@ class Login extends MY_Controller
     			'password'	=> md5($this->POST('password'))
 			];
 
-			$result = $this->pelamar_m->login($this->data);
+			$result = $this->user_m->login($this->data);
 			if (!isset($result)) 
 			{
 				$this->flashmsg('Username atau password salah','danger');

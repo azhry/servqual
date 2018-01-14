@@ -12,18 +12,25 @@ class Registrasi extends MY_Controller
 
   	public function index()
   	{
+  		$this->load->model('user_m');
   		$this->load->model('pelamar_m');
 
   		if ($this->POST('daftar')) 
   		{
-  			$this->data['entri'] = [
-  				'nama'			=> $this->POST('nama'),
-  				'password'		=> md5($this->POST('password')),
+  			$this->data['user'] = [
   				'username'		=> $this->POST('username'),
+  				'password'		=> md5($this->POST('password')),
+  				'id_hak_akses'	=> 3
+  			];
+
+  			$this->user_m->insert($this->data['user']);
+
+  			$this->data['pelamar'] = [
+  				'nama'			=> $this->POST('nama'),
   				'email'			=> $this->POST('email')
   			];
 
-  			$this->pelamar_m->insert($this->data['entri']);
+  			$this->pelamar_m->insert($this->data['pelamar']);
 
   			$this->flashmsg('<i class="fa fa-check"></i> Anda berhasil mendaftar, silahkan login dan lengkapi biodata diri!');
   			redirect('registrasi');

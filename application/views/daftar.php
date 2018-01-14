@@ -29,6 +29,20 @@
 
     <!-- Bootstrap Datepicker CSS -->
     <link href="<?= base_url('assets/datepicker') ?>/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+
+    <style type="text/css">
+        .foto{
+            margin-top: 2%;
+            border: 2px double gray;
+            width: 150px;
+            height: 200px;
+        }
+        .foto img{
+            width: 100%;
+            height: 100%;
+        }
+
+    </style>
   </head>
 
   <body class="nav-md" style="background: white;">
@@ -38,7 +52,12 @@
                 <div class="login-panel panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title">Selamat Datang di Website Pendaftaran Pelamar</h3>
-                        <a href="<?= base_url('logout/pelamar') ?>" class="navbar-link">Logout</a>
+                        
+                    </div>
+                    <div class="collapse navbar-collapse" style="margin-top: 2%;">
+                        <ul class="navbar-right">
+                            <li style="list-style: none;"><a href="<?= base_url('logout/pelamar') ?>" class="btn btn-info"><i class="fa fa-sign-out"></i> Logout</a></li>
+                        </ul>
                     </div>
                     <div class="panel-body">
                         <div class="row" style="padding: 3%;">
@@ -57,6 +76,9 @@
                                     <div class="form-group">
                                         <label for="Upload Foto">Upload Foto</label>
                                         <input type="file" name="foto">
+                                        <div class="foto">
+                                            <img src="<?= base_url('assets/foto/'.$pelamar->id_pelamar.'.jpg') ?>" alt="Foto Pelamar">
+                                        </div>
                                     </div><br>
                                     <div class="form-group">
                                         <label for="Jenis Kelamin">Jenis Kelamin *</label><br>

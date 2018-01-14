@@ -17,7 +17,7 @@ class Logout extends MY_Controller
 	public function pelamar()
 	{
 		$this->session->unset_userdata('username');
-		$this->session->unset_userdata('password');
+		$this->session->unset_userdata('id_hak_akses');
 		redirect('login/pelamar');
 		exit;
 	}

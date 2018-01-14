@@ -15,7 +15,7 @@ class User_m extends MY_Model
 		if (!isset($result))
 			return $result;
 		$this->session->set_userdata([
-			'username'	=> $result->username,
+			'username'		=> $result->username,
 			'id_hak_akses'	=> $result->id_hak_akses
 		]);
 		return $result;

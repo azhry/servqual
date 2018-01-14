@@ -9,10 +9,10 @@ class Pendaftaran extends MY_Controller
 	 {
 	    parent::__construct();		
       
-      $username   = $this->session->userdata('username');
-      $password   = $this->session->userdata('password');
+      $username       = $this->session->userdata('username');
+      $id_hak_akses   = $this->session->userdata('id_hak_akses');
   	
-      if(!isset($username) && !isset($password)){
+      if(!isset($username) && $id_hak_akses != 3){
         $this->flashmsg('<i class="fa fa-check"></i> Anda harus login dulu!', 'danger');
         redirect('Login');
         exit;
@@ -21,22 +21,24 @@ class Pendaftaran extends MY_Controller
 
   	public function index()
   	{
-      $username   = $this->session->userdata('username');
-      $password   = $this->session->userdata('password');
-      
+      $username       = $this->session->userdata('username');
+      $id_hak_akses   = $this->session->userdata('id_hak_akses');
+
   		$this->load->model('pelamar_m');
-      $id = $this->pelamar_m->get_row(['username' => $username, 'password' => $password])->id_pelamar;
+      $this->load->model('user_m');
+
+      $id = $this->user_m->get_row(['username' => $username , 'id_hak_akses' => $id_hak_akses])->id_user;
 
   		if ($this->POST('daftar')) 
   		{
   			$this->data['entri'] = [
-  				'nama'			=> $this->POST('nama'),
-  				'alamat'		=> $this->POST('alamat'),
+  				'nama'			    => $this->POST('nama'),
+  				'alamat'		    => $this->POST('alamat'),
   				'tempat_lahir'	=> $this->POST('tempat_lahir'),
-  				'tgl_lahir'		=> $this->POST('tgl_lahir'),
-  				'no_hp'			=> $this->POST('no_hp'),
-  				'email'			=> $this->POST('email'),
-  				'jk'			=> $this->POST('jk')
+  				'tgl_lahir'		  => $this->POST('tgl_lahir'),
+  				'no_hp'			    => $this->POST('no_hp'),
+  				'email'			    => $this->POST('email'),
+  				'jk'			      => $this->POST('jk')
   			];
 
   			$this->pelamar_m->update($id, $this->data['entri']);

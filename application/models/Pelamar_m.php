@@ -15,7 +15,7 @@ class Pelamar_m extends MY_Model
 		if (!isset($result))
 			return $result;
 		$this->session->set_userdata([
-			'username'	=> $result->username,
+			'email'		=> $result->username,
 			'password'	=> $result->password,
 			'id_pelamar'=> $result->id_pelamar
 		]);
