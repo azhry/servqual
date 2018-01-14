@@ -61,7 +61,7 @@ class Login extends MY_Controller
 		$this->load->view('login',$this->data);
 	}
 
-	public function pelamar()
+	public function daftar()
   	{
 
   		if ($this->POST('login-submit'))

@@ -8,6 +8,7 @@ class Pelamar_m extends MY_Model
 		$this->data['table_name']  = 'pelamar';
 		$this->data['primary_key'] = 'id_pelamar';
 	}
+<<<<<<< HEAD
 
 	public function login($data)
 	{
@@ -21,5 +22,7 @@ class Pelamar_m extends MY_Model
 		]);
 		return $result;
 	}
+=======
+>>>>>>> parent of 59db19b... login pelamar
 }
 

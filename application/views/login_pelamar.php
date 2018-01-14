@@ -10,25 +10,25 @@
     <title>Pendaftaran Pelamar</title>
 
     <!-- Bootstrap -->
-    <link href="<?= base_url('assets') ?>/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://localhost/fuzzy/assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="<?= base_url('assets') ?>/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://localhost/fuzzy/assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="<?= base_url('assets') ?>/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="http://localhost/fuzzy/assets/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
-    <link href="<?= base_url('assets') ?>/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="http://localhost/fuzzy/assets/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="<?= base_url('assets') ?>/build/css/custom.min.css" rel="stylesheet">
+    <link href="http://localhost/fuzzy/assets/build/css/custom.min.css" rel="stylesheet">
 
 
     <!-- jQuery -->
-    <script src="<?= base_url('assets') ?>/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="http://localhost/fuzzy/assets/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="<?= base_url('assets') ?>/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="http://localhost/fuzzy/assets/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Bootstrap Datepicker CSS -->
-    <link href="<?= base_url('assets/datepicker') ?>/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+    <link href="http://localhost/fuzzy/assets/datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
   
   	<style type="text/css">
 		body {
@@ -154,15 +154,14 @@
 						</div>
 						<hr>
 						<div class="col-md-6 col-md-offset-3" style="margin-top: 2%;">
-							<?= $this->session->flashdata('msg') ?>
-						</div>
+													</div>
 						<hr>
 					</div>
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
 								<!-- <form id="login-form" action="https://phpoll.com/login/process" method="post" role="form" style="display: block;"> -->
-								<?= form_open('login/pelamar', ['style' => 'display:block;', 'id' => 'login-form']) ?>
+								<form action="http://localhost/fuzzy/login/pelamar" style="display:block;" id="login-form" method="post" accept-charset="utf-8">
                                 	<div class="form-group">
 										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
 									</div>
@@ -181,11 +180,10 @@
 										</div>
 									</div>
 
-                                <?= form_close() ?>
-
+                                </form>
 
 								<!-- <form id="register-form" action="https://phpoll.com/register/process" method="post" role="form" style="display: none;"> -->
-								<?= form_open('registrasi', ['style' => 'display:none;', 'id' => 'register-form']) ?>
+								<form action="http://localhost/fuzzy/registrasi" style="display:none;" id="register-form" method="post" accept-charset="utf-8">
 									<div class="form-group">
                                         <label for="Username">Username * <span class="text-danger">ingat username dan password untuk login</span></label>
                                         <input type="text" class="form-control" name="username" id="username" tabindex="1" required>
@@ -242,33 +240,33 @@
 </script>
 
  <!-- Bootstrap Datepicker JavaScript -->
-    <script src="<?= base_url('assets/datepicker') ?>/js/bootstrap-datepicker.min.js"></script>
+    <script src="http://localhost/fuzzy/assets/datepicker/js/bootstrap-datepicker.min.js"></script>
 
     <!-- FastClick -->
-    <script src="<?= base_url('assets') ?>/vendors/fastclick/lib/fastclick.js"></script>
+    <script src="http://localhost/fuzzy/assets/vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
-    <script src="<?= base_url('assets') ?>/vendors/nprogress/nprogress.js"></script>
+    <script src="http://localhost/fuzzy/assets/vendors/nprogress/nprogress.js"></script>
     <!-- Chart.js -->
-    <script src="<?= base_url('assets') ?>/vendors/Chart.js/dist/Chart.min.js"></script>
+    <script src="http://localhost/fuzzy/assets/vendors/Chart.js/dist/Chart.min.js"></script>
     <!-- jQuery Sparklines -->
-    <script src="<?= base_url('assets') ?>/vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+    <script src="http://localhost/fuzzy/assets/vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
     <!-- Flot -->
-    <script src="<?= base_url('assets') ?>/vendors/Flot/jquery.flot.js"></script>
-    <script src="<?= base_url('assets') ?>/vendors/Flot/jquery.flot.pie.js"></script>
-    <script src="<?= base_url('assets') ?>/vendors/Flot/jquery.flot.time.js"></script>
-    <script src="<?= base_url('assets') ?>/vendors/Flot/jquery.flot.stack.js"></script>
-    <script src="<?= base_url('assets') ?>/vendors/Flot/jquery.flot.resize.js"></script>
+    <script src="http://localhost/fuzzy/assets/vendors/Flot/jquery.flot.js"></script>
+    <script src="http://localhost/fuzzy/assets/vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="http://localhost/fuzzy/assets/vendors/Flot/jquery.flot.time.js"></script>
+    <script src="http://localhost/fuzzy/assets/vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="http://localhost/fuzzy/assets/vendors/Flot/jquery.flot.resize.js"></script>
     <!-- Flot plugins -->
-    <script src="<?= base_url('assets') ?>/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-    <script src="<?= base_url('assets') ?>/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-    <script src="<?= base_url('assets') ?>/vendors/flot.curvedlines/curvedLines.js"></script>
+    <script src="http://localhost/fuzzy/assets/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="http://localhost/fuzzy/assets/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="http://localhost/fuzzy/assets/vendors/flot.curvedlines/curvedLines.js"></script>
     <!-- DateJS -->
-    <script src="<?= base_url('assets') ?>/vendors/DateJS/build/date.js"></script>
+    <script src="http://localhost/fuzzy/assets/vendors/DateJS/build/date.js"></script>
     <!-- bootstrap-daterangepicker -->
-    <script src="<?= base_url('assets') ?>/vendors/moment/min/moment.min.js"></script>
-    <script src="<?= base_url('assets') ?>/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="http://localhost/fuzzy/assets/vendors/moment/min/moment.min.js"></script>
+    <script src="http://localhost/fuzzy/assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
     
     <!-- Custom Theme Scripts -->
-    <script src="<?= base_url('assets') ?>/build/js/custom.min.js"></script>
+    <script src="http://localhost/fuzzy/assets/build/js/custom.min.js"></script>
   </body>
 </html>

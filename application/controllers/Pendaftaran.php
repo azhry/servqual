@@ -6,29 +6,14 @@ class Pendaftaran extends MY_Controller
 	private $data = [];
 
   	public function __construct()
-	 {
+	{
 	    parent::__construct();		
-      
-      $username       = $this->session->userdata('username');
-      $id_hak_akses   = $this->session->userdata('id_hak_akses');
-  	
-      if(!isset($username) && $id_hak_akses != 3){
-        $this->flashmsg('<i class="fa fa-check"></i> Anda harus login dulu!', 'danger');
-        redirect('Login');
-        exit;
-      }
-    }
+  	}
 
   	public function index()
   	{
-      $username       = $this->session->userdata('username');
-      $id_hak_akses   = $this->session->userdata('id_hak_akses');
-
   		$this->load->model('pelamar_m');
-      $this->load->model('user_m');
-
-      $id = $this->user_m->get_row(['username' => $username , 'id_hak_akses' => $id_hak_akses])->id_user;
-
+      
   		if ($this->POST('daftar')) 
   		{
   			$this->data['entri'] = [
@@ -41,7 +26,8 @@ class Pendaftaran extends MY_Controller
   				'jk'			      => $this->POST('jk')
   			];
 
-  			$this->pelamar_m->update($id, $this->data['entri']);
+  			$this->pelamar_m->insert($this->data['entri']);
+  			$id = $this->pelamar_m->get_row(['nama' => $this->POST('nama'), 'email' => $this->POST('email')])->id_pelamar;
   			$this->upload($id, 'foto', 'foto');
 
   			$this->flashmsg('<i class="fa fa-check"></i> Anda berhasil mendaftar!');
@@ -49,8 +35,7 @@ class Pendaftaran extends MY_Controller
   			exit;
   		}
 
-      $this->data['pelamar' ] = $this->pelamar_m->get_row(['id_pelamar' => $id]);
 
-	    $this->load->view('daftar', $this->data);
+	    $this->load->view('daftar');
 	}
 }

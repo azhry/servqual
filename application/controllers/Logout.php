@@ -13,6 +13,7 @@ class Logout extends MY_Controller
 		redirect('login');
 		exit;
 	}
+<<<<<<< HEAD
 
 	public function pelamar()
 	{
@@ -21,4 +22,6 @@ class Logout extends MY_Controller
 		redirect('login/pelamar');
 		exit;
 	}
+=======
+>>>>>>> parent of 59db19b... login pelamar
 }
