@@ -35,12 +35,17 @@ class Pendaftaran extends MY_Controller
   				'tgl_lahir'		  => $this->POST('tgl_lahir'),
   				'no_hp'			    => $this->POST('no_hp'),
   				'email'			    => $this->POST('email'),
-  				'jk'			      => $this->POST('jk')
+  				'jk'			      => $this->POST('jk'),
+          'ipk'           => $this->POST('ipk'),
+          'jurusan'                 => $this->POST('jurusan'),
+          'asal_perguruan_tinggi'   => $this->POST('asal_perguruan_tinggi'),
+          'pendidikan_terakhir'     => $this->POST('pendidikan_terakhir')
   			];
 
   			$this->pelamar_m->update($id, $this->data['entri']);
   			
   			$this->upload($id, 'foto', 'foto');
+        $this->upload($id, 'ijazah', 'ijazah');
 
   			$this->flashmsg('<i class="fa fa-check"></i> Data berhasil disimpan!');
   			redirect('pendaftaran');

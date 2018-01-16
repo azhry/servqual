@@ -115,6 +115,29 @@
                                         <label for="Alamat">Alamat *</label>
                                         <textarea class="form-control" rows="3" name="alamat" required><?= $pelamar->alamat ?></textarea>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="Upload Foto">Upload File Scan Ijazah</label>
+                                        <input type="file" name="ijazah">
+                                        <div class="foto">
+                                            <img src="<?= base_url('assets/ijazah/'.$pelamar->id_pelamar.'.jpg') ?>" alt="File Scan Ijazah">
+                                        </div>
+                                    </div><br>
+                                    <div class="form-group">
+                                        <label for="Jurusan yang dibutuhkan">Jurusan yang dibutuhkan *</label>
+                                        <input type="text" class="form-control" name="jurusan" value="<?= $pelamar->jurusan ?>" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Asal Perguruan Tinggi">Asal Perguruan Tinggi *</label>
+                                        <input type="text" class="form-control" name="asal_perguruan_tinggi" value="<?= $pelamar->asal_perguruan_tinggi ?>" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="IPK">IPK *</label>
+                                        <input type="number" class="form-control" name="ipk" value="<?= $pelamar->ipk ?>" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Pendidikan Terakhir">Pendidikan Terakhir *</label>
+                                        <input type="text" class="form-control" name="pendidikan_terakhir" value="<?= $pelamar->pendidikan_terakhir ?>" required>
+                                    </div>
                                     <!-- Change this to a button or input when using this as a form -->
                                     <input type="submit" name="daftar" value="Daftar" class="btn btn-lg btn-primary btn-block" style="margin-top: 5%;">
                                 <?= form_close() ?>
