@@ -10,16 +10,16 @@
     <title><?= $title ?></title>
 
     <!-- Bootstrap -->
-    <link href="<?= base_url('assets') ?>/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= base_url('assets/admintemplate') ?>/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="<?= base_url('assets') ?>/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="<?= base_url('assets/admintemplate') ?>/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="<?= base_url('assets') ?>/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="<?= base_url('assets/admintemplate') ?>/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- Animate.css -->
-    <link href="<?= base_url('assets') ?>/vendors/animate.css/animate.min.css" rel="stylesheet">
+    <link href="<?= base_url('assets/admintemplate') ?>/vendors/animate.css/animate.min.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="<?= base_url('assets') ?>/build/css/custom.min.css" rel="stylesheet">
+    <link href="<?= base_url('assets/admintemplate') ?>/build/css/custom.min.css" rel="stylesheet">
   </head>
 
   <body class="login">
@@ -51,9 +51,9 @@
               <div class="clearfix"></div>
 
               <div class="separator">
-                <p class="change_link">Ingin mendaftar sebagai pelamar?
+                <!-- <p class="change_link">Ingin mendaftar sebagai pelamar?
                   <a href="<?= base_url('login/daftar') ?>" class="to_register"> Klik ini! </a>
-                </p>
+                </p> -->
 
                 <div class="clearfix"></div>
                 <br />

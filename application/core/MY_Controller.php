@@ -2,16 +2,21 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class MY_Controller extends CI_Controller
 {
-  	public $title = ' | PT. Sumatera Prima Fibreboard';
+  	public $title = ' | E-Commerce';
 	public function __construct()
 	{
 		parent::__construct();
 		date_default_timezone_set("Asia/Jakarta");
 	}
 
-	public function template($data)
+	public function template($data, $template = 'admin')
 	{
-	    return $this->load->view('includes/layout', $data);
+		if($template == "user"){
+			return $this->load->view('user/includes/layout', $data);
+		}
+		else{
+			return $this->load->view($template . '/includes/layout', $data);
+		}
 	}
 
 	public function POST($name)
