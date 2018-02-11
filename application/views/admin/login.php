@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title><?= $title ?></title>
+    <title>Login | Admin</title>
 
     <!-- Bootstrap -->
     <link href="<?= base_url('assets/admintemplate') ?>/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -42,7 +42,7 @@
                 <input type="password" class="form-control" placeholder="Password" name="password" required />
               </div>
               <div style="margin-left: 0px !important;">
-                <input type="submit" name="login-submit" value="Login" class="btn btn-lg btn-success btn-block">
+                <input type="submit" name="login" value="Login" class="btn btn-lg btn-success btn-block">
               </div>
               <div>
                   <a class="reset_pass" href="#">Lost your password?</a>

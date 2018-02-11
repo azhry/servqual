@@ -3,58 +3,84 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends MY_Controller
 {
-	private $data = [];
 
-  	public function __construct()
-	{
-	    parent::__construct();	
-	    $username 		= $this->session->userdata('username');
-	    $id_hak_akses	= $this->session->userdata('id_hak_akses');
-		if (isset($username, $id_hak_akses))
-		{
-			switch ($id_hak_akses) 
-			{
-				case 1:
-					redirect('admin');
+	public function __construct() {
+
+		parent::__construct();
+		$this->data['id_pengguna']	= $this->session->userdata( 'id_pengguna' );
+		if ( isset( $this->data['id_pengguna'] ) ) {
+
+			$this->data['role']	= $this->session->userdata( 'id_role' );
+			switch ( $this->data['role'] ) {
+
+				case "1":
+					redirect( 'pelanggan' );
 					break;
+
+				case "2":
+					redirect( 'admin' );
+					break;
+
 			}
 
-			exit;
 		}
-  	}
 
+	}
 
-  	public function index()
-  	{
-		// if ($this->POST('login-submit'))
-		// {
-		// 	$this->load->model('pelamar_m');
-		// 	if (!$this->pelamar_m->required_input(['username','password'])) 
-		// 	{
-		// 		$this->flashmsg('Data harus lengkap','warning');
-		// 		redirect('login');
-		// 		exit;
-		// 	}
-			
-		// 	$this->data = [
-  //   			'username'	=> $this->POST('username'),
-  //   			'password'	=> md5($this->POST('password'))
-		// 	];
+	public function index() {
 
-		// 	$result = $this->pelamar_m->login($this->data);
-		// 	if (!isset($result)) 
-		// 	{
-		// 		$this->flashmsg('Username atau password salah','danger');
-		// 		redirect('login');
-		// 		exit;
-		// 	}
-		// 	else {
-		// 		redirect('pendaftaran');
-		// 		exit;
-		// 	}
-		// }
-		$this->data['title'] = 'LOGIN'.$this->title;
-		$this->load->view('login',$this->data);
+		if ( $this->POST( 'login' ) ) {
+
+			$this->load->model( 'login_m' );
+			$pengguna = $this->login_m->login_pelanggan( $this->POST( 'username' ), md5( $this->POST( 'password' ) ) );
+			if ( $pengguna != NULL ) {
+
+				$this->session->set_userdata([
+					'id_pengguna'	=> $pengguna->id_pengguna,
+					'id_role'		=> $pengguna->id_role,
+					'username'		=> $pengguna->username
+				]);
+
+			} else {
+
+				$this->flashmsg( 'Username atau password salah', 'danger' );
+
+			}
+
+			redirect( 'login' );
+			exit;
+
+		}
+
+		$this->load->view('pelanggan/login');
+		
+	}
+
+	public function admin() {
+
+		if ( $this->POST( 'login' ) ) {
+
+			$this->load->model( 'login_m' );
+			$pengguna = $this->login_m->login_admin( $this->POST( 'username' ), md5( $this->POST( 'password' ) ) );
+			if ( $pengguna != NULL ) {
+				$this->session->set_userdata([
+					'id_pengguna'	=> $pengguna->id_pengguna,
+					'id_role'		=> $pengguna->id_role,
+					'username'		=> $pengguna->username
+				]);
+			} else {
+
+				$this->flashmsg( 'Username atau password salah', 'danger' );
+
+			}
+
+			redirect( 'login/admin' );
+			exit;
+
+		}
+
+		$this->load->view('admin/login');
+
 	}
 
 }

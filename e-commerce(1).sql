@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2018 at 07:44 AM
+-- Generation Time: Feb 11, 2018 at 04:16 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -87,6 +87,7 @@ CREATE TABLE `pemesanan` (
 
 CREATE TABLE `pengguna` (
   `id_pengguna` int(11) NOT NULL,
+  `id_role` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(32) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -95,6 +96,13 @@ CREATE TABLE `pengguna` (
   `alamat` text NOT NULL,
   `no_hp` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pengguna`
+--
+
+INSERT INTO `pengguna` (`id_pengguna`, `id_role`, `username`, `password`, `email`, `nama`, `jenis_kelamin`, `alamat`, `no_hp`) VALUES
+(1, 2, 'ayu', '985fabf8f96dc1c4c306341031569937', 'aa', 'Ayu Lestari', 'Perempuan', 'aaa', '088888');
 
 -- --------------------------------------------------------
 
@@ -106,6 +114,14 @@ CREATE TABLE `role` (
   `id_role` int(11) NOT NULL,
   `role` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO `role` (`id_role`, `role`) VALUES
+(1, 'pengguna'),
+(2, 'admin');
 
 --
 -- Indexes for dumped tables
@@ -143,7 +159,8 @@ ALTER TABLE `pemesanan`
 -- Indexes for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  ADD PRIMARY KEY (`id_pengguna`);
+  ADD PRIMARY KEY (`id_pengguna`),
+  ADD KEY `id_role` (`id_role`);
 
 --
 -- Indexes for table `role`
@@ -174,12 +191,12 @@ ALTER TABLE `pemesanan`
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --
@@ -188,25 +205,26 @@ ALTER TABLE `role`
 -- Constraints for table `barang`
 --
 ALTER TABLE `barang`
-  ADD CONSTRAINT `barang_detail_pemesanan` FOREIGN KEY (`kode_barang`) REFERENCES `detail_pemesanan` (`kode_barang`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `kategori` FOREIGN KEY (`id_kategori_barang`) REFERENCES `kategori_barang` (`id_kategori_barang`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `kategori_barang`
+-- Constraints for table `detail_pemesanan`
 --
-ALTER TABLE `kategori_barang`
-  ADD CONSTRAINT `kat_barang` FOREIGN KEY (`id_kategori_barang`) REFERENCES `barang` (`id_kategori_barang`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `detail_pemesanan`
+  ADD CONSTRAINT `barang` FOREIGN KEY (`kode_barang`) REFERENCES `barang` (`kode_barang`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pemesanan` FOREIGN KEY (`id_pemesanan`) REFERENCES `pemesanan` (`id_pemesanan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  ADD CONSTRAINT `pemesanan_detail` FOREIGN KEY (`id_pemesanan`) REFERENCES `detail_pemesanan` (`id_pemesanan`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `pengguna` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id_pengguna`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  ADD CONSTRAINT `pengguna_pemesanan` FOREIGN KEY (`id_pengguna`) REFERENCES `pemesanan` (`id_pengguna`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `role` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

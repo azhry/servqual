@@ -13,7 +13,7 @@
                     </div>
                     <div class="profile_info">
                         <span>Welcome,</span>
-                        <h2><?= $username ?></h2>
+                        <h2><?= $this->data['admin']->username ?></h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->

@@ -44,6 +44,10 @@
                             <li>
                                 <a href="contact.html">Contact</a>
                             </li>
+
+                            <li>
+                                <a href="<?= base_url('login') ?>">Login</a>
+                            </li>
                         </ul>
                     </nav>
                 </div>

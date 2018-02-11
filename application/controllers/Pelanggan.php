@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends MY_Controller
+class Pelanggan extends MY_Controller
 {
   private $data = [];
 
@@ -12,8 +12,8 @@ class User extends MY_Controller
 
   public function index()
   {
-      $this->data['title']  = 'Dashboard User';
-      $this->data['content']  = 'user/home';
-      $this->template($this->data, 'user');
+      $this->data['title']  = 'Home';
+      $this->data['content']  = 'pelanggan/home';
+      $this->template($this->data, 'pelanggan');
   }
 }
