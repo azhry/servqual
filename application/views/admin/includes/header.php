@@ -23,6 +23,10 @@
 
     <!-- jQuery -->
     <script src="<?= base_url('assets/admintemplate') ?>/vendors/jquery/dist/jquery.min.js"></script>
-  </head>
+
+    <!-- TinyMCE -->
+    <script src="<?=base_url('assets/admintemplate/vendors/tinymce/jquery.tinymce.min.js')?>"></script>
+    <script src="<?=base_url('assets/admintemplate/vendors/tinymce/tinymce.js')?>"></script>
+</head>
 
   <body class="nav-md">

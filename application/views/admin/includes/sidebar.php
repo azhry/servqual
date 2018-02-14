@@ -9,7 +9,7 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img src="<?= base_url('assets/production/') ?>images/img.jpg" alt="User" class="img-circle profile_img">
+                        <img src="<?= base_url('assets/admintemplate/production/') ?>images/img.jpg" alt="User" class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>Welcome,</span>
@@ -24,64 +24,26 @@
                         <h3>Menu</h3>
                         <ul class="nav side-menu">
                         <li>
-                            <?php if (isset($id_hak_akses) && $id_hak_akses == 1): ?>
-                                <a href="<?= base_url('admin') ?>"><i class="fa fa-home"></i> Home </a>
-                                <ul class="nav child_menu">
-                                </ul>
-                            <?php elseif (isset($id_hak_akses) && $id_hak_akses == 2): ?>
-                                <a href="<?= base_url('supervisor') ?>"><i class="fa fa-home"></i> Home </a>
-                                <ul class="nav child_menu">
-                                </ul>
-                            <?php endif; ?>
+                            <a href="<?= base_url('admin') ?>"><i class="fa fa-home"></i> Dashbaord</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-user"></i> Pelamar</a>
-                        <ul class="nav child_menu">
-                            <?php if (isset($id_hak_akses) && $id_hak_akses == 1): ?>
-                                <li><a href="<?= base_url('admin/daftar-pelamar') ?>"><i class="fa fa-users"></i> Daftar Pelamar</a></li>
-                            <?php elseif (isset($id_hak_akses) && $id_hak_akses == 2): ?>
-                                <li><a href="<?= base_url('supervisor/daftar-pelamar') ?>"><i class="fa fa-users"></i> Daftar Pelamar</a></li>
-                            <?php endif; ?>
-                            <?php if (isset($id_hak_akses) && $id_hak_akses == 1): ?>
-                                <li><a href="<?= base_url('admin/input-data-pelamar') ?>"><i class="fa fa-user-plus"></i> Input Data Pelamar</a></li>
-                            <?php endif; ?>
-                            <?php if (isset($id_hak_akses) && $id_hak_akses == 1): ?>
-                                <li><a href="<?= base_url('admin/ranking-penilaian') ?>"><i class="fa fa-line-chart"></i> Ranking Penilaian</a></li>
-                            <?php elseif (isset($id_hak_akses) && $id_hak_akses == 2): ?>
-                                <li><a href="<?= base_url('supervisor/ranking-penilaian') ?>"><i class="fa fa-line-chart"></i> Ranking Penilaian</a></li>
-                            <?php endif; ?>
-                        </ul>
-                    </li>
-                    <?php if (isset($id_hak_akses) && $id_hak_akses == 1): ?>
-                    <li><a href="#"><i class="fa fa-th-list"></i> Kriteria</a>
-                    <ul class="nav child_menu">
-                        <?php if (isset($id_hak_akses) && $id_hak_akses == 1): ?>
-                                <li><a href="<?= base_url('admin/kriteria') ?>"><i class="fa fa-list"></i> Data Kriteria</a></li>
-                            <?php elseif (isset($id_hak_akses) && $id_hak_akses == 2): ?>
-                                <li><a href="<?= base_url('supervisor/kriteria') ?>"><i class="fa fa-list"></i> Data Kriteria</a></li>
-                            <?php endif; ?>
-                        <?php if (isset($id_hak_akses) && $id_hak_akses == 1): ?>
-                            <li><a href="<?= base_url('admin/input-data-kriteria') ?>"><i class="fa fa-list-alt"></i> Input Data Kriteria</a></li>
-                        <?php endif; ?>
+                        <li>
+                            <a href="<?= base_url('admin/barang') ?>"><i class="fa fa-book"></i> Barang</a>
+                        </li>
+                        <li>
+                            <a href="<?= base_url('admin/kategori') ?>"><i class="fa fa-book"></i> Kategori</a>
+                        </li>
+                        <li>
+                            <a href="<?= base_url('admin/pemesanan') ?>"><i class="fa fa-cart-plus"></i> Pemesanan</a>
+                        </li>
+                        <li>
+                            <a href="<?= base_url('admin/pengguna') ?>"><i class="fa fa-users"></i> Pengguna</a>
+                        </li>
+                        <li>
+                            <a href="<?= base_url('admin/role') ?>"><i class="fa fa-book"></i> Role</a>
+                        </li>
                     </ul>
-                    <?php endif; ?>
-                </li>
-            <li>
-                <?php if (isset($id_hak_akses) && $id_hak_akses == 1): ?>
-                <a href="<?= base_url('admin/user') ?>"><i class="fa fa-database"></i> Data Pengguna</a>
-                <ul class="nav child_menu">
-                </ul>
-                <?php endif; ?>
-            </li>
-            <li>
-                <?php if (isset($id_hak_akses) && $id_hak_akses == 1): ?>
-                    <a href="<?= base_url('admin/perhitungan') ?>"><i class="fa fa-calculator"></i> Perhitungan FSAW</a>
-                    <ul class="nav child_menu">
-                    </ul>
-                <?php endif; ?>
-            </li>
-        </ul>
+                </div>
+            </div>
+            <!-- /sidebar menu -->
+        </div>
     </div>
-</div>
-<!-- /sidebar menu -->
-</div>
-</div>
