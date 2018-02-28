@@ -41,7 +41,7 @@
                                     <style type="text/css">.required{color: red;}</style>
                                     <?= $this->session->flashdata('msg') ?>
                                 </div>
-                                <?= form_open('admin/tambah-barang', ['id' => 'form']) ?>
+                                <?= form_open_multipart('admin/tambah-barang', ['id' => 'form']) ?>
 
                                 <div class="form-group">
                                     <label>Kode Barang<span class="required">*</span></label>
@@ -61,7 +61,12 @@
                                 <div class="form-group">
                                     <label>Nama<span class="required">*</span></label>
                                     <input type="text" class="form-control" name="nama" required>
-                                </div>
+                                </div><br>
+
+                                <div class="form-group">
+                                    <label>Upload Gambar<span class="required">*</span></label>
+                                    <input type="file" name="gambar" required>
+                                </div><br>
 
                                 <div class="form-group">
                                     <label>Deskripsi<span class="required">*</span></label>

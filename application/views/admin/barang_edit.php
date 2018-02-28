@@ -41,7 +41,7 @@
                                     <style type="text/css">.required{color: red;}</style>
                                     <?= $this->session->flashdata('msg') ?>
                                 </div>
-                                <?= form_open('admin/edit-barang/'.$data->kode_barang, ['id' => 'form']) ?>
+                                <?= form_open_multipart('admin/edit-barang/'.$data->kode_barang, ['id' => 'form']) ?>
 
                                 <input type="hidden" class="form-control" name="kode_barang" required value="<?= $data->kode_barang ?>">
 
@@ -52,18 +52,20 @@
 
                                 <div class="form-group">
                                     <label>Kategori<span class="required">*</span></label>
-                                    <select name="id_kategori_barang" class="form-control" required>
-                                        <option>---</option>
-                                        <?php foreach($kategori as $row): ?>
-                                            <option value="<?= $row->id_kategori_barang ?>"><?= $row->nama_kategori ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
+                                    <?php 
+                                        $nilai_opt = [];
+                                        foreach ( $kategori as $row ) $nilai_opt[$row->id_kategori_barang] = $row->nama_kategori;
+                                        echo form_dropdown( 'id_kategori_barang', $nilai_opt, $data->id_kategori_barang, [ 'required' => '', 'class' => 'form-control' ] ); 
+                                    ?>
+                                </div><br>
 
                                 <div class="form-group">
-                                    <label>Deskripsi<span class="required">*</span></label>
-                                    <textarea id="tinymce" class="form-control" name="deskripsi" required><?= $data->deskripsi ?></textarea>
-                                </div>
+                                    <label>Upload Gambar<span class="required">*</span></label><br>
+                                    <img src="<?= base_url('assets/barang/'.$data->kode_barang.'.jpg') ?>" width = "200" height = "200" style="margin-bottom: 3%;"> 
+                                    <input type="file" name="gambar">
+                                </div><br>
+
+                                <!--  -->
 
                                 <div class="form-group">
                                     <label>Harga<span class="required">*</span></label>
@@ -77,11 +79,14 @@
 
                                 <div class="form-group">
                                     <label>Status<span class="required">*</span></label>
-                                    <select class="form-control" name="status" required>
-                                        <option>---</option>
-                                        <option value="0">0</option>
-                                        <option value="1">1</option>
-                                    </select>
+                                    <?php 
+                                        $nilai_opt = [
+                                            0 => 0,
+                                            1 => 1
+                                        ];
+
+                                        echo form_dropdown( 'status', $nilai_opt, $data->status, [ 'required' => '', 'class' => 'form-control' ] ); 
+                                    ?>
                                 </div>
 
                                 <div>

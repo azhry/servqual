@@ -70,6 +70,9 @@ class Admin extends MY_Controller {
             ];
 
             $this->barang_m->insert($this->data['input']);
+            $kode_barang = $this->barang_m->get_row(['kode_barang' => $this->POST('kode_barang')])->kode_barang;
+
+            $this->upload($kode_barang, 'barang', 'gambar');
 
             $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data barang berhasil disimpan');
 
@@ -121,6 +124,9 @@ class Admin extends MY_Controller {
             ];
 
             $this->barang_m->update($this->data['id'], $this->data['data_row']);
+
+            $this->upload($this->data['id'], 'barang', 'gambar');
+
             $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data barang berhasil diedit');
             redirect('admin/edit-barang/' . $this->data['id']);
             exit;

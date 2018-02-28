@@ -40,6 +40,12 @@
                                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <tbody>
                                         <tr>
+                                            <th>Foto</th>
+                                            <td>
+                                              <img src="<?= base_url('assets/barang/'.$data->kode_barang.'.jpg') ?>" width = "200" height = "200"> 
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <th>Kode Barang</th>
                                             <td><?= $data->kode_barang ?></td>
                                         </tr>
