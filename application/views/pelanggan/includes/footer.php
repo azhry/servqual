@@ -193,6 +193,11 @@
             minimumResultsForSearch: 20,
             dropdownParent: $('#dropDownSelect1')
         });
+
+        $(".selection-2").select2({
+            minimumResultsForSearch: 20,
+            dropdownParent: $('#dropDownSelect2')
+        });
     </script>
 <!--===============================================================================================-->
     <script type="text/javascript" src="<?= base_url('assets/usertemplate/') ?>vendor/slick/slick.min.js"></script>
