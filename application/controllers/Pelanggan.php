@@ -42,4 +42,16 @@ class Pelanggan extends MY_Controller
       $this->data['content']        = 'pelanggan/cart';
       $this->template($this->data, 'pelanggan');
   }
+
+  public function perbandingan_produk()
+  {
+      $this->load->model('barang_m');
+      $this->load->model('kategori_barang_m');
+
+      $this->data['title']          = 'Perbandingan Produk';
+      $this->data['barang']         = $this->barang_m->get_row(['kode_barang' => "hahhaah"]);
+      $this->data['semua_barang']   = $this->barang_m->get();
+      $this->data['content']        = 'pelanggan/perbandingan_produk';
+      $this->template($this->data, 'pelanggan');
+  }
 }
