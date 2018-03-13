@@ -23,11 +23,12 @@ class Pelanggan extends MY_Controller
   public function detail_barang()
   {
       $this->load->model('barang_m');
+      $this->load->model( 'kategori_barang_m' );
 
-      $kode_barang                  = $this->uri->segment(3);
+      $this->data['kode_barang']    = $this->uri->segment(3);
 
       $this->data['title']          = 'Detail Barang';
-      $this->data['barang']         = $this->barang_m->get_row(['kode_barang' => $kode_barang]);
+      $this->data['barang']         = $this->barang_m->get_row(['kode_barang' => $this->data['kode_barang']]);
       $this->data['semua_barang']   = $this->barang_m->get();
       $this->data['content']        = 'pelanggan/detail_barang';
       $this->template($this->data, 'pelanggan');

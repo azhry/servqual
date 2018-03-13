@@ -54,48 +54,12 @@
 					<?= $barang->nama ?>
 				</h4>
 
-				<span class="m-text17">
+				<span class="m-text17" id="price">
 					<?= "IDR " . number_format($barang->harga,2,',','.') ?>
 				</span>
 
-				<p class="s-text8 p-t-10">
-					Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
-				</p>
-
 				<!--  -->
 				<div class="p-t-33 p-b-60">
-					<div class="flex-m flex-w p-b-10">
-						<div class="s-text15 w-size15 t-center">
-							Size
-						</div>
-
-						<div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
-							<select class="selection-2" name="size">
-								<option>Choose an option</option>
-								<option>Size S</option>
-								<option>Size M</option>
-								<option>Size L</option>
-								<option>Size XL</option>
-							</select>
-						</div>
-					</div>
-
-					<div class="flex-m flex-w">
-						<div class="s-text15 w-size15 t-center">
-							Color
-						</div>
-
-						<div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
-							<select class="selection-2" name="color">
-								<option>Choose an option</option>
-								<option>Gray</option>
-								<option>Red</option>
-								<option>Black</option>
-								<option>Blue</option>
-							</select>
-						</div>
-					</div>
-
 					<div class="flex-r-m flex-w p-t-10">
 						<div class="w-size16 flex-m flex-w">
 							<div class="flex-w bo5 of-hidden m-r-22 m-t-10 m-b-10">
@@ -103,7 +67,7 @@
 									<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
 								</button>
 
-								<input class="size8 m-text18 t-center num-product" type="number" name="num-product" value="1">
+								<input class="size8 m-text18 t-center num-product" type="number" name="num-product" value="1" id="qty" onchange="updatePriceQty( this );">
 
 								<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
 									<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
@@ -121,8 +85,11 @@
 				</div>
 
 				<div class="p-b-45">
-					<span class="s-text8 m-r-35">SKU: MUG-01</span>
-					<span class="s-text8">Categories: Mug, Design</span>
+					<span class="s-text8 m-r-35">Kode Produk: <?= $barang->kode_barang ?></span>
+					<span class="s-text8">Kategori: <?php 
+						$kategori = $this->kategori_barang_m->get_row([ 'id_kategori_barang' => $barang->id_kategori_barang ]);
+						echo isset( $kategori ) ? $kategori->nama_kategori : '';
+					?></span>
 				</div>
 
 				<!--  -->
@@ -140,21 +107,7 @@
 					</div>
 				</div>
 
-				<div class="wrap-dropdown-content bo7 p-t-15 p-b-14">
-					<h5 class="js-toggle-dropdown-content flex-sb-m cs-pointer m-text19 color0-hov trans-0-4">
-						Additional information
-						<i class="down-mark fs-12 color1 fa fa-minus dis-none" aria-hidden="true"></i>
-						<i class="up-mark fs-12 color1 fa fa-plus" aria-hidden="true"></i>
-					</h5>
-
-					<div class="dropdown-content dis-none p-t-15 p-b-23">
-						<p class="s-text8">
-							Fusce ornare mi vel risus porttitor dignissim. Nunc eget risus at ipsum blandit ornare vel sed velit. Proin gravida arcu nisl, a dignissim mauris placerat
-						</p>
-					</div>
-				</div>
-
-				<div class="wrap-dropdown-content bo7 p-t-15 p-b-14">
+				<!-- <div class="wrap-dropdown-content bo7 p-t-15 p-b-14">
 					<h5 class="js-toggle-dropdown-content flex-sb-m cs-pointer m-text19 color0-hov trans-0-4">
 						Reviews (0)
 						<i class="down-mark fs-12 color1 fa fa-minus dis-none" aria-hidden="true"></i>
@@ -166,7 +119,7 @@
 							Fusce ornare mi vel risus porttitor dignissim. Nunc eget risus at ipsum blandit ornare vel sed velit. Proin gravida arcu nisl, a dignissim mauris placerat
 						</p>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
@@ -225,3 +178,30 @@
 
 		</div>
 	</section>
+
+	<script type="text/javascript">
+		$( document ).ready(() => {
+			/*[ +/- num product ]
+		    ===========================================================*/
+		    $('.btn-num-product-down').on('click', function(e){
+		        e.preventDefault();
+		        var numProduct = Number($(this).next().val());
+		        if(numProduct > 1) $(this).next().val(numProduct - 1);
+		        $( '#price' ).text( 'IDR ' + ($(this).next().val() * <?= $barang->harga ?> ) );
+		    });
+
+		    $('.btn-num-product-up').on('click', function(e){
+		        e.preventDefault();
+		        var numProduct = Number($(this).prev().val());
+		        $(this).prev().val(numProduct + 1);
+		        $( '#price' ).text( convertToRupiah($(this).prev().val() * <?= $barang->harga ?> ) );
+		    });
+		});
+
+		function convertToRupiah(angka) {
+			var rupiah = '';		
+			var angkarev = angka.toString().split('').reverse().join('');
+			for(var i = 0; i < angkarev.length; i++) if(i%3 == 0) rupiah += angkarev.substr(i,3)+'.';
+			return 'IDR '+rupiah.split('',rupiah.length-1).reverse().join('');
+		}
+	</script>
