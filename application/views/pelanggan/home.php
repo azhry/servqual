@@ -172,40 +172,94 @@
         <div class="slick2">
 
          
-          <?php foreach($barang as $row): ?>
-          <div class="item-slick2 p-l-15 p-r-15">
-            <!-- Block2 -->
-            <div class="block2">
-              <div class="block2-img wrap-pic-w of-hidden pos-relative">
-                <img style="min-height: 360px;" src="<?= base_url('assets/barang/'.$row->kode_barang.'.jpg') ?>" onerror="this.src = '<?= base_url('assets/usertemplate/') ?>images/item-02.jpg'" alt="IMG-PRODUCT">
+            <?php foreach($barang as $row): ?>
+            <a href="<?= base_url('pelanggan/detail-barang/'.$row->kode_barang) ?>" class="block2-name dis-block s-text3 p-b-5">
+                <div class="item-slick2 p-l-15 p-r-15">
+                <!-- Block2 -->
+                    <div class="block2">
+                        <div class="block2-img wrap-pic-w of-hidden pos-relative">
+                            <img style="min-height: 360px;" src="<?= base_url('assets/barang/'.$row->kode_barang.'.jpg') ?>" onerror="this.src = '<?= base_url('assets/usertemplate/') ?>images/item-02.jpg'" alt="IMG-PRODUCT">
 
-                <div class="block2-overlay trans-0-4">
-                  <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-                    <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-                    <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-                  </a>
+                            <div class="block2-overlay trans-0-4">
+                                <!-- <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
+                                <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
+                                <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+                                </a> -->
 
-                  <div class="block2-btn-addcart w-size1 trans-0-4">
-                    <!-- Button -->
-                    <button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-                      Add to Cart
-                    </button>
-                  </div>
+                                <!-- <div class="block2-btn-addcart w-size1 trans-0-4">
+                                <button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+                                Add to Cart
+                                </button>
+                                </div> -->
+                            </div>
+                        </div>
+
+                        <div class="block2-txt p-t-20">
+                            <p><?= $row->nama ?></p>
+
+                            <span class="block2-price m-text6 p-r-5">
+                            <?= "IDR " . number_format($row->harga,2,',','.') ?>
+                            </span>
+                        </div>
+                    </div>
                 </div>
-              </div>
+            </a>
+            <?php endforeach; ?>
 
-              <div class="block2-txt p-t-20">
-                <a href="<?= base_url('pelanggan/detail-barang/'.$row->kode_barang) ?>" class="block2-name dis-block s-text3 p-b-5">
-                  <?= $row->nama ?>
-                </a>
+          
+        </div>
+      </div>
 
-                <span class="block2-price m-text6 p-r-5">
-                  <?= "IDR " . number_format($row->harga,2,',','.') ?>
-                </span>
-              </div>
-            </div>
-          </div>
-          <?php endforeach; ?>
+    </div>
+  </section>
+
+  <!-- New Product -->
+  <section class="newproduct bgwhite p-t-45 p-b-105">
+    <div class="container">
+      <div class="sec-title p-b-60">
+        <h3 class="m-text5 t-center">
+          Products on Instagram
+        </h3>
+      </div>
+
+      <!-- Slide2 -->
+      <div class="wrap-slick2">
+        <div class="slick2">
+
+         
+            <?php foreach($barang as $row): ?>
+            <a href="<?= base_url('pelanggan/detail-barang/'.$row->kode_barang) ?>" class="block2-name dis-block s-text3 p-b-5">
+                <div class="item-slick2 p-l-15 p-r-15">
+                <!-- Block2 -->
+                    <div class="block2">
+                        <div class="block2-img wrap-pic-w of-hidden pos-relative">
+                            <img style="min-height: 360px;" src="<?= base_url('assets/barang/'.$row->kode_barang.'.jpg') ?>" onerror="this.src = '<?= base_url('assets/usertemplate/') ?>images/item-02.jpg'" alt="IMG-PRODUCT">
+
+                            <div class="block2-overlay trans-0-4">
+                                <!-- <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
+                                <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
+                                <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+                                </a> -->
+
+                                <!-- <div class="block2-btn-addcart w-size1 trans-0-4">
+                                <button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+                                Add to Cart
+                                </button>
+                                </div> -->
+                            </div>
+                        </div>
+
+                        <div class="block2-txt p-t-20">
+                            <p><?= $row->nama ?></p>
+
+                            <span class="block2-price m-text6 p-r-5">
+                            <?= "IDR " . number_format($row->harga,2,',','.') ?>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <?php endforeach; ?>
 
           
         </div>
@@ -545,4 +599,46 @@
         </span>
       </div>
     </div>
+
   </section>
+
+  <script type="text/javascript">
+    Notification.requestPermission().then(function(result) {
+      if ( result == 'granted' ) {
+        if ( 'serviceWorker' in navigator ) {
+          window.addEventListener('load', function() {
+            navigator.serviceWorker.register( '<?= base_url( 'assets/service-worker.js' ) ?>' );
+          });
+
+          setInterval(function() {
+
+            $.ajax({
+              url: 'http://localhost/e-commerce/pelanggan/cek-barang',
+              type: 'POST',
+              data: {},
+              success: function( response ) {
+
+                let count = localStorage.getItem( 'count', 0 );
+                console.log( count );
+                let json = $.parseJSON( response );
+                if ( count != json.length ) {
+                  let options = {
+                    body: 'Ada barang baru nih. Yuk cek web kita..',
+                    icon: 'UserTemplate/images/icons/favicon.png'
+                  };
+                  var notification = new Notification( 'E-Commerce', options );
+                  localStorage.setItem( 'count', json.length );
+                  setTimeout(notification.close.bind(notification), 5000); 
+                }
+
+              },
+              error: function( err ) {
+                console.log( err.responseText );
+              }
+            });
+
+          }, 20000);
+        }
+      }
+    });
+  </script>

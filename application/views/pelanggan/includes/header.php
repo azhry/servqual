@@ -36,5 +36,7 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/usertemplate/') ?>css/util.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/usertemplate/') ?>css/main.css">
 <!--===============================================================================================-->
+
+    <!-- <link rel="manifest" href="<?= base_url( 'manifest.json' ) ?>"> -->
 </head>
 <body class="animsition">

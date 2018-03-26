@@ -1,5 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
+require_once FCPATH . '/vendor/autoload.php';
+
 class MY_Controller extends CI_Controller
 {
   	public $title = ' | E-Commerce';
@@ -89,5 +92,22 @@ class MY_Controller extends CI_Controller
 		echo '<pre>';
 		var_dump($var);
 		echo '</pre>';
+	}
+
+	protected function go_back( $index ) 
+	{
+		echo '<script type="text/javascript">window.history.go(' . $index . ');</script>'; 
+	}
+
+	protected function check_allowance( $condition, $message = [ 'Required parameter is missing', 'danger' ], $redirect_index = -1 )
+	{
+		if ( $condition ) 
+		{
+
+			$this->flashmsg( $message[0], $message[1] );
+			$this->go_back( $redirect_index );
+			exit;
+
+		}
 	}
 }
