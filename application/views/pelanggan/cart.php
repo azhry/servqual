@@ -10,6 +10,20 @@
 		<div class="container">
 			<!-- Cart item -->
 			<div class="container-table-cart pos-relative">
+				<?php  
+					$cart_success = $this->session->flashdata( 'cart_success' );
+					if ( isset( $cart_success ) ):
+				?>
+				<div class="alert alert-success alert-dismissible" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="alert-heading">
+						Checkout berhasil
+					</h4>
+					<p><?= $cart_success ?></p>
+				</div>
+				<?php endif; ?>
 				<div class="wrap-table-shopping-cart bgwhite">
 					<table class="table-shopping-cart">
 						<tr class="table-head">

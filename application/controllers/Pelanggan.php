@@ -87,6 +87,7 @@ class Pelanggan extends MY_Controller
 
             if ( $this->data['logged_in'] ) {
 
+                $total_belanja = $this->POST( 'shipping-cost-hidden' );
                 $this->load->model( 'pemesanan_m' );
                 $this->load->model( 'detail_pemesanan_m' );
                 $this->data['pemesanan'] = [
@@ -99,22 +100,26 @@ class Pelanggan extends MY_Controller
                 ];
                 $this->pemesanan_m->insert( $this->data['pemesanan'] );
 
+                $this->load->model( 'barang_m' );
                 $id_pemesanan = $this->db->insert_id();
                 foreach ( $this->cart->contents() as $item ) {
 
-                    $this->data['detail_pemesanan'] = [
-                        'id_pemesanan'  => $id_pemesanan,
-                        'kode_barang'   => $item['id'],
-                        'qty'           => $item['qty']
-                    ];
-                    $this->detail_pemesanan_m->insert( $this->data['detail_pemesanan'] );
+                    $barang = $this->barang_m->get_row([ 'kode_barang' => $item['id'] ]);
+                    if ( $barang ) {
+                        $this->data['detail_pemesanan'] = [
+                            'id_pemesanan'  => $id_pemesanan,
+                            'kode_barang'   => $item['id'],
+                            'qty'           => $item['qty']
+                        ];
+                        $this->detail_pemesanan_m->insert( $this->data['detail_pemesanan'] );
+                        $total_belanja += $barang->harga * $item['qty'];
+                    }
 
                 }
 
                 $this->cart->destroy();
-
+                $this->flashmsg( 'Total belanja anda adalah IDR ' . number_format($total_belanja, 2, ',', '.') . '. Silahkan transfer sesuai dengan nominal yang tertera ke rekening BNI 21324324 a.n Enggi RP', 'success', 'cart_success' );
             }
-
             redirect( 'pelanggan/cart' );
             exit;  
 
