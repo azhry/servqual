@@ -564,4 +564,275 @@ class Admin extends MY_Controller {
         $this->data['content']      = 'admin/pemesanan_detail';
         $this->template($this->data, 'admin');
     }
+
+    //---Survei--------------
+
+    public function tambah_survei()
+    {
+        $this->load->model('pertanyaan_m');
+        $this->load->model('jawaban_m');
+        $this->load->model('jawaban_pengguna_m');
+
+        if($this->POST('simpan')) {
+            for($i = 1; $i <= 10; $i++){
+                $jawaban = [
+                    'id_pengguna'       => 1,
+                    'id_pertanyaan'     => $i,
+                    'id_jawaban'        => $this->POST('pertanyaan_'.$i)
+                ];
+
+                $this->jawaban_pengguna_m->insert($jawaban);
+            }
+
+            $this->flashmsg( 'Survei berhasil disimpan!' );
+            redirect( 'Pelanggan/survei' );
+            exit;
+        }
+
+        $this->data['pertanyaan']   = $this->pertanyaan_m->get();
+        $this->data['jawaban']      = $this->jawaban_m->get();
+        $this->data['title']        = 'Survei';
+        $this->data['content']      = 'pelanggan/survei';
+        $this->template($this->data, 'pelanggan');
+    }
+
+    public function edit_survei()
+    {
+        $this->load->model('pertanyaan_m');
+        $this->load->model('jawaban_m');
+        $this->load->model('jawaban_pengguna_m');
+
+        $this->data['id'] = $this->uri->segment(3);
+        if (!isset($this->data['id']))
+        {
+            $this->flashmsg('<i class="lnr lnr-warning"></i> Required parameter is missing', 'danger');
+            redirect('admin/survei');
+            exit;
+        }
+
+        $this->data['data']        = $this->jawaban_pengguna_m->get_row(['id_jawaban_pengguna' => $this->data['id']]);
+       
+        if (!isset($this->data['data']))
+        {
+            $this->flashmsg('<i class="lnr lnr-warning"></i> Data survei tidak ditemukan', 'danger');
+            redirect('admin/survei');
+            exit;
+        }
+
+
+        if($this->POST('simpan'))
+        {
+            $jawaban = [
+                'id_pengguna'       => $this->POST('id_pengguna'),
+                'id_pertanyaan'     => $this->POST('id_pertanyaan'),
+                'id_jawaban'        => $this->POST('pertanyaan')
+            ];
+
+            $this->jawaban_pengguna_m->update($this->data['id'], $jawaban);
+
+            $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data survei berhasil diedit');
+            redirect('admin/edit-survei/' . $this->data['id']);
+            exit;
+        }
+
+        $this->data['title']        = 'Edit Data Survei';
+        $this->data['content']      = 'admin/survei_edit';
+        $this->data['survei']     = $this->jawaban_pengguna_m->get();
+        $this->template($this->data, 'admin');
+    }
+
+    public function survei()
+    {
+        $this->load->model('pertanyaan_m');
+        $this->load->model('jawaban_m');
+        $this->load->model('jawaban_pengguna_m');
+
+        if ($this->POST('delete') && $this->POST('id_jawaban_pengguna'))
+        {
+            $this->survei_m->delete($this->POST('id_jawaban_pengguna'));
+            $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data survei berhasil dihapus');
+        }
+
+        $this->data['data']         = $this->jawaban_pengguna_m->get();
+        $this->data['title']        = 'Data Survei';
+        $this->data['content']      = 'admin/survei_data';
+        $this->template($this->data, 'admin');
+    }
+
+    //---Pertanyaan--------------
+
+    public function tambah_pertanyaan()
+    {
+        $this->load->model('pertanyaan_m');
+
+        if($this->POST('simpan')){
+
+            $this->data['input'] = [
+                'pertanyaan'  => $this->POST('pertanyaan')
+            ];
+
+            $this->pertanyaan_m->insert($this->data['input']);
+
+            $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data kategori berhasil disimpan');
+
+            redirect('admin/pertanyaan');
+            exit;
+        }
+
+
+        $this->data['title']        = 'Tambah Data pertanyaan';
+        $this->data['content']      = 'admin/pertanyaan_tambah';
+        $this->data['pertanyaan']       = $this->pertanyaan_m->get();
+        $this->template($this->data, 'admin');
+    }
+
+    public function edit_pertanyaan()
+    {
+        $this->load->model('pertanyaan_m');
+
+        $this->data['id'] = $this->uri->segment(3);
+        if (!isset($this->data['id']))
+        {
+            $this->flashmsg('<i class="lnr lnr-warning"></i> Required parameter is missing', 'danger');
+            redirect('admin/pertanyaan');
+            exit;
+        }
+
+        $this->load->model('pertanyaan_m');
+        $this->data['data']        = $this->pertanyaan_m->get_row(['id_pertanyaan' => $this->data['id']]);
+       
+        if (!isset($this->data['data']))
+        {
+            $this->flashmsg('<i class="lnr lnr-warning"></i> Data kategori tidak ditemukan', 'danger');
+            redirect('admin/pertanyaan');
+            exit;
+        }
+
+
+        if($this->POST('simpan'))
+        {
+            $this->data['data_row'] = [
+                'pertanyaan'     => $this->POST('pertanyaan')
+            ];
+
+            $this->pertanyaan_m->update($this->data['id'], $this->data['data_row']);
+            $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data kategori berhasil diedit');
+            redirect('admin/edit-pertanyaan/' . $this->data['id']);
+            exit;
+        }
+
+        $this->data['title']        = 'Edit Data Pertanyaan';
+        $this->data['content']      = 'admin/pertanyaan_edit';
+        $this->data['pertanyaan']     = $this->pertanyaan_m->get();
+        $this->template($this->data, 'admin');
+    }
+
+    public function pertanyaan()
+    {
+        $this->load->model('pertanyaan_m');
+
+        if ($this->POST('delete') && $this->POST('id_pertanyaan'))
+        {
+            $this->pertanyaan_m->delete($this->POST('id_pertanyaan'));
+            $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data kategori berhasil dihapus');
+        }
+
+        $this->data['data']         = $this->pertanyaan_m->get();
+        $this->data['title']        = 'Data pertanyaan';
+        $this->data['content']      = 'admin/pertanyaan_data';
+        $this->template($this->data, 'admin');
+    }
+
+
+    //---Jawaban--------------
+
+    public function tambah_jawaban()
+    {
+        $this->load->model('jawaban_m');
+        $this->load->model('pertanyaan_m');
+
+        if($this->POST('simpan')){
+
+            $this->data['input'] = [
+                'id_pertanyaan' => $this->POST('id_pertanyaan'),
+                'jawaban'       => $this->POST('jawaban'),
+                'skor'          => $this->POST('skor'),
+            ];
+
+            $this->jawaban_m->insert($this->data['input']);
+
+            $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data kategori berhasil disimpan');
+
+            redirect('admin/jawaban');
+            exit;
+        }
+
+
+        $this->data['title']        = 'Tambah Data Jawaban';
+        $this->data['content']      = 'admin/jawaban_tambah';
+        $this->data['pertanyaan']   = $this->pertanyaan_m->get();
+        $this->template($this->data, 'admin');
+    }
+
+    public function edit_jawaban()
+    {
+        $this->load->model('jawaban_m');
+        $this->load->model('pertanyaan_m');
+
+        $this->data['id'] = $this->uri->segment(3);
+        if (!isset($this->data['id']))
+        {
+            $this->flashmsg('<i class="lnr lnr-warning"></i> Required parameter is missing', 'danger');
+            redirect('admin/jawaban');
+            exit;
+        }
+
+        $this->load->model('jawaban_m');
+        $this->data['data']        = $this->jawaban_m->get_row(['id_jawaban' => $this->data['id']]);
+       
+        if (!isset($this->data['data']))
+        {
+            $this->flashmsg('<i class="lnr lnr-warning"></i> Data kategori tidak ditemukan', 'danger');
+            redirect('admin/jawaban');
+            exit;
+        }
+
+
+        if($this->POST('simpan'))
+        {
+            $this->data['data_row'] = [
+                'id_pertanyaan' => $this->POST('id_pertanyaan'),
+                'jawaban'       => $this->POST('jawaban'),
+                'skor'          => $this->POST('skor'),
+            ];
+
+            $this->jawaban_m->update($this->data['id'], $this->data['data_row']);
+            $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data kategori berhasil diedit');
+            redirect('admin/edit-jawaban/' . $this->data['id']);
+            exit;
+        }
+
+        $this->data['title']        = 'Edit Data jawaban';
+        $this->data['content']      = 'admin/jawaban_edit';
+        $this->data['jawaban']      = $this->jawaban_m->get();
+        $this->data['pertanyaan']   = $this->pertanyaan_m->get();
+        $this->template($this->data, 'admin');
+    }
+
+    public function jawaban()
+    {
+        $this->load->model('jawaban_m');
+        $this->load->model('pertanyaan_m');
+
+        if ($this->POST('delete') && $this->POST('id_jawaban'))
+        {
+            $this->jawaban_m->delete($this->POST('id_jawaban'));
+            $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data kategori berhasil dihapus');
+        }
+
+        $this->data['data']         = $this->jawaban_m->get();
+        $this->data['title']        = 'Data jawaban';
+        $this->data['content']      = 'admin/jawaban_data';
+        $this->template($this->data, 'admin');
+    }
 }

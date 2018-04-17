@@ -14,6 +14,12 @@
 	<div class="container bgwhite p-t-35 p-b-80">
 		<div class="flex-w flex-sb">
 			<h5><strong>Survei</strong></h5>
+			<div class="col-md-12">
+				<?= $this->session->flashdata('msg') ?>	
+			</div>
+
+			<?= form_open('Pelanggan/survei') ?>
+			
 			<div class="col-md-12" style="margin-top: 5%;">
 				<ol>
 					<?php foreach($pertanyaan as $row): ?>
@@ -21,11 +27,14 @@
 						<?php $jawaban = $this->jawaban_m->get(['id_pertanyaan' => $row->id_pertanyaan]); ?>
 						<div class="form-group">
 							<?php foreach($jawaban as $col): ?>
-								<input type="radio" name="pertanyaan_<?= $row->id_pertanyaan ?>" value="<?= $col->skor ?>"> <?= $col->jawaban ?> <br>
+								<input type="radio" name="pertanyaan_<?= $row->id_pertanyaan ?>" value="<?= $col->id_jawaban ?>"> <?= $col->jawaban ?> <br>
 							<?php endforeach; ?>
 						</div>
 					<?php endforeach; ?>
 				</ol>
+				<input type="submit" name="simpan" value="Simpan" class="btn btn-success">
 			</div>
+
+			<?= form_close(); ?>
 		</div>
 	</div>

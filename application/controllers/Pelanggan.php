@@ -197,6 +197,24 @@ class Pelanggan extends MY_Controller
     public function survei() {
         $this->load->model('pertanyaan_m');
         $this->load->model('jawaban_m');
+        $this->load->model('jawaban_pengguna_m');
+
+        if($this->POST('simpan')) {
+            for($i = 1; $i <= 10; $i++){
+                $jawaban = [
+                    'id_pengguna'       => 1,
+                    'id_pertanyaan'     => $i,
+                    'id_jawaban'        => $this->POST('pertanyaan_'.$i)
+                ];
+
+                $this->jawaban_pengguna_m->insert($jawaban);
+            }
+
+            $this->flashmsg( 'Survei berhasil disimpan!' );
+            redirect( 'Pelanggan/survei' );
+            exit;
+        }
+
 
         $this->data['pertanyaan']   = $this->pertanyaan_m->get();
         $this->data['jawaban']      = $this->jawaban_m->get();

@@ -41,6 +41,12 @@
                         <li>
                             <a href="<?= base_url('admin/role') ?>"><i class="fa fa-book"></i> Role</a>
                         </li>
+                        <li>
+                            <a href="<?= base_url('admin/pertanyaan') ?>"><i class="fa fa-edit"></i> Pertanyaan</a>
+                        </li>
+                        <li>
+                            <a href="<?= base_url('admin/jawaban') ?>"><i class="fa fa-edit"></i> Jawaban</a>
+                        </li>
                     </ul>
                 </div>
             </div>
