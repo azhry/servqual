@@ -194,4 +194,15 @@ class Pelanggan extends MY_Controller
 
     }
 
+    public function survei() {
+        $this->load->model('pertanyaan_m');
+        $this->load->model('jawaban_m');
+
+        $this->data['pertanyaan']   = $this->pertanyaan_m->get();
+        $this->data['jawaban']      = $this->jawaban_m->get();
+        $this->data['title']        = 'Survei';
+        $this->data['content']      = 'pelanggan/survei';
+        $this->template($this->data, 'pelanggan');
+    }
+
 }
