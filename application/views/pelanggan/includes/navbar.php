@@ -22,28 +22,28 @@
                             </li> -->
 
                             <li>
-                                <a href="<?= base_url('') ?>">Home</a>
+                                <a href="<?= base_url() ?>">Home</a>
                             </li>
 
-                            <li class="sale-noti">
+                            <li>
+                                <a href="<?= base_url('pelanggan#featured-products') ?>">Featured Products</a>
+                            </li>
+
+                            <li>
                                 <a href="<?= base_url('pelanggan/cart') ?>">Cart</a>
                             </li>
 
                             <li>
-                               <a href="<?= base_url('pelanggan/perbandingan_produk') ?>">Perbandingan Produk</a>
+                               <a href="<?= base_url('pelanggan/perbandingan-produk') ?>">Perbandingan Produk</a>
                             </li>
 
                             <li>
-                                <a href="<?= base_url('pelanggan/cek_barang') ?>">Cek Barang</a>
+                                <a href="<?= base_url('pelanggan/survei') ?>">Survei</a>
                             </li>
 
-                            <li>
-                                <a href="<?= base_url('pelanggan/survei') ?>">Surveri</a>
-                            </li>
-
-                            <li>
+                            <!-- <li>
                                 <a href="contact.html">Contact</a>
-                            </li>
+                            </li> -->
 
                             <li>
                                 <a href="<?= base_url('login') ?>">Login</a>

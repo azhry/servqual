@@ -63,7 +63,7 @@
 						<?php else: ?>
 							<tr class="table-row">
 								<td colspan="5">
-									Anda belum berbelanja. Silahkan klik <a href="" style="text-decoration: underline;">disini</a> untuk melihat daftar produk
+									Anda belum berbelanja. Silahkan klik <a href="<?= base_url( 'pelanggan#featured-products' ) ?>" style="text-decoration: underline;">disini</a> untuk melihat daftar produk
 								</td>
 							</tr>
 						<?php endif; ?>

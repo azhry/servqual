@@ -183,4 +183,62 @@ class MY_Model extends CI_Model
 		return $query->result();
 	}
 
+	public function curl_get_request($url)
+	{
+		//  Initiate curl
+		$ch = curl_init();
+		// Disable SSL verification
+		// curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		// Will return the response, if false it print the response
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		// Set the url
+		curl_setopt($ch, CURLOPT_URL,$url);
+		// Execute
+		$result=curl_exec($ch);
+		// Closing
+		curl_close($ch);
+
+		// Will dump a beauty json :3
+		$arr = json_decode($result);
+		// $this->dump($arr);
+		// exit;
+		return $arr;
+	}
+
+	public function curl_post_request($url, $params)
+	{
+		//  Initiate curl
+		$ch = curl_init();
+		// Disable SSL verification
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		// Will return the response, if false it print the response
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		// Set the url
+		curl_setopt($ch, CURLOPT_URL,$url);
+		curl_setopt($ch, CURLOPT_POST, 1);
+
+		$param = ''; $i = 0;
+		foreach ($params as $key => $value)
+		{
+			$param .= $key . '=' . $value;
+			if ($i < count($params) - 1)
+			{
+				$param .= '&';
+				$i++;
+			}
+		}
+
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
+
+		// Execute
+		$result=curl_exec($ch);
+
+		// Closing
+		curl_close($ch);
+
+		// Will dump a beauty json :3
+		$arr = json_decode($result);
+		return $arr;	
+	}
+
 }

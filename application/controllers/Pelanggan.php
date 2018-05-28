@@ -9,9 +9,10 @@ class Pelanggan extends MY_Controller
     {
         parent::__construct();
         $this->load->library('cart');
-        $this->load->model( 'instagram_m' );
-        // $this->instagram_m->set_username( 'azharyarliansyah' );
-        // $this->dump( $this->instagram_m->get_posts() );
+        // $this->load->model( 'instagram_m' );
+        // $this->instagram_m->set_username( 'baan_store' );
+        // $this->dump( $this->instagram_m->get_access_token() );
+        // // $this->dump( $this->instagram_m->get_posts() );
         // exit;
 
         $this->data['id_pengguna']  = $this->session->userdata( 'id_pengguna' );

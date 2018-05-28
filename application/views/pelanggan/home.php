@@ -162,7 +162,7 @@
   <section class="newproduct bgwhite p-t-45 p-b-105">
     <div class="container">
       <div class="sec-title p-b-60">
-        <h3 class="m-text5 t-center">
+        <h3 class="m-text5 t-center" id="featured-products">
           Featured Products
         </h3>
       </div>

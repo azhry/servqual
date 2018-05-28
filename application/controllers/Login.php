@@ -25,6 +25,13 @@ class Login extends MY_Controller
 
 		}
 
+		// $this->load->model( 'instagram_m' );
+		// $this->data['code'] = $this->input->get( 'code' );
+		// if ( empty( $this->data['code'] ) ) {
+		// 	redirect( $this->instagram_m->login_url() );
+		// 	exit;
+		// }
+
 	}
 
 	public function index() {
