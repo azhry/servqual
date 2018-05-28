@@ -11,7 +11,7 @@
                 <!-- Menu -->
                 <div class="wrap_menu">
                     <nav class="menu">
-                        <ul class="main_menu">
+                        <ul class="main_menu"><!-- 
                             <li>
                                 <a href="index.html">Home</a>
                                 <ul class="sub_menu">
@@ -19,26 +19,26 @@
                                     <li><a href="home-02.html">Homepage V2</a></li>
                                     <li><a href="home-03.html">Homepage V3</a></li>
                                 </ul>
-                            </li>
+                            </li> -->
 
                             <li>
-                                <a href="product.html">Shop</a>
+                                <a href="<?= base_url('') ?>">Home</a>
                             </li>
 
                             <li class="sale-noti">
-                                <a href="product.html">Sale</a>
+                                <a href="<?= base_url('pelanggan/cart') ?>">Cart</a>
                             </li>
 
                             <li>
-                                <a href="cart.html">Features</a>
+                               <a href="<?= base_url('pelanggan/perbandingan_produk') ?>">Perbandingan Produk</a>
                             </li>
 
                             <li>
-                                <a href="blog.html">Blog</a>
+                                <a href="<?= base_url('pelanggan/cek_barang') ?>">Cek Barang</a>
                             </li>
 
                             <li>
-                                <a href="about.html">About</a>
+                                <a href="<?= base_url('pelanggan/survei') ?>">Surveri</a>
                             </li>
 
                             <li>
