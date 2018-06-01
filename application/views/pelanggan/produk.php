@@ -160,7 +160,7 @@
 								<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
 									<!-- Block2 -->
 									<div class="block2">
-										<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+										<div class="block2-img wrap-pic-w of-hidden pos-relative">
 											<div class="produk">
 												<img src="<?= base_url('assets/produk/'.$nama_kategori.'/'.$row->kode_barang.'.jpg') ?>" alt="IMG-PRODUCT">
 											</div>
@@ -201,7 +201,7 @@
 								<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
 									<!-- Block2 -->
 									<div class="block2">
-										<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+										<div class="block2-img wrap-pic-w of-hidden pos-relative">
 											<div class="produk">
 												<img src="<?= base_url('assets/produk/'.$nama_kategori.'/'.$row->kode_barang.'.jpg') ?>" alt="IMG-PRODUCT">
 											</div>
