@@ -38,5 +38,8 @@
 <!--===============================================================================================-->
 
     <!-- <link rel="manifest" href="<?= base_url( 'manifest.json' ) ?>"> -->
+
+<!--Produk===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/usertemplate/') ?>vendor/noui/nouislider.min.css">
 </head>
 <body class="animsition">

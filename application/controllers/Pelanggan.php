@@ -224,4 +224,11 @@ class Pelanggan extends MY_Controller
         $this->template($this->data, 'pelanggan');
     }
 
+
+    public function produk(){
+        $this->data['title']        = 'Produk';
+        $this->data['content']      = 'pelanggan/produk';
+        $this->template($this->data, 'pelanggan');
+    }
+
 }

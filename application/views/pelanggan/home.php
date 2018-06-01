@@ -74,8 +74,8 @@
 
             <div class="block1-wrapbtn w-size2">
               <!-- Button -->
-              <a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
-                Dresses
+              <a href="<?= base_url('pelanggan/produk') ?>" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4" style="text-align: center !important;">
+                Accessories Gadget
               </a>
             </div>
           </div>
@@ -86,8 +86,8 @@
 
             <div class="block1-wrapbtn w-size2">
               <!-- Button -->
-              <a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
-                Sunglasses
+              <a href="<?= base_url('pelanggan/produk') ?>" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+                Fashion
               </a>
             </div>
           </div>
@@ -100,8 +100,8 @@
 
             <div class="block1-wrapbtn w-size2">
               <!-- Button -->
-              <a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
-                Watches
+              <a href="<?= base_url('pelanggan/produk') ?>" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+                Mainan Anak
               </a>
             </div>
           </div>
@@ -112,28 +112,25 @@
 
             <div class="block1-wrapbtn w-size2">
               <!-- Button -->
-              <a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
-                Footerwear
+              <a href="<?= base_url('pelanggan/produk') ?>" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+                Peralatan Dapur
               </a>
             </div>
           </div>
         </div>
 
         <div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
-          <!-- block1 -->
           <div class="block1 hov-img-zoom pos-relative m-b-30">
             <img src="<?= base_url('assets/usertemplate/') ?>images/banner-04.jpg" alt="IMG-BENNER">
 
             <div class="block1-wrapbtn w-size2">
-              <!-- Button -->
-              <a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+              <a href="<?= base_url('pelanggan/produk') ?>" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
                 Bags
               </a>
             </div>
           </div>
 
-          <!-- block2 -->
-          <div class="block2 wrap-pic-w pos-relative m-b-30">
+          <!-- <div class="block2 wrap-pic-w pos-relative m-b-30">
             <img src="<?= base_url('assets/usertemplate/') ?>images/icons/bg-01.jpg" alt="IMG">
 
             <div class="block2-content sizefull ab-t-l flex-col-c-m">
@@ -146,13 +143,13 @@
               </p>
 
               <div class="w-size2 p-t-25">
-                <!-- Button -->
                 <a href="#" class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
                   Sign Up
                 </a>
               </div>
             </div>
-          </div>
+          </div> -->
+
         </div>
       </div>
     </div>
