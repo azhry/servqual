@@ -226,8 +226,20 @@ class Pelanggan extends MY_Controller
 
 
     public function produk(){
+        $this->load->model('kategori_barang_m');
+        $this->load->model('barang_m');
+
+        $id_kategori_barang = $this->uri->segment(3);
+
+        if(isset($id_kategori_barang)){
+            $this->data['barang2']       = $this->barang_m->get(['id_kategori_barang' => $id_kategori_barang]);
+            $this->data['nama_kategori']= $this->kategori_barang_m->get_row(['id_kategori_barang' => $id_kategori_barang])->nama_kategori;
+        }
+
         $this->data['title']        = 'Produk';
         $this->data['content']      = 'pelanggan/produk';
+        $this->data['kategori']     = $this->kategori_barang_m->get();
+        $this->data['barang']       = $this->barang_m->get();
         $this->template($this->data, 'pelanggan');
     }
 

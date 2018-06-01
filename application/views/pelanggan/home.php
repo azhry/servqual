@@ -70,11 +70,11 @@
         <div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
           <!-- block1 -->
           <div class="block1 hov-img-zoom pos-relative m-b-30">
-            <img src="<?= base_url('assets/usertemplate/') ?>images/banner-02.jpg" alt="IMG-BENNER">
+            <img src="<?= base_url('assets/produk/Accessories Gadget/1.jpg') ?>" alt="IMG-BENNER">
 
             <div class="block1-wrapbtn w-size2">
               <!-- Button -->
-              <a href="<?= base_url('pelanggan/produk') ?>" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4" style="text-align: center !important;">
+              <a href="<?= base_url('pelanggan/produk/1') ?>" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4" style="text-align: center !important;">
                 Accessories Gadget
               </a>
             </div>
@@ -82,37 +82,11 @@
 
           <!-- block1 -->
           <div class="block1 hov-img-zoom pos-relative m-b-30">
-            <img src="<?= base_url('assets/usertemplate/') ?>images/banner-05.jpg" alt="IMG-BENNER">
+            <img src="<?= base_url('assets/produk/Peralatan Dapur/11.jpg') ?>" alt="IMG-BENNER">
 
             <div class="block1-wrapbtn w-size2">
               <!-- Button -->
-              <a href="<?= base_url('pelanggan/produk') ?>" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
-                Fashion
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
-          <!-- block1 -->
-          <div class="block1 hov-img-zoom pos-relative m-b-30">
-            <img src="<?= base_url('assets/usertemplate/') ?>images/banner-03.jpg" alt="IMG-BENNER">
-
-            <div class="block1-wrapbtn w-size2">
-              <!-- Button -->
-              <a href="<?= base_url('pelanggan/produk') ?>" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
-                Mainan Anak
-              </a>
-            </div>
-          </div>
-
-          <!-- block1 -->
-          <div class="block1 hov-img-zoom pos-relative m-b-30">
-            <img src="<?= base_url('assets/usertemplate/') ?>images/banner-07.jpg" alt="IMG-BENNER">
-
-            <div class="block1-wrapbtn w-size2">
-              <!-- Button -->
-              <a href="<?= base_url('pelanggan/produk') ?>" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+              <a href="<?= base_url('pelanggan/produk/4') ?>" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4" style="text-align: center !important;">
                 Peralatan Dapur
               </a>
             </div>
@@ -120,12 +94,38 @@
         </div>
 
         <div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
+          <!-- block1 -->
           <div class="block1 hov-img-zoom pos-relative m-b-30">
-            <img src="<?= base_url('assets/usertemplate/') ?>images/banner-04.jpg" alt="IMG-BENNER">
+            <img src="<?= base_url('assets/produk/Mainan Anak/35.jpg') ?>" alt="IMG-BENNER">
 
             <div class="block1-wrapbtn w-size2">
-              <a href="<?= base_url('pelanggan/produk') ?>" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
-                Bags
+              <!-- Button -->
+              <a href="<?= base_url('pelanggan/produk/3') ?>" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4" style="text-align: center !important;">
+                Mainan Anak
+              </a>
+            </div>
+          </div>
+
+          <!-- block1 -->
+          <div class="block1 hov-img-zoom pos-relative m-b-30">
+            <img src="<?= base_url('assets/produk/Fashion/21.jpg') ?>" alt="IMG-BENNER">
+
+            <div class="block1-wrapbtn w-size2">
+              <!-- Button -->
+              <a href="<?= base_url('pelanggan/produk/2') ?>" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4" style="text-align: center !important;">
+                Fashion
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
+          <div class="block1 hov-img-zoom pos-relative m-b-30">
+            <img src="<?= base_url('assets/produk/Peralatan Kecantikan/45.jpg') ?>" alt="IMG-BENNER">
+
+            <div class="block1-wrapbtn w-size2">
+              <a href="<?= base_url('pelanggan/produk/5') ?>" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4" style="text-align: center !important;">
+                Peralatan Kecantikan
               </a>
             </div>
           </div>

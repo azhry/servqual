@@ -10,35 +10,19 @@
 						</h4>
 
 						<ul class="p-b-54">
-							<li class="p-t-4">
-								<a href="#" class="s-text13">
-									Semua
-								</a>
-							</li>
+								<li class="p-t-4">
+									<a href="<?= base_url('pelanggan/produk') ?>" class="s-text13 active1">
+										Semua
+									</a>
+								</li>
 
-							<li class="p-t-4">
-								<a href="#" class="s-text13">
-									Accessories Gadget
-								</a>
-							</li>
-
-							<li class="p-t-4">
-								<a href="#" class="s-text13 active1">
-									Fashion
-								</a>
-							</li>
-
-							<li class="p-t-4">
-								<a href="#" class="s-text13">
-									Mainan Anak
-								</a>
-							</li>
-
-							<li class="p-t-4">
-								<a href="#" class="s-text13">
-									Peralatan Dapur
-								</a>
-							</li>
+							<?php foreach($kategori as $row): ?>
+								<li class="p-t-4">
+									<a href="<?= base_url('pelanggan/produk/'.$row->id_kategori_barang) ?>" class="s-text13">
+										<?= $row->nama_kategori ?>
+									</a>
+								</li>
+							<?php endforeach; ?>
 						</ul>
 
 						<!--  -->
@@ -170,438 +154,87 @@
 					</style>
 
 					<!-- Product -->
-					<div class="row">
-						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-							<!-- Block2 -->
-							<div class="block2">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-									<div class="produk">
-										<img src="<?= base_url('assets/produk/') ?>Fashion/1.jpg" alt="IMG-PRODUCT">
-									</div>
+					<?php if(isset($barang2)): ?>
+						<div class="row">
+							<?php foreach($barang2 as $row): ?>
+								<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+									<!-- Block2 -->
+									<div class="block2">
+										<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+											<div class="produk">
+												<img src="<?= base_url('assets/produk/'.$nama_kategori.'/'.$row->kode_barang.'.jpg') ?>" alt="IMG-PRODUCT">
+											</div>
 
-									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
+											<div class="block2-overlay trans-0-4">
+												<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
+													<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
+													<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+												</a>
 
-										<div class="block2-btn-addcart w-size1 trans-0-4">
-											<!-- <div class="deskripsi">
-												jari telunjuk bisa tetap menempel di tombol walau tidak sedang menembak, untuk menembak tombolnya harus ditekan...
-											</div> -->
-											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-												Add to Cart
-											</button>
+												<div class="block2-btn-addcart w-size1 trans-0-4">
+													<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+														Add to Cart
+													</button>
+												</div>
+											</div>
+										</div>
+
+										<div class="block2-txt p-t-20">
+											<a href="<?= base_url('pelanggan/detail_barang/'.$row->kode_barang) ?>" class="block2-name dis-block s-text3 p-b-5">
+												<?= $row->nama ?> 
+											</a>
+
+											<span class="block2-price m-text6 p-r-5">
+												<?= "IDR " . number_format($row->harga,2,',','.') ?>
+											</span>
 										</div>
 									</div>
 								</div>
-
-								<div class="block2-txt p-t-20">
-									<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-										Jam Fashion 
-									</a>
-
-									<span class="block2-price m-text6 p-r-5">
-										$75.00
-									</span>
-								</div>
-							</div>
+							<?php endforeach; ?>
 						</div>
 
-						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-							<!-- Block2 -->
-							<div class="block2">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative">
-									<div class="produk">
-										<img src="<?= base_url('assets/produk/') ?>Fashion/2.jpg" alt="IMG-PRODUCT">
-									</div>
+					<?php else: ?>
+						<div class="row">
+							<?php foreach($barang as $row): ?>
+							<?php $nama_kategori = $this->kategori_barang_m->get_row(['id_kategori_barang' => $row->id_kategori_barang])->nama_kategori; ?>
 
-									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
+								<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+									<!-- Block2 -->
+									<div class="block2">
+										<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+											<div class="produk">
+												<img src="<?= base_url('assets/produk/'.$nama_kategori.'/'.$row->kode_barang.'.jpg') ?>" alt="IMG-PRODUCT">
+											</div>
 
-										<div class="block2-btn-addcart w-size1 trans-0-4">
-											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-												Add to Cart
-											</button>
+											<div class="block2-overlay trans-0-4">
+												<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
+													<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
+													<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+												</a>
+
+												<div class="block2-btn-addcart w-size1 trans-0-4">
+													<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+														Add to Cart
+													</button>
+												</div>
+											</div>
+										</div>
+
+										<div class="block2-txt p-t-20">
+											<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+												<?= $row->nama ?> 
+											</a>
+
+											<span class="block2-price m-text6 p-r-5">
+												<?= "IDR " . number_format($row->harga,2,',','.') ?> 
+											</span>
 										</div>
 									</div>
 								</div>
-
-								<div class="block2-txt p-t-20">
-									<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-										Denim jacket blue
-									</a>
-
-									<span class="block2-price m-text6 p-r-5">
-										$92.50
-									</span>
-								</div>
-							</div>
+							<?php endforeach; ?>
 						</div>
 
-						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-							<!-- Block2 -->
-							<div class="block2">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative">
-									<div class="produk">
-										<img src="<?= base_url('assets/produk/') ?>Fashion/3.jpg" alt="IMG-PRODUCT">
-									</div>
-
-									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
-
-										<div class="block2-btn-addcart w-size1 trans-0-4">
-											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-												Add to Cart
-											</button>
-										</div>
-									</div>
-								</div>
-
-								<div class="block2-txt p-t-20">
-									<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-										Coach slim easton black
-									</a>
-
-									<span class="block2-price m-text6 p-r-5">
-										$165.90
-									</span>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-							<!-- Block2 -->
-							<div class="block2">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-									<div class="produk">
-										<img src="<?= base_url('assets/produk/') ?>Fashion/4.jpg" alt="IMG-PRODUCT">
-									</div>
-
-									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
-
-										<div class="block2-btn-addcart w-size1 trans-0-4">
-											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-												Add to Cart
-											</button>
-										</div>
-									</div>
-								</div>
-
-								<div class="block2-txt p-t-20">
-									<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-										Frayed denim shorts
-									</a>
-
-									<span class="block2-oldprice m-text7 p-r-5">
-										$29.50
-									</span>
-
-									<span class="block2-newprice m-text8 p-r-5">
-										$15.90
-									</span>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-							<!-- Block2 -->
-							<div class="block2">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-									<div class="produk">
-										<img src="<?= base_url('assets/produk/') ?>Fashion/5.jpg" alt="IMG-PRODUCT">
-									</div>
-
-									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
-
-										<div class="block2-btn-addcart w-size1 trans-0-4">
-											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-												Add to Cart
-											</button>
-										</div>
-									</div>
-								</div>
-
-								<div class="block2-txt p-t-20">
-									<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-										Herschel supply co 25l
-									</a>
-
-									<span class="block2-price m-text6 p-r-5">
-										$75.00
-									</span>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-							<!-- Block2 -->
-							<div class="block2">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative">
-									<div class="produk">
-										<img src="<?= base_url('assets/produk/') ?>Fashion/6.jpg" alt="IMG-PRODUCT">
-									</div>
-
-									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
-
-										<div class="block2-btn-addcart w-size1 trans-0-4">
-											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-												Add to Cart
-											</button>
-										</div>
-									</div>
-								</div>
-
-								<div class="block2-txt p-t-20">
-									<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-										Denim jacket blue
-									</a>
-
-									<span class="block2-price m-text6 p-r-5">
-										$92.50
-									</span>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-							<!-- Block2 -->
-							<div class="block2">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-									<div class="produk">
-										<img src="<?= base_url('assets/produk/') ?>Fashion/7.jpg" alt="IMG-PRODUCT">
-									</div>
-
-									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
-
-										<div class="block2-btn-addcart w-size1 trans-0-4">
-											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-												Add to Cart
-											</button>
-										</div>
-									</div>
-								</div>
-
-								<div class="block2-txt p-t-20">
-									<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-										Herschel supply co 25l
-									</a>
-
-									<span class="block2-price m-text6 p-r-5">
-										$75.00
-									</span>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-							<!-- Block2 -->
-							<div class="block2">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative">
-									<div class="produk">
-										<img src="<?= base_url('assets/produk/') ?>Fashion/8.jpg" alt="IMG-PRODUCT">
-									</div>
-
-									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
-
-										<div class="block2-btn-addcart w-size1 trans-0-4">
-											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-												Add to Cart
-											</button>
-										</div>
-									</div>
-								</div>
-
-								<div class="block2-txt p-t-20">
-									<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-										Denim jacket blue
-									</a>
-
-									<span class="block2-price m-text6 p-r-5">
-										$92.50
-									</span>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-							<!-- Block2 -->
-							<div class="block2">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative">
-									<div class="produk">
-										<img src="<?= base_url('assets/produk/') ?>Fashion/9.jpg" alt="IMG-PRODUCT">
-									</div>
-
-									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
-
-										<div class="block2-btn-addcart w-size1 trans-0-4">
-											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-												Add to Cart
-											</button>
-										</div>
-									</div>
-								</div>
-
-								<div class="block2-txt p-t-20">
-									<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-										Coach slim easton black
-									</a>
-
-									<span class="block2-price m-text6 p-r-5">
-										$165.90
-									</span>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-							<!-- Block2 -->
-							<div class="block2">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-									<div class="produk">
-										<img src="<?= base_url('assets/produk/') ?>Fashion/10.jpg" alt="IMG-PRODUCT">
-									</div>
-
-									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
-
-										<div class="block2-btn-addcart w-size1 trans-0-4">
-											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-												Add to Cart
-											</button>
-										</div>
-									</div>
-								</div>
-
-								<div class="block2-txt p-t-20">
-									<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-										Frayed denim shorts
-									</a>
-
-									<span class="block2-oldprice m-text7 p-r-5">
-										$29.50
-									</span>
-
-									<span class="block2-newprice m-text8 p-r-5">
-										$15.90
-									</span>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-							<!-- Block2 -->
-							<div class="block2">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-									<div class="produk">
-										<img src="<?= base_url('assets/produk/') ?>Fashion/11.jpg" alt="IMG-PRODUCT">
-									</div>
-
-									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
-
-										<div class="block2-btn-addcart w-size1 trans-0-4">
-											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-												Add to Cart
-											</button>
-										</div>
-									</div>
-								</div>
-
-								<div class="block2-txt p-t-20">
-									<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-										Herschel supply co 25l
-									</a>
-
-									<span class="block2-price m-text6 p-r-5">
-										$75.00
-									</span>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-							<!-- Block2 -->
-							<div class="block2">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative">
-									<div class="produk">
-										<img src="<?= base_url('assets/produk/') ?>Fashion/12.jpg" alt="IMG-PRODUCT">
-									</div>
-
-									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
-
-										<div class="block2-btn-addcart w-size1 trans-0-4">
-											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-												Add to Cart
-											</button>
-										</div>
-									</div>
-								</div>
-
-								<div class="block2-txt p-t-20">
-									<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-										Denim jacket blue
-									</a>
-
-									<span class="block2-price m-text6 p-r-5">
-										$92.50
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
+					<?php endif; ?>
 
 					<!-- Pagination -->
 					<div class="pagination flex-m flex-w p-t-26">

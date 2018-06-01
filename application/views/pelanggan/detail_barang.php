@@ -23,9 +23,9 @@
 					<div class="wrap-slick3-dots"></div>
 
 					<div class="slick3">
-						<div class="item-slick3" data-thumb="<?= base_url('assets/usertemplate/') ?>images/thumb-item-01.jpg">
+						<div class="item-slick3" data-thumb="<?= base_url('assets/produk/'.$kategori->nama_kategori.'/'.$barang->kode_barang.'.jpg') ?>">
 							<div class="wrap-pic-w">
-								<img style="min-height: 400px;" src="<?= base_url('assets/barang/'.$barang->kode_barang.'.jpg') ?>" onerror = "this.src = '<?= base_url('assets/usertemplate/') ?>images/product-detail-01.jpg' " alt="IMG-PRODUCT">
+								<img style="min-height: 400px;" src="<?= base_url('assets/produk/'.$kategori->nama_kategori.'/'.$barang->kode_barang.'.jpg') ?>" onerror = "this.src = '<?= base_url('assets/usertemplate/') ?>images/product-detail-01.jpg' " alt="IMG-PRODUCT">
 							</div>
 						</div>
 
@@ -97,7 +97,7 @@
 
 					<div class="dropdown-content dis-none p-t-15 p-b-23">
 						<p class="s-text8">
-							<?= $barang->deskripsi ?>
+							<?= nl2br($barang->deskripsi) ?>
 						</p>
 					</div>
 				</div>
