@@ -30,7 +30,7 @@ class Pelanggan extends MY_Controller
         $this->load->model('barang_m');
 
         $this->data['title']    = 'Home';
-        $this->data['barang']   = $this->barang_m->get();
+        $this->data['barang']   = $this->barang_m->get_barang();
         $this->data['content']  = 'pelanggan/home';
         $this->template($this->data, 'pelanggan');
     }

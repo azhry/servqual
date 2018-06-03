@@ -175,7 +175,7 @@
                 <!-- Block2 -->
                     <div class="block2">
                         <div class="block2-img wrap-pic-w of-hidden pos-relative">
-                            <img style="min-height: 360px;" src="<?= base_url('assets/barang/'.$row->kode_barang.'.jpg') ?>" onerror="this.src = '<?= base_url('assets/usertemplate/') ?>images/item-02.jpg'" alt="IMG-PRODUCT">
+                            <img style="min-height: 360px;" src="<?= base_url('assets/produk/'. $row->nama_kategori . '/' . $row->kode_barang.'.jpg') ?>" onerror="this.src = '<?= base_url('assets/usertemplate/') ?>images/item-02.jpg'" alt="IMG-PRODUCT">
 
                             <div class="block2-overlay trans-0-4">
                                 <!-- <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
@@ -211,7 +211,7 @@
   </section>
 
   <!-- New Product -->
-  <section class="newproduct bgwhite p-t-45 p-b-105">
+  <!-- <section class="newproduct bgwhite p-t-45 p-b-105">
     <div class="container">
       <div class="sec-title p-b-60">
         <h3 class="m-text5 t-center">
@@ -219,7 +219,6 @@
         </h3>
       </div>
 
-      <!-- Slide2 -->
       <div class="wrap-slick2">
         <div class="slick2">
 
@@ -227,22 +226,12 @@
             <?php foreach($barang as $row): ?>
             <a href="<?= base_url('pelanggan/detail-barang/'.$row->kode_barang) ?>" class="block2-name dis-block s-text3 p-b-5">
                 <div class="item-slick2 p-l-15 p-r-15">
-                <!-- Block2 -->
                     <div class="block2">
                         <div class="block2-img wrap-pic-w of-hidden pos-relative">
                             <img style="min-height: 360px;" src="<?= base_url('assets/barang/'.$row->kode_barang.'.jpg') ?>" onerror="this.src = '<?= base_url('assets/usertemplate/') ?>images/item-02.jpg'" alt="IMG-PRODUCT">
 
                             <div class="block2-overlay trans-0-4">
-                                <!-- <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-                                <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-                                <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-                                </a> -->
-
-                                <!-- <div class="block2-btn-addcart w-size1 trans-0-4">
-                                <button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-                                Add to Cart
-                                </button>
-                                </div> -->
+                                
                             </div>
                         </div>
 
@@ -263,7 +252,7 @@
       </div>
 
     </div>
-  </section>
+  </section> -->
 
   <!-- Banner2 -->
   <section class="banner2 bg5 p-t-55 p-b-55">
