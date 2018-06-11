@@ -243,4 +243,31 @@ class Pelanggan extends MY_Controller
         $this->template($this->data, 'pelanggan');
     }
 
+    public function profile(){
+        $this->load->model('pengguna_m');
+
+        if($this->POST('simpan')){
+            $profile = [
+                'nama'              => $this->POST('nama'),
+                'jenis_kelamin'     => $this->POST('jenis_kelamin'),
+                'alamat'            => $this->POST('alamat'),
+                'email'             => $this->POST('email'),
+                'no_hp'             => $this->POST('no_hp')
+            ];
+
+            $this->pengguna_m->update($this->data['id_pengguna'], $profile);
+
+            $this->upload($this->data['id_pengguna'], 'foto', 'foto');
+            
+            $this->flashmsg( 'Profile berhasil disimpan!' );
+            redirect('pelanggan/profile');
+            exit;
+        }
+
+        $this->data['title']        = 'Profile';
+        $this->data['content']      = 'pelanggan/profile';
+        $this->data['profile']      = $this->pengguna_m->get_row(['id_pengguna' => $this->data['id_pengguna'], 'username' => $this->data['username']]);
+        $this->template($this->data, 'pelanggan');
+    }
+
 }

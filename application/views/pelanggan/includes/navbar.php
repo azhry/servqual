@@ -37,16 +37,20 @@
                                <a href="<?= base_url('pelanggan/perbandingan-produk') ?>">Perbandingan Produk</a>
                             </li>
 
-                            <li>
+                            <!-- <li>
                                 <a href="<?= base_url('pelanggan/survei') ?>">Survei</a>
-                            </li>
+                            </li> -->
 
                             <!-- <li>
                                 <a href="contact.html">Contact</a>
                             </li> -->
 
                             <li>
-                                <a href="<?= base_url('login') ?>">Login</a>
+                                <?php if(isset($username)): ?>
+                                    <a href="<?= base_url('logout') ?>">Logout</a>
+                                <?php else: ?>
+                                    <a href="<?= base_url('login') ?>">Login</a>
+                                <?php endif; ?>
                             </li>
                         </ul>
                     </nav>
@@ -54,8 +58,8 @@
 
                 <!-- Header Icon -->
                 <div class="header-icons">
-                    <a href="#" class="header-wrapicon1 dis-block">
-                        <img src="<?= base_url('assets/usertemplate/') ?>images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
+                    <a href="<?= base_url('pelanggan/profile') ?>" class="header-wrapicon1 dis-block">
+                        <img src="<?= base_url('assets/foto/'.$id_pengguna.'.jpg') ?>" onerror="src='<?= base_url("assets/usertemplate/") ?>images/icons/icon-header-01.png'" class="header-icon1" width="35" height="50" style="border-radius: 50%;">
                     </a>
 
                     <span class="linedivide1"></span>
