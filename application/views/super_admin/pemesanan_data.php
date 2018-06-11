@@ -81,6 +81,7 @@
                             </tbody>
                         </table>
                     </div>
+                    <a href="<?= base_url('super_admin/pemesanan-cetak') ?>" class="btn btn-primary btn-lg"><i class="fa fa-download"></i> Cetak</a>
                 </div>
             </div>
         </div>

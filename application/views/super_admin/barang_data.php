@@ -26,6 +26,7 @@
                   <div class="x_title">
                     <div>
                         <h2>Daftar Barang</h2>
+                        
                     </div>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -78,6 +79,8 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <a href="<?= base_url('super_admin/barang-cetak') ?>" class="btn btn-primary btn-lg"><i class="fa fa-download"></i> Cetak</a>
                 </div>
             </div>
         </div>

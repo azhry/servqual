@@ -182,6 +182,22 @@ class Super_admin extends MY_Controller {
         $this->template($this->data, 'super_admin');
     }
 
+    public function barang_cetak(){
+        $this->load->model('barang_m');
+        // $this->data['data'] = $this->barang_m->get();
+        // $this->load->view('super_admin/barang_cetak', $this->data);
+
+        $data = array(
+            'data'  => $this->barang_m->get()
+        );
+        
+        $html = $this->load->view('super_admin/barang_cetak', $data, true);
+        $pdfFilePath = "Laporan Barang ". date('Y-m-d') .".pdf";
+        $this->load->library('m_pdf');
+        $this->m_pdf->pdf->WriteHTML($html);
+        $this->m_pdf->pdf->Output($pdfFilePath, "D");
+    }
+
     //---Kategori Barang--------------
 
     public function tambah_kategori()
@@ -415,6 +431,24 @@ class Super_admin extends MY_Controller {
         $this->template($this->data, 'super_admin');
     }
 
+
+    public function pengguna_cetak(){
+        $this->load->model('pengguna_m');
+
+        // $this->data['data'] = $this->pengguna_m->get();
+        // $this->load->view('super_admin/pengguna_cetak', $this->data);
+
+        $data = array(
+            'data'  => $this->pengguna_m->get()
+        );
+        
+        $html = $this->load->view('super_admin/pengguna_cetak', $data, true);
+        $pdfFilePath = "Laporan Pengguna ". date('Y-m-d') .".pdf";
+        $this->load->library('m_pdf');
+        $this->m_pdf->pdf->WriteHTML($html);
+        $this->m_pdf->pdf->Output($pdfFilePath, "D");
+    }
+
     //---Role--------------
 
     public function tambah_role()
@@ -562,6 +596,24 @@ class Super_admin extends MY_Controller {
         $this->data['title']        = 'Detail Data pemesanan';
         $this->data['content']      = 'super_admin/pemesanan_detail';
         $this->template($this->data, 'super_admin');
+    }
+
+    public function pemesanan_cetak(){
+        $this->load->model('pemesanan_m');
+        $this->load->model('pengguna_m');
+
+        // $this->data['data'] = $this->pemesanan_m->get_join();
+        // $this->load->view('super_admin/pemesanan_cetak', $this->data);
+
+        $data = array(
+            'data'  => $this->pemesanan_m->get_join()
+        );
+        
+        $html = $this->load->view('super_admin/pemesanan_cetak', $data, true);
+        $pdfFilePath = "Laporan Penjualan ". date('Y-m-d') .".pdf";
+        $this->load->library('m_pdf');
+        $this->m_pdf->pdf->WriteHTML($html);
+        $this->m_pdf->pdf->Output($pdfFilePath, "D");
     }
 
     //---Survei--------------
@@ -855,7 +907,7 @@ class Super_admin extends MY_Controller {
             exit;
         }
 
-        $this->data['data']         = $this->pengguna_m->get(['id_pengguna' => $this->data['id']]);
+        $this->data['data']         = $this->pengguna_m->get_row(['id_pengguna' => $this->data['id']]);
         $this->data['title']        = 'Detail Admin';
         $this->data['content']      = 'super_admin/detail_admin';
         $this->template($this->data, 'super_admin');
