@@ -59,7 +59,7 @@
                 <!-- Header Icon -->
                 <div class="header-icons">
                     <a href="<?= base_url('pelanggan/profile') ?>" class="header-wrapicon1 dis-block">
-                        <img src="<?= base_url('assets/foto/'.$id_pengguna.'.jpg') ?>" onerror="src='<?= base_url("assets/usertemplate/") ?>images/icons/icon-header-01.png'" class="header-icon1" width="35" height="50" style="border-radius: 50%;">
+                        <img src="<?= base_url('assets/foto/'.$id_pengguna.'.jpg') ?>" onerror="src='<?= base_url("assets/usertemplate/") ?>images/icons/icon-header-01.png'" class="header-icon1" style="border-radius: 50%;">
                     </a>
 
                     <span class="linedivide1"></span>
