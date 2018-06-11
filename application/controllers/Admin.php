@@ -39,7 +39,7 @@ class Admin extends MY_Controller {
         $this->load->model('role_m');
         $this->load->model('pemesanan_m');
 
-		$this->data['title'] 	        = 'Dashboard | ' . $this->title;
+		$this->data['title'] 	        = 'Dashboard ' . $this->title;
 		$this->data['content']	        = 'admin/dashboard';
         $this->data['barang']           = $this->barang_m->get();
         $this->data['kategori_barang']  = $this->kategori_barang_m->get();

@@ -20,7 +20,7 @@ class Super_admin extends MY_Controller {
 		if ( $this->data['role'] != "3" ) {
 
 			$this->session->sess_destroy();
-			$this->flashmsg( 'Anda harus login sebagai super_admin', 'warning' );
+			$this->flashmsg( 'Anda harus login sebagai super admin', 'warning' );
 			redirect( 'login/super_admin' );
 			exit;
 
@@ -28,7 +28,6 @@ class Super_admin extends MY_Controller {
 
 		$this->load->model( 'pengguna_m' );
 		$this->data['super_admin'] = $this->pengguna_m->get_row( [ 'id_pengguna' => $this->data['id_pengguna'] ] );
-
 	}
 
 	public function index() {
@@ -46,7 +45,7 @@ class Super_admin extends MY_Controller {
         $this->data['pengguna']         = $this->pengguna_m->get();
         $this->data['role']             = $this->role_m->get();
         $this->data['pemesanan']        = $this->pemesanan_m->get();
-		$this->template( $this->data );
+		$this->template( $this->data , 'super_admin');
 	
 	}
 
@@ -833,6 +832,32 @@ class Super_admin extends MY_Controller {
         $this->data['data']         = $this->jawaban_m->get();
         $this->data['title']        = 'Data jawaban';
         $this->data['content']      = 'super_admin/jawaban_data';
+        $this->template($this->data, 'super_admin');
+    }
+
+    public function daftar_admin(){
+        $this->load->model('pengguna_m');
+
+        $this->data['data']         = $this->pengguna_m->get(['id_role' => '2']);
+        $this->data['title']        = 'Daftar Admin';
+        $this->data['content']      = 'super_admin/daftar_admin';
+        $this->template($this->data, 'super_admin');
+    }
+
+    public function detail_admin(){
+        $this->load->model('pengguna_m');
+        
+        $this->data['id'] = $this->uri->segment(3);
+        if (!isset($this->data['id']))
+        {
+            $this->flashmsg('<i class="lnr lnr-warning"></i> Required parameter is missing', 'danger');
+            redirect('super_admin/daftar_admin');
+            exit;
+        }
+
+        $this->data['data']         = $this->pengguna_m->get(['id_pengguna' => $this->data['id']]);
+        $this->data['title']        = 'Detail Admin';
+        $this->data['content']      = 'super_admin/detail_admin';
         $this->template($this->data, 'super_admin');
     }
 }

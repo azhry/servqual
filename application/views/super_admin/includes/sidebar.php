@@ -39,6 +39,9 @@
                             <a href="<?= base_url('super_admin/pengguna') ?>"><i class="fa fa-users"></i> Pengguna</a>
                         </li>
                         <li>
+                            <a href="<?= base_url('super_admin/daftar-admin') ?>"><i class="fa fa-users"></i> Daftar Admin</a>
+                        </li>
+                        <li>
                             <a href="<?= base_url('super_admin/role') ?>"><i class="fa fa-book"></i> Role</a>
                         </li>
                         <li>
