@@ -135,36 +135,26 @@
 
 				<?php foreach($semua_barang as $row): ?>
 				<a href="<?= base_url('pelanggan/detail-barang/'.$row->kode_barang) ?>" class="block2-name dis-block s-text3 p-b-5">
-			          <div class="item-slick2 p-l-15 p-r-15">
-			            <!-- Block2 -->
-			            <div class="block2">
-			              <div class="block2-img wrap-pic-w of-hidden pos-relative">
-			                <img style="min-height: 360px;" src="<?= base_url('assets/barang/'.$row->kode_barang.'.jpg') ?>" onerror="this.src = '<?= base_url('assets/usertemplate/') ?>images/item-02.jpg'" alt="IMG-PRODUCT">
+		          <div class="item-slick2 p-l-15 p-r-15">
+		            <div class="block2">
+		              <div class="block2-img wrap-pic-w of-hidden pos-relative">
+		                <img style="min-height: 360px;" src="<?= base_url('assets/produk/'.$row->nama_kategori . '/' . $row->kode_barang . '.JPG') ?>" onerror="this.src = '<?= base_url('assets/usertemplate/') ?>images/item-02.jpg'" alt="IMG-PRODUCT">
 
-			                <div class="block2-overlay trans-0-4">
-			                  <!-- <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-			                    <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-			                    <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-			                  </a> -->
+		                <div class="block2-overlay trans-0-4">
+		                  
+		                </div>
+		              </div>
 
-			                  <!-- <div class="block2-btn-addcart w-size1 trans-0-4">
-			                    <button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-			                      Add to Cart
-			                    </button>
-			                  </div> -->
-			                </div>
-			              </div>
-
-			              <div class="block2-txt p-t-20">
-			                <p><?= $row->nama ?></p>
-			                <span class="block2-price m-text6 p-r-5">
-			                  <?= "IDR " . number_format($row->harga,2,',','.') ?>
-			                </span>
-			              </div>
-			            </div>
-			          </div>
-			        </a>
-		          <?php endforeach; ?>
+		              <div class="block2-txt p-t-20">
+		                <p><?= $row->nama ?></p>
+		                <span class="block2-price m-text6 p-r-5">
+		                  <?= "IDR " . number_format($row->harga,2,',','.') ?>
+		                </span>
+		              </div>
+		            </div>
+		          </div>
+		        </a>
+		        <?php endforeach; ?>
 
 				</div>
 			</div>
@@ -200,11 +190,12 @@
 		    			qty: $( '#qty' ).val(),
 		    			price: '<?= $barang->harga ?>',
 		    			name: '<?= $barang->nama ?>',
-		    			description: '<?= $barang->deskripsi ?>',
+		    			description: '<?= json_encode($barang->deskripsi) ?>',
 		    			id_kategori: '<?= $barang->id_kategori_barang ?>'
 
 		    		},
 		    		success: ( response ) => {
+		    			console.log(response);
 		    			swal('<?= $barang->nama ?>', "is added to cart !", "success");
 		    		},
 		    		error: ( err ) => { console.log( err.responseText ); }

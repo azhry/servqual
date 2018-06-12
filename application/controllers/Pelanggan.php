@@ -49,7 +49,7 @@ class Pelanggan extends MY_Controller
         $this->check_allowance( !isset( $this->data['kategori'] ), [ 'Category not found', 'danger' ] );
 
         $this->data['title']          = 'Detail Barang';
-        $this->data['semua_barang']   = $this->barang_m->get();
+        $this->data['semua_barang']   = $this->barang_m->get_barang();
         $this->data['content']        = 'pelanggan/detail_barang';
         $this->template($this->data, 'pelanggan');
     }
@@ -159,13 +159,14 @@ class Pelanggan extends MY_Controller
                 'id'        => $this->POST( 'id' ),
                 'qty'       => $this->POST( 'qty' ),
                 'price'     => $this->POST( 'price' ),
-                'name'      => $this->POST( 'name' ),
+                'name'      => preg_replace('/[^\p{L}\p{N}\s]/u', '', $this->POST( 'name' )),
                 'options'   => [
                     'deskripsi'             => $this->POST( 'description' ),
                     'id_kategori_barang'    => $this->POST( 'id_kategori' )
                 ]
             ];
 
+            var_dump($item);
             $this->cart->insert( $item );
 
         }
