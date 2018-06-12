@@ -435,11 +435,11 @@ class Super_admin extends MY_Controller {
     public function pengguna_cetak(){
         $this->load->model('pengguna_m');
 
-        // $this->data['data'] = $this->pengguna_m->get();
+        // $this->data['data'] = $this->pengguna_m->get(['id_role' => '1']);
         // $this->load->view('super_admin/pengguna_cetak', $this->data);
 
         $data = array(
-            'data'  => $this->pengguna_m->get()
+            'data'  => $this->pengguna_m->get(['id_role' => '1'])
         );
         
         $html = $this->load->view('super_admin/pengguna_cetak', $data, true);
