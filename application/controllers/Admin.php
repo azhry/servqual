@@ -28,6 +28,7 @@ class Admin extends MY_Controller {
 
 		$this->load->model( 'pengguna_m' );
 		$this->data['admin'] = $this->pengguna_m->get_row( [ 'id_pengguna' => $this->data['id_pengguna'] ] );
+        $this->data['logged_in'] = true;
 
 	}
 

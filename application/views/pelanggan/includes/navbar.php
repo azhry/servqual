@@ -46,7 +46,11 @@
                             </li> -->
 
                             <li>
+                                <?php if (!$logged_in): ?>
                                 <a href="<?= base_url('login') ?>">Login</a>
+                                <?php else: ?>
+                                <a href="<?= base_url('logout') ?>">Logout</a>
+                                <?php endif; ?>
                             </li>
                         </ul>
                     </nav>
