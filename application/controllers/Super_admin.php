@@ -1,7 +1,7 @@
 <?php
 defined( 'BASEPATH' ) OR exit( 'No direct script access allowed' );
 
-class Admin extends MY_Controller {
+class Super_admin extends MY_Controller {
 
 	public function __construct() {
 
@@ -11,25 +11,23 @@ class Admin extends MY_Controller {
 
 			$this->session->sess_destroy();
 			$this->flashmsg( 'Anda harus login terlebih dahulu', 'warning' );
-			redirect( 'login/admin' );
+			redirect( 'login/super_admin' );
 			exit;
 
 		}
 
 		$this->data['role']	= $this->session->userdata( 'id_role' );
-		if ( $this->data['role'] != "2" ) {
+		if ( $this->data['role'] != "3" ) {
 
 			$this->session->sess_destroy();
-			$this->flashmsg( 'Anda harus login sebagai admin', 'warning' );
-			redirect( 'login/admin' );
+			$this->flashmsg( 'Anda harus login sebagai super admin', 'warning' );
+			redirect( 'login/super_admin' );
 			exit;
 
 		}
 
 		$this->load->model( 'pengguna_m' );
-		$this->data['admin'] = $this->pengguna_m->get_row( [ 'id_pengguna' => $this->data['id_pengguna'] ] );
-        $this->data['logged_in'] = true;
-
+		$this->data['super_admin'] = $this->pengguna_m->get_row( [ 'id_pengguna' => $this->data['id_pengguna'] ] );
 	}
 
 	public function index() {
@@ -40,14 +38,14 @@ class Admin extends MY_Controller {
         $this->load->model('role_m');
         $this->load->model('pemesanan_m');
 
-		$this->data['title'] 	        = 'Dashboard ' . $this->title;
-		$this->data['content']	        = 'admin/dashboard';
+		$this->data['title'] 	        = 'Dashboard | ' . $this->title;
+		$this->data['content']	        = 'super_admin/dashboard';
         $this->data['barang']           = $this->barang_m->get();
         $this->data['kategori_barang']  = $this->kategori_barang_m->get();
         $this->data['pengguna']         = $this->pengguna_m->get();
         $this->data['role']             = $this->role_m->get();
         $this->data['pemesanan']        = $this->pemesanan_m->get();
-		$this->template( $this->data );
+		$this->template( $this->data , 'super_admin');
 	
 	}
 
@@ -77,16 +75,16 @@ class Admin extends MY_Controller {
 
             $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data barang berhasil disimpan');
 
-            redirect('admin/barang');
+            redirect('super_admin/barang');
             exit;
         }
 
 
         $this->data['title']        = 'Tambah Data Barang';
-        $this->data['content']      = 'admin/barang_tambah';
+        $this->data['content']      = 'super_admin/barang_tambah';
         $this->data['kategori']   	= $this->kategori_barang_m->get();
         $this->data['barang']      	= $this->barang_m->get();
-        $this->template($this->data, 'admin');
+        $this->template($this->data, 'super_admin');
     }
 
     public function edit_barang()
@@ -98,7 +96,7 @@ class Admin extends MY_Controller {
         if (!isset($this->data['id']))
         {
             $this->flashmsg('<i class="lnr lnr-warning"></i> Required parameter is missing', 'danger');
-            redirect('admin/barang');
+            redirect('super_admin/barang');
             exit;
         }
 
@@ -108,7 +106,7 @@ class Admin extends MY_Controller {
         if (!isset($this->data['data']))
         {
             $this->flashmsg('<i class="lnr lnr-warning"></i> Data barang tidak ditemukan', 'danger');
-            redirect('admin/barang');
+            redirect('super_admin/barang');
             exit;
         }
 
@@ -129,15 +127,15 @@ class Admin extends MY_Controller {
             $this->upload($this->data['id'], 'barang', 'gambar');
 
             $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data barang berhasil diedit');
-            redirect('admin/edit-barang/' . $this->data['id']);
+            redirect('super_admin/edit-barang/' . $this->data['id']);
             exit;
         }
 
         $this->data['title']        = 'Edit Data Barang';
-        $this->data['content']      = 'admin/barang_edit';
+        $this->data['content']      = 'super_admin/barang_edit';
         $this->data['kategori']   	= $this->kategori_barang_m->get();
         $this->data['barang']      	= $this->barang_m->get();
-        $this->template($this->data, 'admin');
+        $this->template($this->data, 'super_admin');
     }
 
     public function detail_barang()
@@ -149,7 +147,7 @@ class Admin extends MY_Controller {
         if (!isset($this->data['id']))
         {
             $this->flashmsg('<i class="lnr lnr-warning"></i> Required parameter is missing', 'danger');
-            redirect('admin/barang');
+            redirect('super_admin/barang');
             exit;
         }
 
@@ -158,13 +156,13 @@ class Admin extends MY_Controller {
         if (!isset($this->data['id']))
         {
             $this->flashmsg('<i class="lnr lnr-warning"></i> Data barang tidak ditemukan', 'danger');
-            redirect('admin/barang');
+            redirect('super_admin/barang');
             exit;
         }
 
         $this->data['title']        = 'Detail Data Barang';
-        $this->data['content']      = 'admin/barang_detail';
-        $this->template($this->data, 'admin');
+        $this->data['content']      = 'super_admin/barang_detail';
+        $this->template($this->data, 'super_admin');
     }
 
     public function barang()
@@ -180,8 +178,24 @@ class Admin extends MY_Controller {
 
         $this->data['data']        	= $this->barang_m->get();
         $this->data['title']        = 'Data barang';
-        $this->data['content']      = 'admin/barang_data';
-        $this->template($this->data, 'admin');
+        $this->data['content']      = 'super_admin/barang_data';
+        $this->template($this->data, 'super_admin');
+    }
+
+    public function barang_cetak(){
+        $this->load->model('barang_m');
+        // $this->data['data'] = $this->barang_m->get();
+        // $this->load->view('super_admin/barang_cetak', $this->data);
+
+        $data = array(
+            'data'  => $this->barang_m->get()
+        );
+        
+        $html = $this->load->view('super_admin/barang_cetak', $data, true);
+        $pdfFilePath = "Laporan Barang ". date('Y-m-d') .".pdf";
+        $this->load->library('m_pdf');
+        $this->m_pdf->pdf->WriteHTML($html);
+        $this->m_pdf->pdf->Output($pdfFilePath, "D");
     }
 
     //---Kategori Barang--------------
@@ -200,15 +214,15 @@ class Admin extends MY_Controller {
 
             $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data kategori berhasil disimpan');
 
-            redirect('admin/kategori');
+            redirect('super_admin/kategori');
             exit;
         }
 
 
         $this->data['title']        = 'Tambah Data Kategori';
-        $this->data['content']      = 'admin/kategori_tambah';
+        $this->data['content']      = 'super_admin/kategori_tambah';
         $this->data['kategori']       = $this->kategori_barang_m->get();
-        $this->template($this->data, 'admin');
+        $this->template($this->data, 'super_admin');
     }
 
     public function edit_kategori()
@@ -219,7 +233,7 @@ class Admin extends MY_Controller {
         if (!isset($this->data['id']))
         {
             $this->flashmsg('<i class="lnr lnr-warning"></i> Required parameter is missing', 'danger');
-            redirect('admin/kategori');
+            redirect('super_admin/kategori');
             exit;
         }
 
@@ -229,7 +243,7 @@ class Admin extends MY_Controller {
         if (!isset($this->data['data']))
         {
             $this->flashmsg('<i class="lnr lnr-warning"></i> Data kategori tidak ditemukan', 'danger');
-            redirect('admin/kategori');
+            redirect('super_admin/kategori');
             exit;
         }
 
@@ -242,14 +256,14 @@ class Admin extends MY_Controller {
 
             $this->kategori_barang_m->update($this->data['id'], $this->data['data_row']);
             $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data kategori berhasil diedit');
-            redirect('admin/edit-kategori/' . $this->data['id']);
+            redirect('super_admin/edit-kategori/' . $this->data['id']);
             exit;
         }
 
         $this->data['title']        = 'Edit Data Kategori';
-        $this->data['content']      = 'admin/kategori_edit';
+        $this->data['content']      = 'super_admin/kategori_edit';
         $this->data['kategori']     = $this->kategori_barang_m->get();
-        $this->template($this->data, 'admin');
+        $this->template($this->data, 'super_admin');
     }
 
     public function kategori()
@@ -264,8 +278,8 @@ class Admin extends MY_Controller {
 
         $this->data['data']         = $this->kategori_barang_m->get();
         $this->data['title']        = 'Data Kategori';
-        $this->data['content']      = 'admin/kategori_data';
-        $this->template($this->data, 'admin');
+        $this->data['content']      = 'super_admin/kategori_data';
+        $this->template($this->data, 'super_admin');
     }
 
     //---Pengguna--------------
@@ -292,14 +306,14 @@ class Admin extends MY_Controller {
 
             $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data pengguna berhasil disimpan');
 
-            redirect('admin/pengguna');
+            redirect('super_admin/pengguna');
             exit;
         }
 
         $this->data['title']        = 'Tambah Data Pengguna';
-        $this->data['content']      = 'admin/pengguna_tambah';
+        $this->data['content']      = 'super_admin/pengguna_tambah';
         $this->data['role']         = $this->role_m->get();
-        $this->template($this->data, 'admin');
+        $this->template($this->data, 'super_admin');
     }
 
     public function edit_pengguna()
@@ -311,7 +325,7 @@ class Admin extends MY_Controller {
         if (!isset($this->data['id']))
         {
             $this->flashmsg('<i class="lnr lnr-warning"></i> Required parameter is missing', 'danger');
-            redirect('admin/pengguna');
+            redirect('super_admin/pengguna');
             exit;
         }
 
@@ -321,7 +335,7 @@ class Admin extends MY_Controller {
         if (!isset($this->data['data']))
         {
             $this->flashmsg('<i class="lnr lnr-warning"></i> Data pengguna tidak ditemukan', 'danger');
-            redirect('admin/pengguna');
+            redirect('super_admin/pengguna');
             exit;
         }
 
@@ -345,7 +359,7 @@ class Admin extends MY_Controller {
 
                 $this->pengguna_m->update($this->data['id'], $this->data['data_row']);
                 $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data pengguna berhasil diedit');
-                redirect('admin/edit-pengguna/' . $this->data['id']);
+                redirect('super_admin/edit-pengguna/' . $this->data['id']);
                 exit;
             }
             else {
@@ -361,16 +375,16 @@ class Admin extends MY_Controller {
 
                 $this->pengguna_m->update($this->data['id'], $this->data['data_row']);
                 $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data pengguna berhasil diedit');
-                redirect('admin/edit-pengguna/' . $this->data['id']);
+                redirect('super_admin/edit-pengguna/' . $this->data['id']);
                 exit;
             }
         }
 
         $this->data['title']        = 'Edit Data Pengguna';
-        $this->data['content']      = 'admin/pengguna_edit';
+        $this->data['content']      = 'super_admin/pengguna_edit';
         $this->data['pengguna']     = $this->pengguna_m->get();
         $this->data['role']         = $this->role_m->get();
-        $this->template($this->data, 'admin');
+        $this->template($this->data, 'super_admin');
     }
 
     public function detail_pengguna()
@@ -382,7 +396,7 @@ class Admin extends MY_Controller {
         if (!isset($this->data['id']))
         {
             $this->flashmsg('<i class="lnr lnr-warning"></i> Required parameter is missing', 'danger');
-            redirect('admin/pengguna');
+            redirect('super_admin/pengguna');
             exit;
         }
 
@@ -391,13 +405,13 @@ class Admin extends MY_Controller {
         if (!isset($this->data['id']))
         {
             $this->flashmsg('<i class="lnr lnr-warning"></i> Data pengguna tidak ditemukan', 'danger');
-            redirect('admin/pengguna');
+            redirect('super_admin/pengguna');
             exit;
         }
 
         $this->data['title']        = 'Detail Data Pengguna';
-        $this->data['content']      = 'admin/pengguna_detail';
-        $this->template($this->data, 'admin');
+        $this->data['content']      = 'super_admin/pengguna_detail';
+        $this->template($this->data, 'super_admin');
     }
 
     public function pengguna()
@@ -413,8 +427,26 @@ class Admin extends MY_Controller {
 
         $this->data['data']         = $this->pengguna_m->get();
         $this->data['title']        = 'Data pengguna';
-        $this->data['content']      = 'admin/pengguna_data';
-        $this->template($this->data, 'admin');
+        $this->data['content']      = 'super_admin/pengguna_data';
+        $this->template($this->data, 'super_admin');
+    }
+
+
+    public function pengguna_cetak(){
+        $this->load->model('pengguna_m');
+
+        // $this->data['data'] = $this->pengguna_m->get(['id_role' => '1']);
+        // $this->load->view('super_admin/pengguna_cetak', $this->data);
+
+        $data = array(
+            'data'  => $this->pengguna_m->get(['id_role' => '1'])
+        );
+        
+        $html = $this->load->view('super_admin/pengguna_cetak', $data, true);
+        $pdfFilePath = "Laporan Pengguna ". date('Y-m-d') .".pdf";
+        $this->load->library('m_pdf');
+        $this->m_pdf->pdf->WriteHTML($html);
+        $this->m_pdf->pdf->Output($pdfFilePath, "D");
     }
 
     //---Role--------------
@@ -433,15 +465,15 @@ class Admin extends MY_Controller {
 
             $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data kategori berhasil disimpan');
 
-            redirect('admin/role');
+            redirect('super_admin/role');
             exit;
         }
 
 
         $this->data['title']        = 'Tambah Data Role';
-        $this->data['content']      = 'admin/role_tambah';
+        $this->data['content']      = 'super_admin/role_tambah';
         $this->data['role']       = $this->role_m->get();
-        $this->template($this->data, 'admin');
+        $this->template($this->data, 'super_admin');
     }
 
     public function edit_role()
@@ -452,7 +484,7 @@ class Admin extends MY_Controller {
         if (!isset($this->data['id']))
         {
             $this->flashmsg('<i class="lnr lnr-warning"></i> Required parameter is missing', 'danger');
-            redirect('admin/role');
+            redirect('super_admin/role');
             exit;
         }
 
@@ -462,7 +494,7 @@ class Admin extends MY_Controller {
         if (!isset($this->data['data']))
         {
             $this->flashmsg('<i class="lnr lnr-warning"></i> Data kategori tidak ditemukan', 'danger');
-            redirect('admin/role');
+            redirect('super_admin/role');
             exit;
         }
 
@@ -475,14 +507,14 @@ class Admin extends MY_Controller {
 
             $this->role_m->update($this->data['id'], $this->data['data_row']);
             $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data kategori berhasil diedit');
-            redirect('admin/edit-role/' . $this->data['id']);
+            redirect('super_admin/edit-role/' . $this->data['id']);
             exit;
         }
 
         $this->data['title']        = 'Edit Data Role';
-        $this->data['content']      = 'admin/role_edit';
+        $this->data['content']      = 'super_admin/role_edit';
         $this->data['role']     = $this->role_m->get();
-        $this->template($this->data, 'admin');
+        $this->template($this->data, 'super_admin');
     }
 
     public function role()
@@ -497,8 +529,8 @@ class Admin extends MY_Controller {
 
         $this->data['data']         = $this->role_m->get();
         $this->data['title']        = 'Data Role';
-        $this->data['content']      = 'admin/role_data';
-        $this->template($this->data, 'admin');
+        $this->data['content']      = 'super_admin/role_data';
+        $this->template($this->data, 'super_admin');
     }
 
     //----Pemesanan-----
@@ -536,8 +568,8 @@ class Admin extends MY_Controller {
 
         $this->data['data']         = $this->pemesanan_m->get();
         $this->data['title']        = 'Data Pemesanan';
-        $this->data['content']      = 'admin/pemesanan_data';
-        $this->template($this->data, 'admin');
+        $this->data['content']      = 'super_admin/pemesanan_data';
+        $this->template($this->data, 'super_admin');
     }
 
     public function detail_pemesanan()
@@ -548,7 +580,7 @@ class Admin extends MY_Controller {
         if (!isset($this->data['id']))
         {
             $this->flashmsg('<i class="lnr lnr-warning"></i> Required parameter is missing', 'danger');
-            redirect('admin/pemesanan');
+            redirect('super_admin/pemesanan');
             exit;
         }
 
@@ -557,13 +589,31 @@ class Admin extends MY_Controller {
         if (!isset($this->data['id']))
         {
             $this->flashmsg('<i class="lnr lnr-warning"></i> Data pemesanan tidak ditemukan', 'danger');
-            redirect('admin/pemesanan');
+            redirect('super_admin/pemesanan');
             exit;
         }
 
         $this->data['title']        = 'Detail Data pemesanan';
-        $this->data['content']      = 'admin/pemesanan_detail';
-        $this->template($this->data, 'admin');
+        $this->data['content']      = 'super_admin/pemesanan_detail';
+        $this->template($this->data, 'super_admin');
+    }
+
+    public function pemesanan_cetak(){
+        $this->load->model('pemesanan_m');
+        $this->load->model('pengguna_m');
+
+        // $this->data['data'] = $this->pemesanan_m->get_join();
+        // $this->load->view('super_admin/pemesanan_cetak', $this->data);
+
+        $data = array(
+            'data'  => $this->pemesanan_m->get_join()
+        );
+        
+        $html = $this->load->view('super_admin/pemesanan_cetak', $data, true);
+        $pdfFilePath = "Laporan Penjualan ". date('Y-m-d') .".pdf";
+        $this->load->library('m_pdf');
+        $this->m_pdf->pdf->WriteHTML($html);
+        $this->m_pdf->pdf->Output($pdfFilePath, "D");
     }
 
     //---Survei--------------
@@ -607,7 +657,7 @@ class Admin extends MY_Controller {
         if (!isset($this->data['id']))
         {
             $this->flashmsg('<i class="lnr lnr-warning"></i> Required parameter is missing', 'danger');
-            redirect('admin/survei');
+            redirect('super_admin/survei');
             exit;
         }
 
@@ -616,7 +666,7 @@ class Admin extends MY_Controller {
         if (!isset($this->data['data']))
         {
             $this->flashmsg('<i class="lnr lnr-warning"></i> Data survei tidak ditemukan', 'danger');
-            redirect('admin/survei');
+            redirect('super_admin/survei');
             exit;
         }
 
@@ -632,14 +682,14 @@ class Admin extends MY_Controller {
             $this->jawaban_pengguna_m->update($this->data['id'], $jawaban);
 
             $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data survei berhasil diedit');
-            redirect('admin/edit-survei/' . $this->data['id']);
+            redirect('super_admin/edit-survei/' . $this->data['id']);
             exit;
         }
 
         $this->data['title']        = 'Edit Data Survei';
-        $this->data['content']      = 'admin/survei_edit';
+        $this->data['content']      = 'super_admin/survei_edit';
         $this->data['survei']     = $this->jawaban_pengguna_m->get();
-        $this->template($this->data, 'admin');
+        $this->template($this->data, 'super_admin');
     }
 
     public function survei()
@@ -656,8 +706,8 @@ class Admin extends MY_Controller {
 
         $this->data['data']         = $this->jawaban_pengguna_m->get();
         $this->data['title']        = 'Data Survei';
-        $this->data['content']      = 'admin/survei_data';
-        $this->template($this->data, 'admin');
+        $this->data['content']      = 'super_admin/survei_data';
+        $this->template($this->data, 'super_admin');
     }
 
     //---Pertanyaan--------------
@@ -676,15 +726,15 @@ class Admin extends MY_Controller {
 
             $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data kategori berhasil disimpan');
 
-            redirect('admin/pertanyaan');
+            redirect('super_admin/pertanyaan');
             exit;
         }
 
 
         $this->data['title']        = 'Tambah Data pertanyaan';
-        $this->data['content']      = 'admin/pertanyaan_tambah';
+        $this->data['content']      = 'super_admin/pertanyaan_tambah';
         $this->data['pertanyaan']       = $this->pertanyaan_m->get();
-        $this->template($this->data, 'admin');
+        $this->template($this->data, 'super_admin');
     }
 
     public function edit_pertanyaan()
@@ -695,7 +745,7 @@ class Admin extends MY_Controller {
         if (!isset($this->data['id']))
         {
             $this->flashmsg('<i class="lnr lnr-warning"></i> Required parameter is missing', 'danger');
-            redirect('admin/pertanyaan');
+            redirect('super_admin/pertanyaan');
             exit;
         }
 
@@ -705,7 +755,7 @@ class Admin extends MY_Controller {
         if (!isset($this->data['data']))
         {
             $this->flashmsg('<i class="lnr lnr-warning"></i> Data kategori tidak ditemukan', 'danger');
-            redirect('admin/pertanyaan');
+            redirect('super_admin/pertanyaan');
             exit;
         }
 
@@ -718,14 +768,14 @@ class Admin extends MY_Controller {
 
             $this->pertanyaan_m->update($this->data['id'], $this->data['data_row']);
             $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data kategori berhasil diedit');
-            redirect('admin/edit-pertanyaan/' . $this->data['id']);
+            redirect('super_admin/edit-pertanyaan/' . $this->data['id']);
             exit;
         }
 
         $this->data['title']        = 'Edit Data Pertanyaan';
-        $this->data['content']      = 'admin/pertanyaan_edit';
+        $this->data['content']      = 'super_admin/pertanyaan_edit';
         $this->data['pertanyaan']     = $this->pertanyaan_m->get();
-        $this->template($this->data, 'admin');
+        $this->template($this->data, 'super_admin');
     }
 
     public function pertanyaan()
@@ -740,8 +790,8 @@ class Admin extends MY_Controller {
 
         $this->data['data']         = $this->pertanyaan_m->get();
         $this->data['title']        = 'Data pertanyaan';
-        $this->data['content']      = 'admin/pertanyaan_data';
-        $this->template($this->data, 'admin');
+        $this->data['content']      = 'super_admin/pertanyaan_data';
+        $this->template($this->data, 'super_admin');
     }
 
 
@@ -764,15 +814,15 @@ class Admin extends MY_Controller {
 
             $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data kategori berhasil disimpan');
 
-            redirect('admin/jawaban');
+            redirect('super_admin/jawaban');
             exit;
         }
 
 
         $this->data['title']        = 'Tambah Data Jawaban';
-        $this->data['content']      = 'admin/jawaban_tambah';
+        $this->data['content']      = 'super_admin/jawaban_tambah';
         $this->data['pertanyaan']   = $this->pertanyaan_m->get();
-        $this->template($this->data, 'admin');
+        $this->template($this->data, 'super_admin');
     }
 
     public function edit_jawaban()
@@ -784,7 +834,7 @@ class Admin extends MY_Controller {
         if (!isset($this->data['id']))
         {
             $this->flashmsg('<i class="lnr lnr-warning"></i> Required parameter is missing', 'danger');
-            redirect('admin/jawaban');
+            redirect('super_admin/jawaban');
             exit;
         }
 
@@ -794,7 +844,7 @@ class Admin extends MY_Controller {
         if (!isset($this->data['data']))
         {
             $this->flashmsg('<i class="lnr lnr-warning"></i> Data kategori tidak ditemukan', 'danger');
-            redirect('admin/jawaban');
+            redirect('super_admin/jawaban');
             exit;
         }
 
@@ -809,15 +859,15 @@ class Admin extends MY_Controller {
 
             $this->jawaban_m->update($this->data['id'], $this->data['data_row']);
             $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data kategori berhasil diedit');
-            redirect('admin/edit-jawaban/' . $this->data['id']);
+            redirect('super_admin/edit-jawaban/' . $this->data['id']);
             exit;
         }
 
         $this->data['title']        = 'Edit Data jawaban';
-        $this->data['content']      = 'admin/jawaban_edit';
+        $this->data['content']      = 'super_admin/jawaban_edit';
         $this->data['jawaban']      = $this->jawaban_m->get();
         $this->data['pertanyaan']   = $this->pertanyaan_m->get();
-        $this->template($this->data, 'admin');
+        $this->template($this->data, 'super_admin');
     }
 
     public function jawaban()
@@ -833,7 +883,33 @@ class Admin extends MY_Controller {
 
         $this->data['data']         = $this->jawaban_m->get();
         $this->data['title']        = 'Data jawaban';
-        $this->data['content']      = 'admin/jawaban_data';
-        $this->template($this->data, 'admin');
+        $this->data['content']      = 'super_admin/jawaban_data';
+        $this->template($this->data, 'super_admin');
+    }
+
+    public function daftar_admin(){
+        $this->load->model('pengguna_m');
+
+        $this->data['data']         = $this->pengguna_m->get(['id_role' => '2']);
+        $this->data['title']        = 'Daftar Admin';
+        $this->data['content']      = 'super_admin/daftar_admin';
+        $this->template($this->data, 'super_admin');
+    }
+
+    public function detail_admin(){
+        $this->load->model('pengguna_m');
+        
+        $this->data['id'] = $this->uri->segment(3);
+        if (!isset($this->data['id']))
+        {
+            $this->flashmsg('<i class="lnr lnr-warning"></i> Required parameter is missing', 'danger');
+            redirect('super_admin/daftar_admin');
+            exit;
+        }
+
+        $this->data['data']         = $this->pengguna_m->get_row(['id_pengguna' => $this->data['id']]);
+        $this->data['title']        = 'Detail Admin';
+        $this->data['content']      = 'super_admin/detail_admin';
+        $this->template($this->data, 'super_admin');
     }
 }
