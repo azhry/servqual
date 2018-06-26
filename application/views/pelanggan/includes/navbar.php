@@ -67,15 +67,18 @@
 
                     <div class="header-wrapicon2">
                         <img src="<?= base_url('assets/usertemplate/') ?>images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-                        <span class="header-icons-noti"><?= count( $this->cart->contents() ) ?></span>
+                        <span class="header-icons-noti" id="cart_badge_navbar"><?= count( $this->cart->contents() ) ?></span>
 
                         <?php $totals = 0; ?>
                         <div class="header-cart header-dropdown">
-                            <ul class="header-cart-wrapitem">
+                            <ul class="header-cart-wrapitem" id="cart_item_navbar">
                                 <?php foreach ( $this->cart->contents() as $items ): ?>
+                                <?php  
+                                    $nama_kategori = $this->kategori_barang_m->get_row(['id_kategori_barang' => $items['options']['id_kategori_barang']])->nama_kategori;
+                                ?>
                                 <li class="header-cart-item">
                                     <div class="header-cart-item-img">
-                                        <img src="<?= base_url('assets/barang/' . $items['id'] . '.jpg') ?>" alt="IMG">
+                                        <img src="<?= base_url('assets/produk/'.$nama_kategori.'/'.$items['id'].'.jpg') ?>" alt="IMG">
                                     </div>
 
                                     <div class="header-cart-item-txt">
@@ -91,11 +94,10 @@
                                 </li>
                                 <?php endforeach; ?>
                             </ul>
-
-                            <div class="header-cart-total">
+                            <input type="hidden" id="cart_subtotal_hidden_navbar" value="<?= $totals ?>">
+                            <div class="header-cart-total" id="subtotal">
                                 Subtotal: <?= 'IDR ' . number_format($totals, 2, ',', '.') ?>
                             </div>
-
                             <div class="header-cart-buttons">
                                 <div class="header-cart-wrapbtn">
                                     <!-- Button -->
@@ -111,15 +113,12 @@
         </div>
 
         <!-- Header Mobile -->
-        <div class="wrap_header_mobile">
-            <!-- Logo moblie -->
+        <!-- <div class="wrap_header_mobile">
             <a href="index.html" class="logo-mobile">
                 <img src="<?= base_url('assets/usertemplate/') ?>images/icons/logo.png" alt="IMG-LOGO">
             </a>
 
-            <!-- Button show menu -->
             <div class="btn-show-menu">
-                <!-- Header Icon mobile -->
                 <div class="header-icons-mobile">
                     <a href="#" class="header-wrapicon1 dis-block">
                         <img src="<?= base_url('assets/usertemplate/') ?>images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
@@ -131,7 +130,6 @@
                         <img src="<?= base_url('assets/usertemplate/') ?>images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
                         <span class="header-icons-noti">0</span>
 
-                        <!-- Header cart noti -->
                         <div class="header-cart header-dropdown">
                             <ul class="header-cart-wrapitem">
                                 <li class="header-cart-item">
@@ -189,14 +187,12 @@
 
                             <div class="header-cart-buttons">
                                 <div class="header-cart-wrapbtn">
-                                    <!-- Button -->
                                     <a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
                                         View Cart
                                     </a>
                                 </div>
 
                                 <div class="header-cart-wrapbtn">
-                                    <!-- Button -->
                                     <a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
                                         Check Out
                                     </a>
@@ -212,10 +208,10 @@
                     </span>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Menu Mobile -->
-        <div class="wrap-side-menu" >
+        <!-- <div class="wrap-side-menu" >
             <nav class="side-menu">
                 <ul class="main-menu">
                     <li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
@@ -284,7 +280,7 @@
                     </li>
                 </ul>
             </nav>
-        </div>
+        </div> -->
     </header>
 
     

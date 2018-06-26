@@ -9,11 +9,6 @@ class Pelanggan extends MY_Controller
     {
         parent::__construct();
         $this->load->library('cart');
-        // $this->load->model( 'instagram_m' );
-        // $this->instagram_m->set_username( 'baan_store' );
-        // $this->dump( $this->instagram_m->get_access_token() );
-        // // $this->dump( $this->instagram_m->get_posts() );
-        // exit;
 
         $this->data['id_pengguna']  = $this->session->userdata( 'id_pengguna' );
         $this->data['id_role']      = $this->session->userdata( 'id_role' );
@@ -23,6 +18,8 @@ class Pelanggan extends MY_Controller
         if ( isset( $this->data['id_pengguna'], $this->data['id_role'], $this->data['username'] ) ) {
             $this->data['logged_in']    = true;
         }
+
+        $this->load->model('kategori_barang_m');
     }
 
     public function index()
@@ -97,7 +94,8 @@ class Pelanggan extends MY_Controller
                     'nama_penerima'     => $this->POST( 'nama_penerima' ),
                     'alamat_penerima'   => $this->POST( 'alamat_penerima' ),
                     'kurir'             => $this->POST( 'kurir' ),
-                    'ongkir'            => $this->POST( 'shipping-cost-hidden' )
+                    'ongkir'            => $this->POST( 'shipping-cost-hidden' ),
+                    'waktu_pemesanan'   => date('Y-m-d H:i:s')
                 ];
                 $this->pemesanan_m->insert( $this->data['pemesanan'] );
 
@@ -119,11 +117,18 @@ class Pelanggan extends MY_Controller
                 }
 
                 $this->cart->destroy();
+                $this->load->model('jawaban_pengguna_m');
+                $this->data['jawaban_pengguna'] = $this->jawaban_pengguna_m->get(['id_pengguna' => $this->data['id_pengguna']]);
+                if (count($this->data['jawaban_pengguna']) <= 0)
+                {
+                    $this->flashmsg( 'Total belanja anda adalah IDR ' . number_format($total_belanja, 2, ',', '.') . '. Silahkan transfer sesuai dengan nominal yang tertera ke rekening BNI 21324324 a.n Enggi RP. Silahkan isi terlebih dahulu survei di bawah ini', 'success', 'cart_success' );
+                    redirect('pelanggan/survei');
+                }
+
                 $this->flashmsg( 'Total belanja anda adalah IDR ' . number_format($total_belanja, 2, ',', '.') . '. Silahkan transfer sesuai dengan nominal yang tertera ke rekening BNI 21324324 a.n Enggi RP', 'success', 'cart_success' );
             }
-            redirect( 'pelanggan/cart' );
-            exit;  
 
+            redirect( 'pelanggan/cart' );
         }
 
         $this->data['title']            = 'Cart';
@@ -165,9 +170,11 @@ class Pelanggan extends MY_Controller
                     'id_kategori_barang'    => $this->POST( 'id_kategori' )
                 ]
             ];
-
-            var_dump($item);
-            $this->cart->insert( $item );
+            $this->cart->insert($item);
+            $this->load->model('kategori_barang_m');
+            $kategori = $this->kategori_barang_m->get_row(['id_kategori_barang' => $this->POST('id_kategori')]);
+            $item['options']['nama_kategori'] = isset($kategori) ? $kategori->nama_kategori : '';
+            echo json_encode($item);
 
         }
 
@@ -201,24 +208,35 @@ class Pelanggan extends MY_Controller
         $this->load->model('jawaban_m');
         $this->load->model('jawaban_pengguna_m');
 
-        if($this->POST('simpan')) {
-            for($i = 1; $i <= 10; $i++){
-                $jawaban = [
-                    'id_pengguna'       => 1,
-                    'id_pertanyaan'     => $i,
-                    'id_jawaban'        => $this->POST('pertanyaan_'.$i)
-                ];
+        $this->data['pertanyaan']   = $this->pertanyaan_m->get();
 
-                $this->jawaban_pengguna_m->insert($jawaban);
+        if($this->POST('simpan')) 
+        {
+            $this->data['jawaban_pengguna'] = $this->jawaban_pengguna_m->get(['id_pengguna' => $this->data['id_pengguna']]);
+            if (count($this->data['jawaban_pengguna']) <= 0)
+            {
+                for($i = 0; $i < count($this->data['pertanyaan']); $i++)
+                {
+                    $jawaban = [
+                        'id_pengguna'       => $this->data['id_pengguna'],
+                        'id_pertanyaan'     => $this->data['pertanyaan'][$i]->id_pertanyaan,
+                        'id_jawaban'        => $this->POST('pertanyaan_'.($i + 1))
+                    ];
+
+                    $this->jawaban_pengguna_m->insert($jawaban);
+                }
+
+                $this->flashmsg( 'Survei berhasil disimpan!' );
+            }
+            else
+            {
+                $this->flashmsg('Anda telah mengisi survei ini sebelumnya', 'warning');
             }
 
-            $this->flashmsg( 'Survei berhasil disimpan!' );
             redirect( 'Pelanggan/survei' );
             exit;
         }
 
-
-        $this->data['pertanyaan']   = $this->pertanyaan_m->get();
         $this->data['jawaban']      = $this->jawaban_m->get();
         $this->data['title']        = 'Survei';
         $this->data['content']      = 'pelanggan/survei';

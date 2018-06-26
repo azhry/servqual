@@ -15,7 +15,8 @@
 		<div class="flex-w flex-sb">
 			<h5><strong>Survei</strong></h5>
 			<div class="col-md-12">
-				<?= $this->session->flashdata('msg') ?>	
+				<?= $this->session->flashdata('msg') ?>
+				<?= $this->session->flashdata('cart_success') ?>	
 			</div>
 
 			<?= form_open('Pelanggan/survei') ?>

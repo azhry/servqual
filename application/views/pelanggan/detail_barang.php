@@ -195,7 +195,6 @@
 
 		    		},
 		    		success: ( response ) => {
-		    			console.log(response);
 		    			swal('<?= $barang->nama ?>', "is added to cart !", "success");
 		    		},
 		    		error: ( err ) => { console.log( err.responseText ); }

@@ -141,23 +141,23 @@
 
         <div class="t-center p-l-15 p-r-15">
             <a href="#">
-                <img class="h-size2" src="images/icons/paypal.png" alt="IMG-PAYPAL">
+                <img class="h-size2" src="<?= base_url('assets/UserTemplate') ?>/images/icons/paypal.png" alt="IMG-PAYPAL">
             </a>
 
             <a href="#">
-                <img class="h-size2" src="images/icons/visa.png" alt="IMG-VISA">
+                <img class="h-size2" src="<?= base_url('assets/UserTemplate') ?>/images/icons/visa.png" alt="IMG-VISA">
             </a>
 
             <a href="#">
-                <img class="h-size2" src="images/icons/mastercard.png" alt="IMG-MASTERCARD">
+                <img class="h-size2" src="<?= base_url('assets/UserTemplate') ?>/images/icons/mastercard.png" alt="IMG-MASTERCARD">
             </a>
 
             <a href="#">
-                <img class="h-size2" src="images/icons/express.png" alt="IMG-EXPRESS">
+                <img class="h-size2" src="<?= base_url('assets/UserTemplate') ?>/images/icons/express.png" alt="IMG-EXPRESS">
             </a>
 
             <a href="#">
-                <img class="h-size2" src="images/icons/discover.png" alt="IMG-DISCOVER">
+                <img class="h-size2" src="<?= base_url('assets/UserTemplate') ?>/images/icons/discover.png" alt="IMG-DISCOVER">
             </a>
 
             <div class="t-center s-text8 p-t-20">
@@ -209,19 +209,19 @@
 <!--===============================================================================================-->
     <script type="text/javascript" src="<?= base_url('assets/usertemplate/') ?>vendor/sweetalert/sweetalert.min.js"></script>
     <script type="text/javascript">
-        $('.block2-btn-addcart').each(function(){
-            var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-            $(this).on('click', function(){
-                swal(nameProduct, "is added to cart !", "success");
-            });
-        });
+        // $('.block2-btn-addcart').each(function(){
+        //     var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+        //     $(this).on('click', function(){
+        //         swal(nameProduct, "is added to cart !", "success");
+        //     });
+        // });
 
-        $('.block2-btn-addwishlist').each(function(){
-            var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-            $(this).on('click', function(){
-                swal(nameProduct, "is added to wishlist !", "success");
-            });
-        });
+        // $('.block2-btn-addwishlist').each(function(){
+        //     var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+        //     $(this).on('click', function(){
+        //         swal(nameProduct, "is added to wishlist !", "success");
+        //     });
+        // });
     </script>
 
     <!-- Produk -->

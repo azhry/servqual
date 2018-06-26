@@ -11,7 +11,7 @@ class Logout extends MY_Controller
 	{
 		
 		$this->session->sess_destroy();
-		redirect('Pelanggan/survei');
+		redirect('login');
 		exit;
 	}
 

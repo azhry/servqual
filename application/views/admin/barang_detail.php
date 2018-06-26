@@ -38,11 +38,14 @@
                         <div class="row" style="margin-top: 2%;">
                             <div class="col-md-offset-1 col-md-10 col-sm-10 col-xs-10">
                                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                  <?php 
+                                    $kategori = $this->kategori_barang_m->get_row(['id_kategori_barang' => $data->id_kategori_barang]);
+                                  ?>
                                     <tbody>
                                         <tr>
                                             <th>Foto</th>
                                             <td>
-                                              <img src="<?= base_url('assets/barang/'.$data->kode_barang.'.jpg') ?>" width = "200" height = "200"> 
+                                              <img src="<?= base_url('assets/produk/' . $kategori->nama_kategori . '/'.$data->kode_barang.'.jpg') ?>" width = "200" height = "200">
                                             </td>
                                         </tr>
                                         <tr>
@@ -55,7 +58,7 @@
                                         </tr>
                                         <tr>
                                             <th>Kategori Barang</th>
-                                            <td><?= $this->kategori_barang_m->get_row(['id_kategori_barang' => $data->id_kategori_barang])->nama_kategori ?></td>
+                                            <td><?= $kategori->nama_kategori ?></td>
                                         </tr>
                                         <tr>
                                             <th>Harga</th>

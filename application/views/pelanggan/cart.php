@@ -1,9 +1,9 @@
 <!-- Title Page -->
-	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(<?= base_url('assets/usertemplate/') ?>images/heading-pages-01.jpg);">
+	<!-- <section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(<?= base_url('assets/usertemplate/') ?>images/heading-pages-01.jpg);">
 		<h2 class="l-text2 t-center">
 			Cart
 		</h2>
-	</section>
+	</section> -->
 
 	<!-- Cart -->
 	<section class="cart bgwhite p-t-70 p-b-100">
@@ -36,10 +36,13 @@
 
 						<?php if ( count( $this->cart->contents() ) > 0 ): ?>
 							<?php $subtotal = 0; foreach ( $this->cart->contents() as $items ): ?>
+								<?php  
+                                    $nama_kategori = $this->kategori_barang_m->get_row(['id_kategori_barang' => $items['options']['id_kategori_barang']])->nama_kategori;
+                                ?>
 							<tr class="table-row">
 								<td class="column-1">
 									<div class="cart-img-product b-rad-4 o-f-hidden">
-										<img src="<?= base_url('assets/barang/' . $items['id'] . '.jpg') ?>" alt="IMG-PRODUCT">
+										<img src="<?= base_url('assets/produk/'.$nama_kategori.'/'.$items['id'].'.jpg') ?>" alt="IMG" onerror="this.src = '<?= base_url('assets/UserTemplate/images/banner-01.jpg') ?>';">
 									</div>
 								</td>
 								<td class="column-2"><?= $items['name'] ?></td>
@@ -73,23 +76,7 @@
 			</div>
 
 			<div class="flex-w flex-sb-m p-t-25 p-b-25 bo8 p-l-35 p-r-60 p-lr-15-sm">
-				<!-- <div class="flex-w flex-m w-full-sm">
-					<div class="size11 bo4 m-r-10">
-						<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="coupon-code" placeholder="Coupon Code">
-					</div>
-
-					<div class="size12 trans-0-4 m-t-10 m-b-10 m-r-10">
-						<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
-							Apply coupon
-						</button>
-					</div>
-				</div>
-
-				<div class="size10 trans-0-4 m-t-10 m-b-10">
-					<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
-						Update Cart
-					</button>
-				</div> -->
+				
 			</div>
 
 			<!-- Total -->

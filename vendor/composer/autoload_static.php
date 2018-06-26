@@ -9,6 +9,8 @@ class ComposerStaticInite2b9f50cc8870e4878b3e8b2a4759eb0
     public static $files = array (
         'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
         '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
+        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
     );
 
@@ -29,11 +31,13 @@ class ComposerStaticInite2b9f50cc8870e4878b3e8b2a4759eb0
         ),
         'P' => 
         array (
+            'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
         ),
         'M' => 
         array (
+            'Mpdf\\' => 5,
             'MetzWeb\\Instagram\\' => 18,
         ),
         'I' => 
@@ -49,6 +53,10 @@ class ComposerStaticInite2b9f50cc8870e4878b3e8b2a4759eb0
         'F' => 
         array (
             'FastRoute\\' => 10,
+        ),
+        'D' => 
+        array (
+            'DeepCopy\\' => 9,
         ),
     );
 
@@ -73,6 +81,10 @@ class ComposerStaticInite2b9f50cc8870e4878b3e8b2a4759eb0
         array (
             0 => __DIR__ . '/..' . '/react/promise/src',
         ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
@@ -80,6 +92,10 @@ class ComposerStaticInite2b9f50cc8870e4878b3e8b2a4759eb0
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'Mpdf\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mpdf/mpdf/src',
         ),
         'MetzWeb\\Instagram\\' => 
         array (
@@ -104,6 +120,10 @@ class ComposerStaticInite2b9f50cc8870e4878b3e8b2a4759eb0
         'FastRoute\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/fast-route/src',
+        ),
+        'DeepCopy\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
         ),
     );
 
@@ -131,12 +151,23 @@ class ComposerStaticInite2b9f50cc8870e4878b3e8b2a4759eb0
         ),
     );
 
+    public static $classMap = array (
+        'FPDF_TPL' => __DIR__ . '/..' . '/setasign/fpdi/fpdf_tpl.php',
+        'FPDI' => __DIR__ . '/..' . '/setasign/fpdi/fpdi.php',
+        'FilterASCII85' => __DIR__ . '/..' . '/setasign/fpdi/filters/FilterASCII85.php',
+        'FilterASCIIHexDecode' => __DIR__ . '/..' . '/setasign/fpdi/filters/FilterASCIIHexDecode.php',
+        'FilterLZW' => __DIR__ . '/..' . '/setasign/fpdi/filters/FilterLZW.php',
+        'fpdi_pdf_parser' => __DIR__ . '/..' . '/setasign/fpdi/fpdi_pdf_parser.php',
+        'pdf_context' => __DIR__ . '/..' . '/setasign/fpdi/pdf_context.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInite2b9f50cc8870e4878b3e8b2a4759eb0::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInite2b9f50cc8870e4878b3e8b2a4759eb0::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInite2b9f50cc8870e4878b3e8b2a4759eb0::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInite2b9f50cc8870e4878b3e8b2a4759eb0::$classMap;
 
         }, null, ClassLoader::class);
     }

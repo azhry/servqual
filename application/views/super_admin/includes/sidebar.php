@@ -9,7 +9,7 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img src="<?= base_url('assets/super_admintemplate/production/') ?>images/img.jpg" alt="User" class="img-circle profile_img">
+                        <img src="<?= base_url('assets/admintemplate/production/') ?>images/img.jpg" alt="User" class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>Welcome,</span>
@@ -24,7 +24,7 @@
                         <h3>Menu</h3>
                         <ul class="nav side-menu">
                         <li>
-                            <a href="<?= base_url('super_admin') ?>"><i class="fa fa-home"></i> Dashbaord</a>
+                            <a href="<?= base_url('super_admin') ?>"><i class="fa fa-home"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="<?= base_url('super_admin/barang') ?>"><i class="fa fa-book"></i> Barang</a>
