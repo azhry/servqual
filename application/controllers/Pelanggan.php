@@ -233,7 +233,7 @@ class Pelanggan extends MY_Controller
                 $this->flashmsg('Anda telah mengisi survei ini sebelumnya', 'warning');
             }
 
-            redirect( 'Pelanggan/survei' );
+            redirect( 'Pelanggan' );
             exit;
         }
 
