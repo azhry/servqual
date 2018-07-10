@@ -61,7 +61,7 @@ class Admin extends MY_Controller {
         if($this->POST('simpan')){
 
             $this->data['input'] = [
-                'kode_barang'     		=> $this->POST('kode_barang'),
+                'kode_barang'     		=> $this->__generateRandomString(8, ['uppercase', 'number']),
                 'id_kategori_barang'    => $this->POST('id_kategori_barang'),
                 'nama'          		=> $this->POST('nama'),
                 'deskripsi'          	=> $this->POST('deskripsi'),
@@ -71,9 +71,11 @@ class Admin extends MY_Controller {
             ];
 
             $this->barang_m->insert($this->data['input']);
-            $kode_barang = $this->barang_m->get_row(['kode_barang' => $this->POST('kode_barang')])->kode_barang;
 
-            $this->upload($kode_barang, 'barang', 'gambar');
+            // ambil nama kategori
+            $kategori = $this->kategori_barang_m->get_row(['id_kategori_barang' => $this->POST('id_kategori_barang')])->nama_kategori;
+
+            $this->upload($this->data['input']['kode_barang'], 'produk/'.$kategori, 'gambar');
 
             $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data barang berhasil disimpan');
 
@@ -104,7 +106,8 @@ class Admin extends MY_Controller {
 
         $this->load->model('barang_m');
         $this->data['data']        = $this->barang_m->get_row(['kode_barang' => $this->data['id']]);
-       
+        $this->data['nama_kategori'] = $this->kategori_barang_m->get_row(['id_kategori_barang' => $this->data['data']->id_kategori_barang])->nama_kategori;
+
         if (!isset($this->data['data']))
         {
             $this->flashmsg('<i class="lnr lnr-warning"></i> Data barang tidak ditemukan', 'danger');
@@ -543,6 +546,7 @@ class Admin extends MY_Controller {
     public function detail_pemesanan()
     {
         $this->load->model('pemesanan_m');
+        $this->load->model('detail_pemesanan_m');
 
         $this->data['id'] = $this->uri->segment(3);
         if (!isset($this->data['id']))
@@ -560,6 +564,8 @@ class Admin extends MY_Controller {
             redirect('admin/pemesanan');
             exit;
         }
+
+        $this->data['detail']        = $this->detail_pemesanan_m->get(['id_pemesanan' => $this->data['id']]);
 
         $this->data['title']        = 'Detail Data pemesanan';
         $this->data['content']      = 'admin/pemesanan_detail';

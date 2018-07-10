@@ -43,10 +43,10 @@
                                 </div>
                                 <?= form_open_multipart('admin/tambah-barang', ['id' => 'form']) ?>
 
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label>Kode Barang<span class="required">*</span></label>
                                     <input type="text" class="form-control" name="kode_barang" required>
-                                </div>
+                                </div> -->
 
                                 <div class="form-group">
                                     <label>Kategori<span class="required">*</span></label>

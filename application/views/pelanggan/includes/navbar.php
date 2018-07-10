@@ -59,11 +59,13 @@
 
                 <!-- Header Icon -->
                 <div class="header-icons">
-                    <a href="<?= base_url('pelanggan/profile') ?>" class="header-wrapicon1 dis-block">
-                        <img src="<?= base_url('assets/foto/'.$id_pengguna.'.jpg') ?>" onerror="src='<?= base_url("assets/usertemplate/") ?>images/icons/icon-header-01.png'" class="header-icon1" style="border-radius: 50%;">
-                    </a>
+                    <?php if(isset($id_pengguna)): ?>
+                        <a href="<?= base_url('pelanggan/profile') ?>" class="header-wrapicon1 dis-block">
+                            <img src="<?= base_url('assets/foto/'.$id_pengguna.'.jpg') ?>" onerror="src='<?= base_url("assets/usertemplate/") ?>images/icons/icon-header-01.png'" class="header-icon1" style="border-radius: 50%;">
+                        </a>
 
-                    <span class="linedivide1"></span>
+                        <span class="linedivide1"></span>
+                    <?php endif; ?>
 
                     <div class="header-wrapicon2">
                         <img src="<?= base_url('assets/usertemplate/') ?>images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">

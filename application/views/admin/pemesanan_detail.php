@@ -57,7 +57,13 @@
                                         </tr>
                                         <tr>
                                             <th>Kode Barang</th>
-                                            <td><?= $data->kode_barang ?></td>
+                                            <td>
+                                                <ul>
+                                                    <?php foreach ($detail as $row): ?>
+                                                        <li><?= $row->kode_barang ?></li>
+                                                    <?php endforeach; ?>
+                                                </ul>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th>Jumlah</th>

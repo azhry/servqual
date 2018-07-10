@@ -61,7 +61,7 @@
 
                                 <div class="form-group">
                                     <label>Upload Gambar<span class="required">*</span></label><br>
-                                    <img src="<?= base_url('assets/barang/'.$data->kode_barang.'.jpg') ?>" width = "200" height = "200" style="margin-bottom: 3%;"> 
+                                    <img src="<?= base_url('assets/produk/'.$nama_kategori.'/'.$data->kode_barang.'.JPG') ?>" width = "200" height = "200" style="margin-bottom: 3%;"> 
                                     <input type="file" name="gambar">
                                 </div><br>
 

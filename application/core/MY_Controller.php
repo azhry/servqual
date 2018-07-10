@@ -37,9 +37,9 @@ class MY_Controller extends CI_Controller
 		if ($_FILES[$tag_name])
 		{
 			$upload_path = realpath(APPPATH . '../assets/' . $directory . '/');
-			@unlink($upload_path . '/' . $id . '.jpg');
+			@unlink($upload_path . '/' . $id . '.JPG');
 			$config = [
-				'file_name' 		=> $id . '.jpg',
+				'file_name' 		=> $id . '.JPG',
 				'allowed_types'		=> 'jpg|png|bmp|jpeg',
 				'upload_path'		=> $upload_path
 			];
@@ -110,4 +110,31 @@ class MY_Controller extends CI_Controller
 
 		}
 	}
+
+	protected function __generateRandomString($length = 8, $options = [ 'uppercase', 'lowercase', 'number', 'symbol' ])
+    {
+        $chars = '';
+        if (in_array('uppercase', $options)) {
+            $chars .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
+        }
+        if (in_array('lowercase', $options)) {
+            $chars .= 'abcdefghijklmnopqrstuvwxys';
+        }
+        if (in_array('number', $options)) {
+            $chars .= '0123456789';
+        }
+        if (in_array('symbol', $options)) {
+            $chars .= '!@#$%^&*';
+        }
+
+        $chars = str_split($chars);
+        $charsLength = count($chars);
+        $result = '';
+        for ($i = 0; $i < $length; $i++)
+        {
+            $result .= $chars[mt_rand() % $charsLength];
+        }
+
+        return $result;
+    }
 }
