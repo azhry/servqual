@@ -65,8 +65,6 @@
                                     <input type="file" name="gambar">
                                 </div><br>
 
-                                <!--  -->
-
                                 <div class="form-group">
                                     <label>Harga<span class="required">*</span></label>
                                     <input type="number" any class="form-control" name="harga" required value="<?= $data->harga ?>">
@@ -79,11 +77,11 @@
 
                                 <div class="form-group">
                                     <label>Status<span class="required">*</span></label>
-                                    <?php 
+                                    <?php
                                         $nilai_opt = [
+                                            ''  => '---' ,
                                             '0' => 'Non-aktif',
-                                            '1' => 'Aktif',
-                                            ''  => '---' 
+                                            '1' => 'Aktif'
                                         ];
 
                                         echo form_dropdown( 'status', $nilai_opt, $data->status, [ 'required' => '', 'class' => 'form-control' ] ); 

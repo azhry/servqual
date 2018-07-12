@@ -59,7 +59,7 @@ class Super_admin extends MY_Controller {
         if($this->POST('simpan')){
 
             $this->data['input'] = [
-                'kode_barang'     		=> $this->POST('kode_barang'),
+                'kode_barang'           => $this->__generateRandomString(8, ['uppercase', 'number']),
                 'id_kategori_barang'    => $this->POST('id_kategori_barang'),
                 'nama'          		=> $this->POST('nama'),
                 'deskripsi'          	=> $this->POST('deskripsi'),
@@ -69,14 +69,15 @@ class Super_admin extends MY_Controller {
             ];
 
             $this->barang_m->insert($this->data['input']);
-            $kode_barang = $this->barang_m->get_row(['kode_barang' => $this->POST('kode_barang')])->kode_barang;
+            
+            // ambil nama kategori
+            $kategori = $this->kategori_barang_m->get_row(['id_kategori_barang' => $this->POST('id_kategori_barang')])->nama_kategori;
 
-            $this->upload($kode_barang, 'barang', 'gambar');
+            $this->upload($this->data['input']['kode_barang'], 'produk/'.$kategori, 'gambar');
 
             $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data barang berhasil disimpan');
 
             redirect('super_admin/barang');
-            exit;
         }
 
 
@@ -102,6 +103,7 @@ class Super_admin extends MY_Controller {
 
         $this->load->model('barang_m');
         $this->data['data']        = $this->barang_m->get_row(['kode_barang' => $this->data['id']]);
+        $this->data['nama_kategori'] = $this->kategori_barang_m->get_row(['id_kategori_barang' => $this->data['data']->id_kategori_barang])->nama_kategori;
        
         if (!isset($this->data['data']))
         {
@@ -211,6 +213,7 @@ class Super_admin extends MY_Controller {
             ];
 
             $this->kategori_barang_m->insert($this->data['input']);
+            mkdir(FCPATH . '/assets/produk/' . $this->data['input']['nama_kategori'], 0777);
 
             $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data kategori berhasil disimpan');
 
@@ -255,6 +258,7 @@ class Super_admin extends MY_Controller {
             ];
 
             $this->kategori_barang_m->update($this->data['id'], $this->data['data_row']);
+            rename(FCPATH . '/assets/produk/' . $this->data['data']->nama_kategori, FCPATH . '/assets/produk/' . $this->data['data_row']['nama_kategori']);
             $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data kategori berhasil diedit');
             redirect('super_admin/edit-kategori/' . $this->data['id']);
             exit;
@@ -272,8 +276,19 @@ class Super_admin extends MY_Controller {
 
         if ($this->POST('delete') && $this->POST('id_kategori_barang'))
         {
-            $this->kategori_barang_m->delete($this->POST('id_kategori_barang'));
-            $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data kategori berhasil dihapus');
+            $this->data['kategori'] = $this->kategori_barang_m->get_row([ 'id_kategori_barang' => $this->POST('id_kategori_barang') ]);
+            if (isset($this->data['kategori']))
+            {
+                $this->kategori_barang_m->delete($this->POST('id_kategori_barang'));
+                rmdir(FCPATH . '/assets/produk/' . $this->data['kategori']->nama_kategori);
+                $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data kategori berhasil dihapus');    
+            }
+            else
+            {
+                $this->flashmsg('<i class="glyphicon glyphicon-close"></i> Data kategori gagal dihapus', 'danger');
+            }
+
+            redirect('super-admin/kategori');
         }
 
         $this->data['data']         = $this->kategori_barang_m->get();
@@ -584,7 +599,6 @@ class Super_admin extends MY_Controller {
             exit;
         }
 
-        $this->load->model('pemesanan_m');
         $this->data['data']        = $this->pemesanan_m->get_with_detail($this->data['id']);
         if (!isset($this->data['id']))
         {
@@ -593,6 +607,9 @@ class Super_admin extends MY_Controller {
             exit;
         }
 
+        $this->load->model('detail_pemesanan_m');
+
+        $this->data['detail']       = $this->detail_pemesanan_m->get();
         $this->data['title']        = 'Detail Data pemesanan';
         $this->data['content']      = 'super_admin/pemesanan_detail';
         $this->template($this->data, 'super_admin');
@@ -781,6 +798,7 @@ class Super_admin extends MY_Controller {
     public function pertanyaan()
     {
         $this->load->model('pertanyaan_m');
+        $this->load->model('jawaban_pengguna_m');
 
         if ($this->POST('delete') && $this->POST('id_pertanyaan'))
         {
@@ -789,7 +807,7 @@ class Super_admin extends MY_Controller {
         }
 
         $this->data['data']         = $this->pertanyaan_m->get();
-        $this->data['title']        = 'Data pertanyaan';
+        $this->data['title']        = 'Data Pertanyaan';
         $this->data['content']      = 'super_admin/pertanyaan_data';
         $this->template($this->data, 'super_admin');
     }

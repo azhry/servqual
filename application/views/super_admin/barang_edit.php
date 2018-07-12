@@ -61,7 +61,7 @@
 
                                 <div class="form-group">
                                     <label>Upload Gambar<span class="required">*</span></label><br>
-                                    <img src="<?= base_url('assets/barang/'.$data->kode_barang.'.jpg') ?>" width = "200" height = "200" style="margin-bottom: 3%;"> 
+                                    <img src="<?= base_url('assets/produk/'.$nama_kategori.'/'.$data->kode_barang.'.JPG') ?>" width = "200" height = "200" style="margin-bottom: 3%;"> 
                                     <input type="file" name="gambar">
                                 </div><br>
 
@@ -81,8 +81,9 @@
                                     <label>Status<span class="required">*</span></label>
                                     <?php 
                                         $nilai_opt = [
-                                            0 => 0,
-                                            1 => 1
+                                            ''  => '---' ,
+                                            '0' => 'Non-aktif',
+                                            '1' => 'Aktif'
                                         ];
 
                                         echo form_dropdown( 'status', $nilai_opt, $data->status, [ 'required' => '', 'class' => 'form-control' ] ); 

@@ -41,17 +41,12 @@
                                     <style type="text/css">.required{color: red;}</style>
                                     <?= $this->session->flashdata('msg') ?>
                                 </div>
-                                <?= form_open_multipart('super_admin/tambah-barang', ['id' => 'form']) ?>
-
-                                <div class="form-group">
-                                    <label>Kode Barang<span class="required">*</span></label>
-                                    <input type="text" class="form-control" name="kode_barang" required>
-                                </div>
+                                <?= form_open_multipart('super-admin/tambah-barang', ['id' => 'form']) ?>
 
                                 <div class="form-group">
                                     <label>Kategori<span class="required">*</span></label>
                                     <select name="id_kategori_barang" class="form-control" required>
-                                        <option>---</option>
+                                        <option value="">---</option>
                                         <?php foreach($kategori as $row): ?>
                                             <option value="<?= $row->id_kategori_barang ?>"><?= $row->nama_kategori ?></option>
                                         <?php endforeach; ?>
@@ -86,9 +81,9 @@
                                 <div class="form-group">
                                     <label>Status<span class="required">*</span></label>
                                     <select class="form-control" name="status" required>
-                                        <option>---</option>
-                                        <option value="0">0</option>
-                                        <option value="1">1</option>
+                                        <option value="">---</option>
+                                        <option value="1">Aktif</option>
+                                        <option value="0">Non-aktif</option>
                                     </select>
                                 </div>
 

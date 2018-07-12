@@ -80,7 +80,6 @@ class Admin extends MY_Controller {
             $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data barang berhasil disimpan');
 
             redirect('admin/barang');
-            exit;
         }
 
 
@@ -114,7 +113,6 @@ class Admin extends MY_Controller {
             redirect('admin/barang');
             exit;
         }
-
 
         if($this->POST('simpan'))
         {
@@ -746,7 +744,7 @@ class Admin extends MY_Controller {
         }
 
         $this->data['data']         = $this->pertanyaan_m->get();
-        $this->data['title']        = 'Data pertanyaan';
+        $this->data['title']        = 'Data Pertanyaan';
         $this->data['content']      = 'admin/pertanyaan_data';
         $this->template($this->data, 'admin');
     }
