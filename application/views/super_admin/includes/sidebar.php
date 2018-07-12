@@ -30,6 +30,9 @@
                             <a href="<?= base_url('super_admin/barang') ?>"><i class="fa fa-book"></i> Barang</a>
                         </li>
                         <li>
+                            <a href="<?= base_url('super-admin/promo') ?>"><i class="fa fa-dollar"></i> Promo</a>
+                        </li>
+                        <li>
                             <a href="<?= base_url('super_admin/kategori') ?>"><i class="fa fa-book"></i> Kategori</a>
                         </li>
                         <li>

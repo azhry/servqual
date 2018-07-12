@@ -225,7 +225,8 @@ class Pelanggan extends MY_Controller
                         'id_jawaban'        => $this->POST('pertanyaan_'.($i + 1))
                     ];
 
-                    $this->jawaban_pengguna_m->insert($jawaban);
+                    if (isset($jawaban['id_jawaban']))
+                        $this->jawaban_pengguna_m->insert($jawaban);
                 }
 
                 $this->flashmsg( 'Survei berhasil disimpan!' );
@@ -235,8 +236,7 @@ class Pelanggan extends MY_Controller
                 $this->flashmsg('Anda telah mengisi survei ini sebelumnya', 'warning');
             }
 
-            redirect( 'Pelanggan' );
-            exit;
+            redirect( 'pelanggan/kritik-saran' );
         }
 
         $this->data['jawaban']      = $this->jawaban_m->get();
@@ -264,7 +264,13 @@ class Pelanggan extends MY_Controller
         $this->template($this->data, 'pelanggan');
     }
 
-    public function profile(){
+    public function profile()
+    {
+        if ($this->data['id_role'] != 1)
+        {
+            redirect('pelanggan');
+        }
+
         $this->load->model('pengguna_m');
 
         if($this->POST('simpan')){
@@ -291,4 +297,43 @@ class Pelanggan extends MY_Controller
         $this->template($this->data, 'pelanggan');
     }
 
+    public function kritik_saran()
+    {
+        if ($this->POST('submit'))
+        {
+            $this->load->model('kritik_saran_m');
+            $this->data['kritik_saran'] = [
+                'kritik'    => $this->POST('kritik'),
+                'saran'     => $this->POST('saran')
+            ];
+            $this->kritik_saran_m->insert($this->data['kritik_saran']);
+            redirect('pelanggan');
+        }
+
+        $this->data['title']    = 'Kritik dan Saran';
+        $this->data['content']  = 'pelanggan/kritik_saran';
+        $this->template($this->data, 'pelanggan');
+    }
+
+    public function histori_pemesanan()
+    {
+        if ($this->data['id_role'] != 1)
+        {
+            redirect('pelanggan');
+        }
+        
+        $this->load->model('pemesanan_m');
+        $this->data['pemesanan']    = $this->pemesanan_m->get_pemesanan_pengguna_detail($this->data['id_pengguna']);
+        
+        if ($this->POST('upload'))
+        {
+            $this->upload($this->POST('upload'), 'bukti_pembayaran', 'bukti_pembayaran');
+            $this->flashmsg('Bukti pembayaran berhasil di-upload');
+            redirect('pelanggan/histori-pemesanan');
+        }
+
+        $this->data['title']        = 'Histori Pemesanan';
+        $this->data['content']      = 'pelanggan/histori_pemesanan';
+        $this->template($this->data, 'pelanggan');
+    }
 }

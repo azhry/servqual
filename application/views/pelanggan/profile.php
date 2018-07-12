@@ -19,6 +19,7 @@
 				<div class="col-md-8">
 					<h4 class="m-text26 p-b-36 p-t-15">
 						Profile
+						<a href="<?= base_url('pelanggan/histori-pemesanan') ?>" class="btn btn-default btn-xs">Lihat histori pemesanan</a>
 					</h4>
 
 					<div>

@@ -69,7 +69,7 @@
 
 										<div class="block2-txt p-t-20">
 											<a href="<?= base_url('pelanggan/detail_barang/'.$row->kode_barang) ?>" class="block2-name dis-block s-text3 p-b-5">
-												<?= $row->nama ?> 
+												<?= $row->nama . ($row->jenis == 'Promo' ? '<i><small>(Promo)</small></i>' : '') ?> 
 											</a>
 
 											<span class="block2-price m-text6 p-r-5">
@@ -110,7 +110,7 @@
 
 										<div class="block2-txt p-t-20">
 											<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-												<?= $row->nama ?> 
+												<?= $row->nama . ($row->jenis == 'Promo' ? '<i><small>(Promo)</small></i>' : '') ?> 
 											</a>
 
 											<span class="block2-price m-text6 p-r-5">

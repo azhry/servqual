@@ -16,6 +16,13 @@ class Pemesanan_m extends MY_Model
 		return $query->row();
 	}
 
+	public function get_pemesanan_pengguna_detail($id_pengguna){
+
+		$query = $this->db->query('SELECT pemesanan.*, detail_pemesanan.* FROM pemesanan INNER JOIN 	detail_pemesanan ON pemesanan.id_pemesanan = detail_pemesanan.id_pemesanan
+				WHERE pemesanan.id_pengguna = '.$id_pengguna.' GROUP BY pemesanan.id_pemesanan');
+		return $query->result();
+	}
+
 	public function get_join(){
 
 		$query = $this->db->query('SELECT pemesanan.*, detail_pemesanan.* FROM pemesanan INNER JOIN 	detail_pemesanan ON pemesanan.id_pemesanan = detail_pemesanan.id_pemesanan

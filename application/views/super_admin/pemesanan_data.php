@@ -70,7 +70,9 @@
                                     </td>
                                     <td>
                                         <center>
-                                          <a href="<?= base_url('super_admin/detail_pemesanan/' . $row->id_pemesanan) ?>" class="btn btn-success"><i class="fa fa-eye"></i> Detail</a>
+                                          <a href="<?= base_url('super-admin/detail-pemesanan/' . $row->id_pemesanan) ?>" class="btn btn-success"><i class="fa fa-eye"></i> Detail</a>
+                                          <a href="<?= base_url('super-admin/kuesioner-pemesanan/' . $row->id_pengguna) ?>" class="btn btn-success"><i class="fa fa-eye"></i> Hasil Kuesioner</a>
+                                          <a href="<?= base_url('super-admin/lihat-bukti-pembayaran/' . $row->id_pemesanan) ?>" class="btn btn-success"><i class="fa fa-eye"></i> Lihat Bukti Pembayaran</a>
                                           <!-- 
                                           <a href="<?= base_url('super_admin/edit_pemesanan/' . $row->id_pemesanan) ?>" class="btn btn-info"><i class="fa fa-pencil"></i> Edit</a>
                                           <button onclick="delete_data('<?= $row->id_pemesanan ?>')" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</button> -->
