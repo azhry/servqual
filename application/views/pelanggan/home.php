@@ -599,7 +599,7 @@
           setInterval(function() {
 
             $.ajax({
-              url: 'http://localhost/e-commerce/pelanggan/cek-barang',
+              url: '<?= base_url('pelanggan/cek-barang') ?>',
               type: 'POST',
               data: {},
               success: function( response ) {
@@ -610,7 +610,7 @@
                 if ( count != json.length ) {
                   let options = {
                     body: 'Ada barang baru nih. Yuk cek web kita..',
-                    icon: 'UserTemplate/images/icons/favicon.png'
+                    icon: '<?= base_url('assets/UserTemplate/images/icons/favicon.png') ?>'
                   };
                   var notification = new Notification( 'E-Commerce', options );
                   localStorage.setItem( 'count', json.length );

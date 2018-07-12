@@ -86,9 +86,9 @@
                                 <div class="form-group">
                                     <label>Status<span class="required">*</span></label>
                                     <select class="form-control" name="status" required>
-                                        <option>---</option>
-                                        <option value="0">0</option>
-                                        <option value="1">1</option>
+                                        <option value="">---</option>
+                                        <option value="1">Aktif</option>
+                                        <option value="0">Non-aktif</option>
                                     </select>
                                 </div>
 

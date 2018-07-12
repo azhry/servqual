@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2018 at 03:02 PM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.11
+-- Generation Time: Jul 12, 2018 at 06:08 AM
+-- Server version: 10.1.33-MariaDB
+-- PHP Version: 7.2.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `barang` (
-  `kode_barang` int(11) NOT NULL,
+  `kode_barang` varchar(8) NOT NULL,
   `id_kategori_barang` int(11) NOT NULL,
   `nama` varchar(200) NOT NULL,
   `deskripsi` text NOT NULL,
@@ -43,63 +43,65 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`kode_barang`, `id_kategori_barang`, `nama`, `deskripsi`, `harga`, `stok`, `status`) VALUES
-(1, 1, 'Softshell Warna Warni Gambar Hellokitty And Doraemon 3d* ', 'J5\r\nJ1Ace\r\nJ2Prime\r\nG530/Grand Prime *Xiaomi/Redmi*\r\nRedmi 4X\r\nRedmi 4A\r\nRedmi Note 5Pro\r\nRedmi Note 4X\r\nRedmi 3pro *OPPO*\r\nF7 New\r\nF5\r\nA59/F1s\r\nA39/A57\r\nA33/Neo 7\r\nA37/Neo 9 *VIVO*\r\nVivo V9 New\r\nVivo Y71 New\r\nVivo y65', 40000, 10, '1'),
-(2, 1, 'Trigger Shoot version L7', 'jari telunjuk bisa tetap menempel di tombol walau tidak sedang menembak, untuk menembak tombolnya harus ditekan (model lama jari telunjuk tidak bisa stand-by menempel di tombol kalau tidak sedang menembak)\r\nISI KEMASAN:\r\n1 pasang tombol L1R1 (kiri kanan)\r\n1 kotak penyimpanan\r\naksesoris berupa tombol tambahan ini berguna untuk permainan mobile shooter / battle royale yang sedang digandrungi saat ini, membuat permainan anda lebih nyaman dan PRO karena terasa seperti bermain menggunakan gamepad.\r\ntombol L1R1 ini biasa diatur untuk membidik (scope button) dan menembak (firing button). aturlah terlebih dahulu posisi tombol di pengaturan atau setting game anda (customized), lalu tempatkan sesuai posisi\r\n', 55000, 10, '0'),
-(3, 1, 'Robot R3 Bluetooth V4.2 Bluetooth Headset ', 'Brand Robot\r\nModel R3\r\nBluetooth version Bluetooth V4.2\r\nBluetooth solutions WT200\r\nSupport Protocols A2DPAVRCPHSPHFP\r\nBattery Output Voltage 3.7V\r\nBattery Capacity 70mAh\r\nMusic time 4h80% volume\r\nTalk time 4h80% volume\r\nFull Charging Time 2.5h\r\nBluetooth Range 10m\r\nSpeaker Size 2 x 10mm\r\nReceive Sensicivity 85dBm\r\nSpeaker Impedance 32ohm\r\nSpeaker Rating 3mW\r\nFrequency Response 50Hz20KHz\r\nS/N 90dB\r\nMic Sensitivity -42dB\r\n', 110000, 11, '1'),
-(4, 1, 'Charger Asus Original ', 'Spesifikasi :\r\n* Input : 100-240VAC , 50/60Hz , 0.5A\r\n* Output : 5V / 2000mA\r\n', 110000, 10, '1'),
-(5, 1, 'Charger Xiaomi Original (Kepala Indonesia) ', 'Spesifikasi :\r\n* MDY-03-AF\r\n* Input : 100-240VAC , 50/60Hz , 0.5A\r\n* Output : 5V / 2000mA\r\n', 110000, 10, '1'),
-(6, 1, 'Man case + Tg', 'Type\r\n- Oppo A83\r\n- Oppo F3\r\n- Oppo F5\r\n- Oppo A71\r\n- Oppo A37\r\n- Oppo A57\r\n- Xiaomi redmi note 5a\r\n- Xiaomi redmi note 4\r\n- Xiaomi 5plus\r\n- Samsung J2prime\r\n- Vivo V9\r\n', 60000, 10, '1'),
-(7, 1, 'Softcase Fuze Glass \"Pattern Design\" :', '~OPPO F7\r\n~OPPO F5\r\n~OPPO A83\r\n~OPPO A71\r\n~OPPO NEO 9\r\n~OPPO A57\r\n~REDMI 5\r\n~REDMI 5+\r\n~REDMI 5A\r\n~REDMI NOTE 5A\r\n~REDMI 5X /A1\r\n~REDMI NOTE 4X\r\n~VIVO V9\r\n~VIVO V7\r\n~ J2 PRO\r\n~J2 PRIME\r\n~ J7+\r\n~IPHONE 5G\r\n~IPHONE 6G\r\n~IPHONE 6G+\r\n', 40000, 10, '1'),
-(8, 1, 'Silikon 3D Korean Cute', 'FOR TYPE HOT2 SAJA:\r\n• SAM J2PRIME *HOT*\r\n• SAM J2 PRO(2018) *HOT* • REDMI 4A\r\n• REDMI 4X\r\n• REDMI 5 *HOT*\r\n• REDMI 5+ *HOT*\r\n• REDMI 5A *HOT*\r\n• REDMI 5X/A1 *HOT*\r\n• REDMI NOTE4X *HOT*\r\n• REDMI NOTE5A *HOT* • OPPO A71 *HOT*\r\n• OPPO A39\r\n• OPPO A57\r\n• OPPO A83 *HOT*\r\n• OPPO NEO7\r\n• OPPO NEO9 *HOT*\r\n• OPPO F1S\r\n• OPPO F5 *HOT*\r\n• OPPO F7 *HOT* • VIVO V7 *HOT*\r\n• VIVI V9\r\n', 50000, 10, '0'),
-(9, 1, 'Case Violet ', 'Soft Case Premium Violet Original \r\nFor Type : - Iphone 6\r\n- Samsung A8 (2018)\r\n- Samsung A8+ (2018)\r\n- *Samsung Note 8 (New)*\r\n- Samsung S8\r\n- samsung S8+\r\n- Samsung S6 Edge\r\n- Samsung S9 Neww\r\n- Samsung S9+ Neww\r\n- Xiao Mi Red Mi 2S\r\n- Xiao Mi Red Mi 4X - Redmi 5+ Neww\r\n- Xiao Mi Red Mi Note 3\r\n- Xiao Mi Red Mi Note 5 Pro Neww - *Xiao Mi Max 2 New*\r\n- Xiaomi Mi Note 2\r\n- Oppo Neo 9\r\n- Oppo A39\r\n- Oppo A83\r\n- Oppo F5\r\n- *Vivo V9 Neww*\r\n- Vivo Y21/Y22\r\n', 40000, 10, '0'),
-(10, 1, 'Case Animal + tg', 'Type :\r\n- Samsung J2prime\r\n- Iphone 5\r\n- Oppo A37\r\n- Oppo F1s\r\n- Oppo A83\r\n- Oppo F5\r\n- Oppo F7\r\n- Vivo V7+\r\n- Vivo V9\r\n- Vivo Y65\r\n- Xiaomi redmi 4x\r\n- Xiaomi redmi note 5a\r\n', 60000, 10, '1'),
-(11, 4, 'Serutan Jagung ', '', 30000, 10, '1'),
-(12, 4, 'Tatakan Pembuat Kue Maksuba dll ', '', 5000, 10, '1'),
-(13, 4, 'Saringan Teh Jumbo ', '', 20000, 10, '1'),
-(14, 4, 'Cetakan Cendol ', '', 20000, 10, '1'),
-(15, 4, 'Garpu / Sendok Motif Jagung ', 'isi 12 pcs', 15000, 10, '1'),
-(16, 4, 'Sendok Scoop Ice Cream ', 'Ice Cream Scoop banyak digunakan untuk menyendok ice cream, tetapi selain itu juga banyak difungsikan untuk menyendok adonan kue,sendok buah dll.sehingga takarannya sama setiap sendokan... Dengan material stainless steel berkualitas, sendok es krim ini menjadi pisau yang kuat dan tahan lama. Selain itu sendok es krim ini pun memiliki fitur anti lengket sehingga mudah dibersihkan dan tidak mudah berkarat.\r\nSendok es krim / ice cream scoop\r\nbahan high quality stainless steel (Food Grade) 18/10\r\nukuran diameter Kepala Scoop = +/- 5 cm, Tinggi (kedalaman) scoop = +/- 2.7 cm\r\nPanjang Alat = +/-22.5 cm\r\n', 25000, 10, '1'),
-(17, 4, 'Alat Bantu Potong Telur ', 'MIXER GARLIC ( PAKING SEGEL )\r\nBUKAN PAKING OPP / PLASTIK apalagi yang tidak pakai paking, hanya barang saja, beda kualitas, beda harga \r\nAlat press untuk menghaluskan dan mencacah bawang putih, jahe, bumbu dapur lainnya. Bisa digunakan juga untuk memudahkan mengupas kulit bawang putih.\r\n', 15000, 10, '1'),
-(18, 4, 'Teflon Mini Karakter ', '', 25000, 10, '1'),
-(19, 4, 'Cake Decoration 8 in 1 ', '', 30000, 10, '1'),
-(20, 4, 'Apron - Celemek anti air', '', 20000, 10, '1'),
-(21, 2, 'Jam Fashion ', '', 30000, 10, '1'),
-(22, 2, 'Jam Fashion ', '', 30000, 10, '1'),
-(23, 2, 'Tas pesta premium', '', 240000, 10, '1'),
-(24, 2, 'Tas pesta 20319', '', 190000, 10, '1'),
-(25, 2, 'Tas pesta c272', '', 125000, 10, '1'),
-(26, 2, 'Tas pesta', '', 125000, 10, '1'),
-(27, 2, 'Tas selempang', '', 60000, 10, '1'),
-(28, 2, 'Tas pesta glitter', '', 95000, 10, '0'),
-(29, 2, 'Tas selempang cewek', '', 90000, 10, '0'),
-(30, 2, 'Dompet cewek bling2', '', 40000, 10, '0'),
-(31, 2, 'Tas korea square', '', 85000, 10, '0'),
-(32, 2, 'Tas wanita', '', 65000, 10, '0'),
-(33, 2, 'Somlloh pendek Dompet purse wallet fashion korean style', '', 50000, 10, '0'),
-(34, 2, 'Keranjang multifungsi ', '', 35000, 10, '0'),
-(35, 3, 'Celengan Kaleng Karakter ', '', 15000, 10, '0'),
-(36, 3, 'Robocar', '', 60000, 10, '0'),
-(37, 3, 'Boneka Tayo ', 'Boneka tayo size L\r\nUkuran 28 cm x 25 Cm\r\n', 50000, 10, '0'),
-(38, 3, 'Uno Stacko ', 'Mainan keluarga terdiri dari 45 balok yang disusun menjadi tower lalu balok-baloknya dilepas satu persatu oleh pemain tanpa menyentuh tower. Pemain yg merobohkan tower adalah yg kalah.', 85000, 10, '0'),
-(39, 3, 'Papan Tulis Anak Karakter + Bonus Spidol (Lengkap Penghapus)', 'Ukuran papan Lebar x Tinggi (cm) = 30 x 20 cm', 25000, 10, '0'),
-(40, 3, 'Mobil mainan berbahan besi isi 6 pcs dgn variasi warna yg berbeda', '', 25000, 10, '0'),
-(41, 3, 'Mainan Gelembung Sabun ', '', 40000, 10, '0'),
-(42, 3, 'Mainan Make Up Anak anak', '', 40000, 10, '0'),
-(43, 3, 'Mini Market Kasir ', '', 195000, 10, '0'),
-(44, 3, 'Boneka Tom Cat Besar ', '', 170000, 10, '0'),
-(45, 5, 'Kuas Blush On Oval', '1.Bahan Kuas: Bulu Kambing ,Nylon, Rambut Sintetik\r\n2. panjang : 16 cm;\r\n3. fashion desain sikat gigi, kualitas tinggi rambut sintetis yang menyediakan kemampuan luar biasa untuk menahan bubuk, lembut dan menyenangkan untuk kulit Anda.\r\n4. Cocok untuk: foundation; bubuk; blush on; concealer;\r\n5. brush untuk cream foundation cair basah\r\n6. serat terbaik dengan elastis menangani plastik, bisa membungkuk sangat mudah tanpa rusak\r\n', 15000, 10, '0'),
-(46, 5, 'Beauty blender Sponge', '', 5000, 10, '0'),
-(47, 5, 'Pemencet Jerawat ', '', 5000, 10, '0'),
-(48, 5, 'Kuas make up naked ', '', 75000, 10, '0'),
-(49, 5, 'Gunting kuku Karakter ', '', 10000, 10, '0'),
-(50, 5, 'Eyebrow Template Alis - Cetakan Alis Mata', '', 10000, 10, '0'),
-(51, 5, 'Sisir Jumbo Anti Rontok ', '', 15000, 10, '0'),
-(52, 5, 'Cermin Led ', '', 40000, 10, '0'),
-(53, 5, 'Mangkok masker set', '', 25000, 10, '0'),
-(54, 5, 'Penjepit Bulu Mata Galenco New York ', '', 10000, 10, '0'),
-(55, 4, 'Mixer Garlic ', 'MIXER GARLIC ( PAKING SEGEL )\r\nBUKAN PAKING OPP / PLASTIK apalagi yang tidak pakai paking, hanya barang saja, beda kualitas, beda harga \r\nAlat press untuk menghaluskan dan mencacah bawang putih, jahe, bumbu dapur lainnya. Bisa digunakan juga untuk memudahkan mengupas kulit bawang putih.\r\n', 15000, 10, '0'),
-(56, 2, 'Tas pesta 0331', '', 115000, 10, '0'),
-(57, 1, 'hardcase', '<p>aa</p>', 30000, 50, '1');
+('1', 1, 'Softshell Warna Warni Gambar Hellokitty And Doraemon 3d* ', 'J5\r\nJ1Ace\r\nJ2Prime\r\nG530/Grand Prime *Xiaomi/Redmi*\r\nRedmi 4X\r\nRedmi 4A\r\nRedmi Note 5Pro\r\nRedmi Note 4X\r\nRedmi 3pro *OPPO*\r\nF7 New\r\nF5\r\nA59/F1s\r\nA39/A57\r\nA33/Neo 7\r\nA37/Neo 9 *VIVO*\r\nVivo V9 New\r\nVivo Y71 New\r\nVivo y65', 40000, 10, '1'),
+('10', 1, 'Case Animal + tg', 'Type :\r\n- Samsung J2prime\r\n- Iphone 5\r\n- Oppo A37\r\n- Oppo F1s\r\n- Oppo A83\r\n- Oppo F5\r\n- Oppo F7\r\n- Vivo V7+\r\n- Vivo V9\r\n- Vivo Y65\r\n- Xiaomi redmi 4x\r\n- Xiaomi redmi note 5a\r\n', 60000, 10, '1'),
+('11', 4, 'Serutan Jagung ', '', 30000, 10, '1'),
+('12', 4, 'Tatakan Pembuat Kue Maksuba dll ', '', 5000, 10, '1'),
+('13', 4, 'Saringan Teh Jumbo ', '', 20000, 10, '1'),
+('14', 4, 'Cetakan Cendol ', '', 20000, 10, '1'),
+('15', 4, 'Garpu / Sendok Motif Jagung ', 'isi 12 pcs', 15000, 10, '1'),
+('16', 4, 'Sendok Scoop Ice Cream ', 'Ice Cream Scoop banyak digunakan untuk menyendok ice cream, tetapi selain itu juga banyak difungsikan untuk menyendok adonan kue,sendok buah dll.sehingga takarannya sama setiap sendokan... Dengan material stainless steel berkualitas, sendok es krim ini menjadi pisau yang kuat dan tahan lama. Selain itu sendok es krim ini pun memiliki fitur anti lengket sehingga mudah dibersihkan dan tidak mudah berkarat.\r\nSendok es krim / ice cream scoop\r\nbahan high quality stainless steel (Food Grade) 18/10\r\nukuran diameter Kepala Scoop = +/- 5 cm, Tinggi (kedalaman) scoop = +/- 2.7 cm\r\nPanjang Alat = +/-22.5 cm\r\n', 25000, 10, '1'),
+('17', 4, 'Alat Bantu Potong Telur ', 'MIXER GARLIC ( PAKING SEGEL )\r\nBUKAN PAKING OPP / PLASTIK apalagi yang tidak pakai paking, hanya barang saja, beda kualitas, beda harga \r\nAlat press untuk menghaluskan dan mencacah bawang putih, jahe, bumbu dapur lainnya. Bisa digunakan juga untuk memudahkan mengupas kulit bawang putih.\r\n', 15000, 10, '1'),
+('18', 4, 'Teflon Mini Karakter ', '', 25000, 10, '1'),
+('19', 4, 'Cake Decoration 8 in 1 ', '', 30000, 10, '1'),
+('2', 1, 'Trigger Shoot version L7', 'jari telunjuk bisa tetap menempel di tombol walau tidak sedang menembak, untuk menembak tombolnya harus ditekan (model lama jari telunjuk tidak bisa stand-by menempel di tombol kalau tidak sedang menembak)\r\nISI KEMASAN:\r\n1 pasang tombol L1R1 (kiri kanan)\r\n1 kotak penyimpanan\r\naksesoris berupa tombol tambahan ini berguna untuk permainan mobile shooter / battle royale yang sedang digandrungi saat ini, membuat permainan anda lebih nyaman dan PRO karena terasa seperti bermain menggunakan gamepad.\r\ntombol L1R1 ini biasa diatur untuk membidik (scope button) dan menembak (firing button). aturlah terlebih dahulu posisi tombol di pengaturan atau setting game anda (customized), lalu tempatkan sesuai posisi\r\n', 55000, 10, '0'),
+('20', 4, 'Apron - Celemek anti air', '', 20000, 10, '1'),
+('21', 2, 'Jam Fashion ', '', 30000, 10, '1'),
+('22', 2, 'Jam Fashion ', '', 30000, 10, '1'),
+('23', 2, 'Tas pesta premium', '', 240000, 10, '1'),
+('24', 2, 'Tas pesta 20319', '', 190000, 10, '1'),
+('25', 2, 'Tas pesta c272', '', 125000, 10, '1'),
+('26', 2, 'Tas pesta', '', 125000, 10, '1'),
+('27', 2, 'Tas selempang', '', 60000, 10, '1'),
+('28', 2, 'Tas pesta glitter', '', 95000, 10, '0'),
+('29', 2, 'Tas selempang cewek', '', 90000, 10, '0'),
+('3', 1, 'Robot R3 Bluetooth V4.2 Bluetooth Headset ', 'Brand Robot\r\nModel R3\r\nBluetooth version Bluetooth V4.2\r\nBluetooth solutions WT200\r\nSupport Protocols A2DPAVRCPHSPHFP\r\nBattery Output Voltage 3.7V\r\nBattery Capacity 70mAh\r\nMusic time 4h80% volume\r\nTalk time 4h80% volume\r\nFull Charging Time 2.5h\r\nBluetooth Range 10m\r\nSpeaker Size 2 x 10mm\r\nReceive Sensicivity 85dBm\r\nSpeaker Impedance 32ohm\r\nSpeaker Rating 3mW\r\nFrequency Response 50Hz20KHz\r\nS/N 90dB\r\nMic Sensitivity -42dB\r\n', 110000, 11, '1'),
+('30', 2, 'Dompet cewek bling2', '', 40000, 10, '0'),
+('31', 2, 'Tas korea square', '', 85000, 10, '0'),
+('32', 2, 'Tas wanita', '', 65000, 10, '0'),
+('33', 2, 'Somlloh pendek Dompet purse wallet fashion korean style', '', 50000, 10, '0'),
+('34', 2, 'Keranjang multifungsi ', '', 35000, 10, '0'),
+('35', 3, 'Celengan Kaleng Karakter ', '', 15000, 10, '0'),
+('36', 3, 'Robocar', '', 60000, 10, '0'),
+('37', 3, 'Boneka Tayo ', 'Boneka tayo size L\r\nUkuran 28 cm x 25 Cm\r\n', 50000, 10, '0'),
+('38', 3, 'Uno Stacko ', 'Mainan keluarga terdiri dari 45 balok yang disusun menjadi tower lalu balok-baloknya dilepas satu persatu oleh pemain tanpa menyentuh tower. Pemain yg merobohkan tower adalah yg kalah.', 85000, 10, '0'),
+('39', 3, 'Papan Tulis Anak Karakter + Bonus Spidol (Lengkap Penghapus)', 'Ukuran papan Lebar x Tinggi (cm) = 30 x 20 cm', 25000, 10, '0'),
+('4', 1, 'Charger Asus Original ', 'Spesifikasi :\r\n* Input : 100-240VAC , 50/60Hz , 0.5A\r\n* Output : 5V / 2000mA\r\n', 110000, 10, '1'),
+('40', 3, 'Mobil mainan berbahan besi isi 6 pcs dgn variasi warna yg berbeda', '', 25000, 10, '0'),
+('41', 3, 'Mainan Gelembung Sabun ', '', 40000, 10, '0'),
+('42', 3, 'Mainan Make Up Anak anak', '', 40000, 10, '0'),
+('43', 3, 'Mini Market Kasir ', '', 195000, 10, '0'),
+('44', 3, 'Boneka Tom Cat Besar ', '', 170000, 10, '0'),
+('45', 5, 'Kuas Blush On Oval', '1.Bahan Kuas: Bulu Kambing ,Nylon, Rambut Sintetik\r\n2. panjang : 16 cm;\r\n3. fashion desain sikat gigi, kualitas tinggi rambut sintetis yang menyediakan kemampuan luar biasa untuk menahan bubuk, lembut dan menyenangkan untuk kulit Anda.\r\n4. Cocok untuk: foundation; bubuk; blush on; concealer;\r\n5. brush untuk cream foundation cair basah\r\n6. serat terbaik dengan elastis menangani plastik, bisa membungkuk sangat mudah tanpa rusak\r\n', 15000, 10, '0'),
+('46', 5, 'Beauty blender Sponge', '', 5000, 10, '0'),
+('47', 5, 'Pemencet Jerawat ', '', 5000, 10, '0'),
+('48', 5, 'Kuas make up naked ', '', 75000, 10, '0'),
+('49', 5, 'Gunting kuku Karakter ', '', 10000, 10, '0'),
+('5', 1, 'Charger Xiaomi Original (Kepala Indonesia) ', 'Spesifikasi :\r\n* MDY-03-AF\r\n* Input : 100-240VAC , 50/60Hz , 0.5A\r\n* Output : 5V / 2000mA\r\n', 110000, 10, '1'),
+('50', 5, 'Eyebrow Template Alis - Cetakan Alis Mata', '', 10000, 10, '0'),
+('51', 5, 'Sisir Jumbo Anti Rontok ', '', 15000, 10, '0'),
+('52', 5, 'Cermin Led ', '', 40000, 10, '0'),
+('53', 5, 'Mangkok masker set', '', 25000, 10, '0'),
+('54', 5, 'Penjepit Bulu Mata Galenco New York ', '', 10000, 10, '0'),
+('55', 4, 'Mixer Garlic ', 'MIXER GARLIC ( PAKING SEGEL )\r\nBUKAN PAKING OPP / PLASTIK apalagi yang tidak pakai paking, hanya barang saja, beda kualitas, beda harga \r\nAlat press untuk menghaluskan dan mencacah bawang putih, jahe, bumbu dapur lainnya. Bisa digunakan juga untuk memudahkan mengupas kulit bawang putih.\r\n', 15000, 10, '0'),
+('56', 2, 'Tas pesta 0331', '', 115000, 10, '0'),
+('57', 1, 'hardcase', '<p>aa</p>', 30000, 50, '1'),
+('6', 1, 'Man case + Tg', 'Type\r\n- Oppo A83\r\n- Oppo F3\r\n- Oppo F5\r\n- Oppo A71\r\n- Oppo A37\r\n- Oppo A57\r\n- Xiaomi redmi note 5a\r\n- Xiaomi redmi note 4\r\n- Xiaomi 5plus\r\n- Samsung J2prime\r\n- Vivo V9\r\n', 60000, 10, '1'),
+('7', 1, 'Softcase Fuze Glass \"Pattern Design\" :', '~OPPO F7\r\n~OPPO F5\r\n~OPPO A83\r\n~OPPO A71\r\n~OPPO NEO 9\r\n~OPPO A57\r\n~REDMI 5\r\n~REDMI 5+\r\n~REDMI 5A\r\n~REDMI NOTE 5A\r\n~REDMI 5X /A1\r\n~REDMI NOTE 4X\r\n~VIVO V9\r\n~VIVO V7\r\n~ J2 PRO\r\n~J2 PRIME\r\n~ J7+\r\n~IPHONE 5G\r\n~IPHONE 6G\r\n~IPHONE 6G+\r\n', 40000, 10, '1'),
+('7VL817M5', 2, 'aaabb', '<p>abcd</p>', 100000, 100, '1'),
+('8', 1, 'Silikon 3D Korean Cute', 'FOR TYPE HOT2 SAJA:\r\n• SAM J2PRIME *HOT*\r\n• SAM J2 PRO(2018) *HOT* • REDMI 4A\r\n• REDMI 4X\r\n• REDMI 5 *HOT*\r\n• REDMI 5+ *HOT*\r\n• REDMI 5A *HOT*\r\n• REDMI 5X/A1 *HOT*\r\n• REDMI NOTE4X *HOT*\r\n• REDMI NOTE5A *HOT* • OPPO A71 *HOT*\r\n• OPPO A39\r\n• OPPO A57\r\n• OPPO A83 *HOT*\r\n• OPPO NEO7\r\n• OPPO NEO9 *HOT*\r\n• OPPO F1S\r\n• OPPO F5 *HOT*\r\n• OPPO F7 *HOT* • VIVO V7 *HOT*\r\n• VIVI V9\r\n', 50000, 10, '0'),
+('9', 1, 'Case Violet ', 'Soft Case Premium Violet Original \r\nFor Type : - Iphone 6\r\n- Samsung A8 (2018)\r\n- Samsung A8+ (2018)\r\n- *Samsung Note 8 (New)*\r\n- Samsung S8\r\n- samsung S8+\r\n- Samsung S6 Edge\r\n- Samsung S9 Neww\r\n- Samsung S9+ Neww\r\n- Xiao Mi Red Mi 2S\r\n- Xiao Mi Red Mi 4X - Redmi 5+ Neww\r\n- Xiao Mi Red Mi Note 3\r\n- Xiao Mi Red Mi Note 5 Pro Neww - *Xiao Mi Max 2 New*\r\n- Xiaomi Mi Note 2\r\n- Oppo Neo 9\r\n- Oppo A39\r\n- Oppo A83\r\n- Oppo F5\r\n- *Vivo V9 Neww*\r\n- Vivo Y21/Y22\r\n', 40000, 10, '0'),
+('PTU861LL', 1, 'Cuba', '<p>aaa bbb</p>', 123455, 10, '0');
 
 -- --------------------------------------------------------
 
@@ -110,7 +112,7 @@ INSERT INTO `barang` (`kode_barang`, `id_kategori_barang`, `nama`, `deskripsi`, 
 CREATE TABLE `detail_pemesanan` (
   `id_detail_pemesanan` int(11) NOT NULL,
   `id_pemesanan` int(11) NOT NULL,
-  `kode_barang` int(11) NOT NULL,
+  `kode_barang` varchar(8) NOT NULL,
   `qty` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -119,13 +121,8 @@ CREATE TABLE `detail_pemesanan` (
 --
 
 INSERT INTO `detail_pemesanan` (`id_detail_pemesanan`, `id_pemesanan`, `kode_barang`, `qty`) VALUES
-(1, 1, 1, 1),
-(2, 1, 2, 2),
-(3, 1, 4, 1),
-(4, 2, 21, 1),
-(5, 2, 22, 1),
-(6, 3, 11, 1),
-(7, 3, 12, 1);
+(8, 4, '46', 1),
+(9, 4, '47', 2);
 
 -- --------------------------------------------------------
 
@@ -223,7 +220,17 @@ INSERT INTO `jawaban_pengguna` (`id_jawaban_pengguna`, `id_pengguna`, `id_pertan
 (17, 3, 7, 31),
 (18, 3, 8, 40),
 (19, 3, 9, 44),
-(20, 3, 10, 46);
+(20, 3, 10, 46),
+(21, 5, 1, 1),
+(22, 5, 2, 6),
+(23, 5, 3, 11),
+(24, 5, 4, 16),
+(25, 5, 5, 21),
+(26, 5, 6, 26),
+(27, 5, 7, 31),
+(28, 5, 8, 36),
+(29, 5, 9, 41),
+(30, 5, 10, 46);
 
 -- --------------------------------------------------------
 
@@ -269,9 +276,7 @@ CREATE TABLE `pemesanan` (
 --
 
 INSERT INTO `pemesanan` (`id_pemesanan`, `id_pengguna`, `status`, `waktu_pemesanan`, `nama_penerima`, `alamat_penerima`, `kurir`, `ongkir`) VALUES
-(1, 3, 'Belum Bayar', '0000-00-00 00:00:00', 'Azhary Arliansyah', 'Waringin Lintas', 'jne', 13000),
-(2, 3, 'Lunas', '2018-06-26 19:16:21', 'Hehe', 'hihi', 'jne', 25000),
-(3, 3, 'Belum bayar', '2018-06-26 19:27:45', 'dfg', 'fkgdfkgj', 'tiki', 31000);
+(4, 5, 'Belum bayar', '2018-07-10 11:46:24', 'Ayu Lestari', 'haha huhu', 'jne', 112000);
 
 -- --------------------------------------------------------
 
@@ -299,7 +304,8 @@ INSERT INTO `pengguna` (`id_pengguna`, `id_role`, `username`, `password`, `email
 (1, 2, 'ayu', '985fabf8f96dc1c4c306341031569937', 'aa', 'Ayu Lestari', 'Perempuan', 'aaa', '088888'),
 (2, 1, 'enggi', '2210d2dfe23945b97b38eb84c4decca3', 'enggirp@gmail.com', 'enggi rizani', 'Perempuan', '<p>plaju</p>', '0892828'),
 (3, 1, 'azhary', '985fabf8f96dc1c4c306341031569937', 'arliansyah_azhary@yahoo.com', 'Azhary Arliansyah', '', ' Komplek Bougenville KM. 7 Palembang', '081234265011'),
-(4, 3, 'super', '1b3231655cebb7a1f783eddf27d254ca', 'super@admin.com', 'Super', 'Laki-laki', '<p>test</p>', '12312312');
+(4, 3, 'super', '1b3231655cebb7a1f783eddf27d254ca', 'super@admin.com', 'Super', 'Laki-laki', '<p>test</p>', '12312312'),
+(5, 1, 'ayul', '985fabf8f96dc1c4c306341031569937', 'lestariayu@gmail.com', 'Ayu Les', 'Perempuan', '  aaaa', '08181818');
 
 -- --------------------------------------------------------
 
@@ -416,16 +422,10 @@ ALTER TABLE `role`
 --
 
 --
--- AUTO_INCREMENT for table `barang`
---
-ALTER TABLE `barang`
-  MODIFY `kode_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
-
---
 -- AUTO_INCREMENT for table `detail_pemesanan`
 --
 ALTER TABLE `detail_pemesanan`
-  MODIFY `id_detail_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_detail_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `jawaban`
@@ -437,7 +437,7 @@ ALTER TABLE `jawaban`
 -- AUTO_INCREMENT for table `jawaban_pengguna`
 --
 ALTER TABLE `jawaban_pengguna`
-  MODIFY `id_jawaban_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_jawaban_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `kategori_barang`
@@ -449,13 +449,13 @@ ALTER TABLE `kategori_barang`
 -- AUTO_INCREMENT for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  MODIFY `id_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `pertanyaan`

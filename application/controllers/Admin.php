@@ -737,6 +737,7 @@ class Admin extends MY_Controller {
     public function pertanyaan()
     {
         $this->load->model('pertanyaan_m');
+        $this->load->model('jawaban_pengguna_m');
 
         if ($this->POST('delete') && $this->POST('id_pertanyaan'))
         {

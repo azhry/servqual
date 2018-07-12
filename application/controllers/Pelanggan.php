@@ -112,6 +112,8 @@ class Pelanggan extends MY_Controller
                         ];
                         $this->detail_pemesanan_m->insert( $this->data['detail_pemesanan'] );
                         $total_belanja += $barang->harga * $item['qty'];
+
+                        $this->barang_m->update($item['id'], [ 'stok' => $barang->stok - $item['qty'] ]);
                     }
 
                 }

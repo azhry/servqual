@@ -45,6 +45,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Pertanyaan</th>
+                                        <th>Skor Sekarang</th>
                                         <th>Aksi</th>
                                     </tr>
                             </thead>
@@ -54,6 +55,12 @@
                                 <tr>
                                     <td><?= $i ?></td>
                                     <td><?= $row->pertanyaan ?></td>
+                                    <td>
+                                      <?php  
+                                        $score = $this->jawaban_pengguna_m->getTotalScore($row->id_pertanyaan);
+                                        echo isset($score) ? $score->total_score : 0;
+                                      ?>
+                                    </td>
                                     <td>
                                         <center>
                                           <a href="<?= base_url('admin/edit_pertanyaan/' . $row->id_pertanyaan) ?>" class="btn btn-info"><i class="fa fa-pencil"></i> Edit</a>

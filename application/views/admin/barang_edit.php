@@ -81,8 +81,9 @@
                                     <label>Status<span class="required">*</span></label>
                                     <?php 
                                         $nilai_opt = [
-                                            0 => 0,
-                                            1 => 1
+                                            '0' => 'Non-aktif',
+                                            '1' => 'Aktif',
+                                            ''  => '---' 
                                         ];
 
                                         echo form_dropdown( 'status', $nilai_opt, $data->status, [ 'required' => '', 'class' => 'form-control' ] ); 
