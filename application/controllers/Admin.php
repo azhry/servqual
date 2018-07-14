@@ -570,6 +570,31 @@ class Admin extends MY_Controller {
         $this->template($this->data, 'admin');
     }
 
+    public function kuesioner_pemesanan()
+    {
+        $this->data['id_pengguna'] = $this->uri->segment(3);
+        if (!isset($this->data['id_pengguna']))
+        {
+            $this->flashmsg('<i class="lnr lnr-warning"></i> Required parameter is missing', 'danger');
+            redirect('admin/pemesanan');
+        }
+
+        $this->load->model('pengguna_m');
+        $this->data['pengguna']     = $this->pengguna_m->get_row(['id_pengguna' => $this->data['id_pengguna']]);
+        if (!isset($this->data['pengguna']))
+        {
+            $this->flashmsg('Data pengguna tidak ditemukan', 'danger');
+            redirect('admin/pemesanan');
+        }
+
+        $this->load->model('pertanyaan_m');
+
+        $this->data['hasil_kuesioner']  = $this->pertanyaan_m->hasil_kuesioner($this->data['id_pengguna']);
+        $this->data['title']            = 'Kuesioner Pelanggan';
+        $this->data['content']          = 'admin/kuesioner_pemesanan';
+        $this->template($this->data, 'admin');   
+    }
+
     //---Survei--------------
 
     public function tambah_survei()
@@ -840,5 +865,52 @@ class Admin extends MY_Controller {
         $this->data['title']        = 'Data jawaban';
         $this->data['content']      = 'admin/jawaban_data';
         $this->template($this->data, 'admin');
+    }
+
+    public function promo()
+    {
+        $this->load->model('barang_m');
+        $this->load->model('kategori_barang_m');
+
+        if ($this->POST('submit'))
+        {
+            $this->data['input'] = [
+                'kode_barang'           => $this->__generateRandomString(8, ['uppercase', 'number']),
+                'id_kategori_barang'    => $this->POST('id_kategori_barang'),
+                'nama'                  => $this->POST('nama'),
+                'deskripsi'             => $this->POST('deskripsi'),
+                'harga'                 => $this->POST('harga'),
+                'stok'                  => $this->POST('stok'),
+                'status'                => $this->POST('status'),
+                'jenis'                 => 'Promo'
+            ];
+
+            $this->barang_m->insert($this->data['input']);
+            
+            // ambil nama kategori
+            $kategori = $this->kategori_barang_m->get_row(['id_kategori_barang' => $this->POST('id_kategori_barang')])->nama_kategori;
+
+            $this->upload($this->data['input']['kode_barang'], 'produk/'.$kategori, 'gambar');
+
+            $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data promo barang berhasil disimpan');
+
+            redirect('admin/barang');
+        }
+        $this->data['title']        = 'Promo Barang';
+        $this->data['content']      = 'admin/promo_barang';
+        $this->data['kategori']     = $this->kategori_barang_m->get();
+        $this->data['barang']       = $this->barang_m->get();
+        $this->template($this->data, 'admin');
+    }
+
+    public function lihat_bukti_pembayaran()
+    {
+        if (file_exists(FCPATH . '/assets/bukti_pembayaran/' . $this->uri->segment(3) . '.JPG'))
+        {
+            redirect(base_url('assets/bukti_pembayaran/' . $this->uri->segment(3) . '.JPG'));
+        }
+
+        $this->flashmsg('Pemesanan ini belum ada bukti pembayaran', 'danger');
+        redirect('admin/pemesanan');
     }
 }

@@ -24,10 +24,13 @@
                         <h3>Menu</h3>
                         <ul class="nav side-menu">
                         <li>
-                            <a href="<?= base_url('admin') ?>"><i class="fa fa-home"></i> Dashbaord</a>
+                            <a href="<?= base_url('admin') ?>"><i class="fa fa-home"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="<?= base_url('admin/barang') ?>"><i class="fa fa-book"></i> Barang</a>
+                        </li>
+                        <li>
+                            <a href="<?= base_url('admin/promo') ?>"><i class="fa fa-dollar"></i> Promo</a>
                         </li>
                         <li>
                             <a href="<?= base_url('admin/kategori') ?>"><i class="fa fa-book"></i> Kategori</a>
