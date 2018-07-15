@@ -832,6 +832,7 @@ class Super_admin extends MY_Controller {
         }
 
         $this->data['data']         = $this->pertanyaan_m->get();
+        $this->data['servqual']     = $this->jawaban_pengguna_m->hasilAkhir();
         $this->data['title']        = 'Data Pertanyaan';
         $this->data['content']      = 'super_admin/pertanyaan_data';
         $this->template($this->data, 'super_admin');

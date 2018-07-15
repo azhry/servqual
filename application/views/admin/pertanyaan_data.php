@@ -39,7 +39,11 @@
                         <div>
                             <?= $this->session->flashdata('msg') ?>
                         </div>
-
+                        <div class="row">
+                          <div class="col-md-12">
+                            <h4 class="pull-right">Hasil Akhir Servqual: <?= $servqual ?>%</h4>
+                          </div>
+                        </div>
                         <table id="datatable" class="table table-striped table-bordered">
                             <thead>
                                     <tr>
