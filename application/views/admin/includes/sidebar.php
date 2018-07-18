@@ -50,6 +50,9 @@
                         <li>
                             <a href="<?= base_url('admin/jawaban') ?>"><i class="fa fa-edit"></i> Jawaban</a>
                         </li>
+                        <li>
+                            <a href="<?= base_url('admin/kritik-saran') ?>"><i class="fa fa-edit"></i> Kritik dan Saran</a>
+                        </li>
                     </ul>
                 </div>
             </div>

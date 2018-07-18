@@ -871,6 +871,16 @@ class Admin extends MY_Controller {
     public function promo()
     {
         $this->load->model('barang_m');
+
+        $this->data['title']        = 'Promo Barang';
+        $this->data['content']      = 'admin/promo_data';
+        $this->data['barang']       = $this->barang_m->get_barang(['jenis' => 'Promo']);
+        $this->template($this->data, 'admin');
+    }
+
+    public function tambah_promo()
+    {
+        $this->load->model('barang_m');
         $this->load->model('kategori_barang_m');
 
         if ($this->POST('submit'))
@@ -895,12 +905,21 @@ class Admin extends MY_Controller {
 
             $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data promo barang berhasil disimpan');
 
-            redirect('admin/barang');
+            redirect('admin/promo');
         }
         $this->data['title']        = 'Promo Barang';
         $this->data['content']      = 'admin/promo_barang';
         $this->data['kategori']     = $this->kategori_barang_m->get();
         $this->data['barang']       = $this->barang_m->get();
+        $this->template($this->data, 'admin');
+    }
+
+    public function kritik_saran()
+    {
+        $this->load->model('kritik_saran_m');
+        $this->data['title']        = 'Kritik dan Saran';
+        $this->data['content']      = 'admin/kritik_saran';
+        $this->data['kritik_saran'] = $this->kritik_saran_m->get_by_order('created_at', 'DESC');
         $this->template($this->data, 'admin');
     }
 
