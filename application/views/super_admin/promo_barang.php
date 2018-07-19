@@ -40,7 +40,7 @@
                                     <style type="text/css">.required{color: red;}</style>
                                     <?= $this->session->flashdata('msg') ?>
                                 </div>
-                                <?= form_open_multipart('super-admin/promo', ['id' => 'form']) ?>
+                                <?= form_open_multipart('super-admin/tambah-promo', ['id' => 'form']) ?>
 
                                 <div class="form-group">
                                     <label>Kategori<span class="required">*</span></label>

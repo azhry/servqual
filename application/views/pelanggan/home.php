@@ -605,7 +605,6 @@
               success: function( response ) {
 
                 let count = localStorage.getItem( 'count', 0 );
-                console.log( count );
                 let json = $.parseJSON( response );
                 if ( count != json.length ) {
                   let options = {
@@ -614,6 +613,10 @@
                   };
                   var notification = new Notification( 'E-Commerce', options );
                   localStorage.setItem( 'count', json.length );
+                  notification.onclick = function(event) {
+                    event.preventDefault(); // prevent the browser from focusing the Notification's tab
+                    window.open('<?= base_url('pelanggan/detail-barang') ?>/' + json[json.length - 1].kode_barang, '_blank');
+                  }
                   setTimeout(notification.close.bind(notification), 5000); 
                 }
 

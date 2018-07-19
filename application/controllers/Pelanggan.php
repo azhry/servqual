@@ -200,7 +200,7 @@ class Pelanggan extends MY_Controller
     public function cek_barang() {
 
         $this->load->model( 'barang_m' );
-        $this->data['barang'] = $this->barang_m->get();
+        $this->data['barang'] = $this->barang_m->get_by_order('created_at', 'DESC');
         echo json_encode( $this->data['barang'] );
 
     }

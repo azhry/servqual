@@ -59,23 +59,34 @@
                                             <th>Kode Barang</th>
                                             <td>
                                                 <ul>
-                                                    <?php foreach ($detail as $row): ?>
+                                                    <?php $qty = 0; foreach ($detail as $row): ?>
                                                         <li><?= $row->kode_barang ?></li>
-                                                    <?php endforeach; ?>
+                                                    <?php $qty += $row->qty; endforeach; ?>
                                                 </ul>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th>Jumlah</th>
-                                            <td><?= $data->qty ?></td>
+                                            <th>Jumlah Barang</th>
+                                            <td><?= $qty ?></td>
                                         </tr>
                                         <tr>
                                             <th>Ongkir</th>
-                                            <td><?= $data->ongkir ?></td>
+                                            <td><?= 'Rp ' . number_format($data->ongkir, 2, ',', '.') ?></td>
                                         </tr>
                                         <tr>
                                             <th>Kurir</th>
                                             <td><?= $data->kurir ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Total Pembayaran</th>
+                                            <td>
+                                                <?php  
+                                                    $total = $data->ongkir;
+                                                    foreach ($barang as $row)
+                                                        $total += ($row->harga * $row->qty);
+                                                    echo 'Rp ' . number_format($total, 2, ',', '.');
+                                                ?>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th>Status</th>

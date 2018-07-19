@@ -564,7 +564,7 @@ class Admin extends MY_Controller {
         }
 
         $this->data['detail']        = $this->detail_pemesanan_m->get(['id_pemesanan' => $this->data['id']]);
-
+        $this->data['barang']       = $this->detail_pemesanan_m->get_detail(['id_pemesanan' => $this->data['id']]);
         $this->data['title']        = 'Detail Data pemesanan';
         $this->data['content']      = 'admin/pemesanan_detail';
         $this->template($this->data, 'admin');
