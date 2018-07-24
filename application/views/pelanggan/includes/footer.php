@@ -179,7 +179,58 @@
     <div id="dropDownSelect1"></div>
 
 
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/toastr.css') ?>">
+  <script type="text/javascript" src="<?= base_url('assets/toastr.js') ?>"></script>
+  <script type="text/javascript">
+    Notification.requestPermission().then(function(result) {
+      if ( result == 'granted' ) {
+        toastr.options.closeButton = true;
+        toastr.options.progressBar = true;
+        
+        if ( 'serviceWorker' in navigator ) {
+          window.addEventListener('load', function() {
+            navigator.serviceWorker.register( '<?= base_url( 'assets/service-worker.js' ) ?>' );
+          });
 
+          setInterval(function() {
+
+            $.ajax({
+              url: '<?= base_url('pelanggan/cek-barang') ?>',
+              type: 'POST',
+              data: {},
+              success: function( response ) {
+
+                let count = localStorage.getItem( 'count', 0 );
+                let json = $.parseJSON( response );
+                if ( count != json.length ) {
+                  let options = {
+                    body: 'Ada barang baru nih. Yuk cek web kita..',
+                    icon: '<?= base_url('assets/UserTemplate/images/icons/favicon.png') ?>'
+                  };
+                  toastr.options.onclick = function(e) {  
+                        window.open('<?= base_url('pelanggan/detail-barang') ?>/' + json[json.length - 1].kode_barang, '_blank');
+                  };
+                  toastr.info(options.body);
+                  // var notification = new Notification( 'E-Commerce', options );
+                  // localStorage.setItem( 'count', json.length );
+                  // notification.onclick = function(event) {
+                  //   event.preventDefault(); // prevent the browser from focusing the Notification's tab
+                  //   window.open('<?= base_url('pelanggan/detail-barang') ?>/' + json[json.length - 1].kode_barang, '_blank');
+                  // }
+                  // setTimeout(notification.close.bind(notification), 5000); 
+                }
+
+              },
+              error: function( err ) {
+                console.log( err.responseText );
+              }
+            });
+
+          }, 20000);
+        }
+      }
+    });
+  </script>
 
 <!--===============================================================================================-->
     <script type="text/javascript" src="<?= base_url('assets/usertemplate/') ?>vendor/animsition/js/animsition.min.js"></script>
@@ -230,8 +281,8 @@
     <script type="text/javascript" src="<?= base_url('assets/usertemplate/') ?>vendor/daterangepicker/daterangepicker.js"></script>
 
 <!--===============================================================================================-->
-    <script type="text/javascript" src="<?= base_url('assets/usertemplate/') ?>vendor/noui/nouislider.min.js"></script>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript" src="<?= base_url('assets/usertemplate/') ?>vendor/noui/nouislider.min.js"></script> -->
+    <!-- <script type="text/javascript">
         /*[ No ui ]
         ===========================================================*/
         var filterBar = document.getElementById('filter-bar');
@@ -253,7 +304,7 @@
         filterBar.noUiSlider.on('update', function( values, handle ) {
             skipValues[handle].innerHTML = Math.round(values[handle]) ;
         });
-    </script>
+    </script> -->
 
 <!--===============================================================================================-->
     <script src="<?= base_url('assets/usertemplate/') ?>js/main.js"></script>

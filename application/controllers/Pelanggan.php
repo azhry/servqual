@@ -20,6 +20,19 @@ class Pelanggan extends MY_Controller
         }
 
         $this->load->model('kategori_barang_m');
+        // $fields = [
+        //  'to'    => '/topics/new_item',
+        //  'data'  => 'hehehe',
+        //  'priority'      => 'high',
+        //  'notification'  => [
+        //      'title' => 'Seseorang melakukan voting',
+        //      'body'  => 'Lihat skor sementara para finalis',
+        //      'sound' => 'default',
+        //      'icon'  => base_url( 'assets/pic.png' )
+        //  ]
+        // ];
+
+        // $this->send_push_notification( $fields );
     }
 
     public function index()
