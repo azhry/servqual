@@ -208,16 +208,10 @@
                     icon: '<?= base_url('assets/UserTemplate/images/icons/favicon.png') ?>'
                   };
                   toastr.options.onclick = function(e) {  
-                        window.open('<?= base_url('pelanggan/detail-barang') ?>/' + json[json.length - 1].kode_barang, '_blank');
+                        window.open('<?= base_url('pelanggan/detail-barang') ?>/' + json[0].kode_barang, '_blank');
                   };
                   toastr.info(options.body);
-                  // var notification = new Notification( 'E-Commerce', options );
-                  // localStorage.setItem( 'count', json.length );
-                  // notification.onclick = function(event) {
-                  //   event.preventDefault(); // prevent the browser from focusing the Notification's tab
-                  //   window.open('<?= base_url('pelanggan/detail-barang') ?>/' + json[json.length - 1].kode_barang, '_blank');
-                  // }
-                  // setTimeout(notification.close.bind(notification), 5000); 
+                  localStorage.setItem( 'count', json.length );
                 }
 
               },
