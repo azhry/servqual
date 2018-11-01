@@ -312,14 +312,22 @@ class Pelanggan extends MY_Controller
 
     public function kritik_saran()
     {
+        if (!$this->data['logged_in'])
+        {
+            $this->flashmsg('Anda harus login terlebih dahulu untuk mengakses halaman tersebut', 'warning');
+            redirect('login');
+        }
+
         if ($this->POST('submit'))
         {
             $this->load->model('kritik_saran_m');
             $this->data['kritik_saran'] = [
-                'kritik'    => $this->POST('kritik'),
-                'saran'     => $this->POST('saran')
+                'kritik'        => $this->POST('kritik'),
+                'saran'         => $this->POST('saran'),
+                'id_pengguna'   => $this->data['id_pengguna']
             ];
             $this->kritik_saran_m->insert($this->data['kritik_saran']);
+            $this->flashmsg('Terima kasih atas kritik & saran yang telah anda berikan');
             redirect('pelanggan');
         }
 

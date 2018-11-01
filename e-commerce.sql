@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2018 at 03:59 PM
--- Server version: 10.1.28-MariaDB
+-- Generation Time: 01 Nov 2018 pada 13.05
+-- Versi Server: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `barang`
+-- Struktur dari tabel `barang`
 --
 
 CREATE TABLE `barang` (
@@ -41,7 +41,7 @@ CREATE TABLE `barang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `barang`
+-- Dumping data untuk tabel `barang`
 --
 
 INSERT INTO `barang` (`kode_barang`, `id_kategori_barang`, `nama`, `deskripsi`, `harga`, `stok`, `status`, `jenis`, `created_at`) VALUES
@@ -74,7 +74,7 @@ INSERT INTO `barang` (`kode_barang`, `id_kategori_barang`, `nama`, `deskripsi`, 
 ('32', 2, 'Tas wanita', '', 65000, 10, '0', 'Reguler', '2018-07-18 13:51:02'),
 ('33', 2, 'Somlloh pendek Dompet purse wallet fashion korean style', '', 50000, 10, '0', 'Reguler', '2018-07-18 13:51:02'),
 ('34', 2, 'Keranjang multifungsi ', '', 35000, 10, '0', 'Reguler', '2018-07-18 13:51:02'),
-('35', 3, 'Celengan Kaleng Karakter ', '', 15000, 9, '0', 'Reguler', '2018-07-18 13:51:02'),
+('35', 3, 'Celengan Kaleng Karakter ', '', 15000, 8, '0', 'Reguler', '2018-07-18 13:51:02'),
 ('36', 3, 'Robocar', '', 60000, 10, '0', 'Reguler', '2018-07-18 13:51:02'),
 ('366EM1IO', 4, 'asdads', '<p>sadas</p>', 20000, 100, '1', 'Reguler', '2018-07-18 13:51:02'),
 ('37', 3, 'Boneka Tayo ', 'Boneka tayo size L\r\nUkuran 28 cm x 25 Cm\r\n', 50000, 10, '0', 'Reguler', '2018-07-18 13:51:02'),
@@ -92,6 +92,7 @@ INSERT INTO `barang` (`kode_barang`, `id_kategori_barang`, `nama`, `deskripsi`, 
 ('47', 5, 'Pemencet Jerawat ', '', 5000, 10, '0', 'Reguler', '2018-07-18 13:51:02'),
 ('48', 5, 'Kuas make up naked ', '', 75000, 10, '0', 'Reguler', '2018-07-18 13:51:02'),
 ('49', 5, 'Gunting kuku Karakter ', '', 10000, 10, '0', 'Reguler', '2018-07-18 13:51:02'),
+('4U2P3BBQ', 2, 'Azhary Arliansyah', '<p>dgfdgfd</p>', 2000, 100, '1', 'Reguler', '2018-07-29 03:36:16'),
 ('5', 1, 'Charger Xiaomi Original (Kepala Indonesia) ', 'Spesifikasi :\r\n* MDY-03-AF\r\n* Input : 100-240VAC , 50/60Hz , 0.5A\r\n* Output : 5V / 2000mA\r\n', 110000, 10, '1', 'Reguler', '2018-07-18 13:51:02'),
 ('50', 5, 'Eyebrow Template Alis - Cetakan Alis Mata', '', 10000, 10, '0', 'Reguler', '2018-07-18 13:51:02'),
 ('51', 5, 'Sisir Jumbo Anti Rontok ', '', 15000, 10, '0', 'Reguler', '2018-07-18 13:51:02'),
@@ -100,22 +101,18 @@ INSERT INTO `barang` (`kode_barang`, `id_kategori_barang`, `nama`, `deskripsi`, 
 ('54', 5, 'Penjepit Bulu Mata Galenco New York ', '', 10000, 10, '0', 'Reguler', '2018-07-18 13:51:02'),
 ('55', 4, 'Mixer Garlic ', 'MIXER GARLIC ( PAKING SEGEL )\r\nBUKAN PAKING OPP / PLASTIK apalagi yang tidak pakai paking, hanya barang saja, beda kualitas, beda harga \r\nAlat press untuk menghaluskan dan mencacah bawang putih, jahe, bumbu dapur lainnya. Bisa digunakan juga untuk memudahkan mengupas kulit bawang putih.\r\n', 15000, 10, '0', 'Reguler', '2018-07-18 13:51:02'),
 ('56', 2, 'Tas pesta 0331', '', 115000, 10, '0', 'Reguler', '2018-07-18 13:51:02'),
-('57', 1, 'hardcase', '<p>aa</p>', 30000, 50, '1', 'Reguler', '2018-07-18 13:51:02'),
-('5FE6VJXN', 2, 'Azhary Arliansyah', '<p>as</p>', 1000, 100, '1', 'Reguler', '2018-07-18 13:51:02'),
 ('6', 1, 'Man case + Tg', 'Type\r\n- Oppo A83\r\n- Oppo F3\r\n- Oppo F5\r\n- Oppo A71\r\n- Oppo A37\r\n- Oppo A57\r\n- Xiaomi redmi note 5a\r\n- Xiaomi redmi note 4\r\n- Xiaomi 5plus\r\n- Samsung J2prime\r\n- Vivo V9\r\n', 60000, 10, '1', 'Reguler', '2018-07-18 13:51:02'),
-('6R07SGBK', 2, 'werwe', '<p>sdfs</p>', 1000, 1000, '1', 'Promo', '2018-07-18 13:58:43'),
 ('7', 1, 'Softcase Fuze Glass \"Pattern Design\" :', '~OPPO F7\r\n~OPPO F5\r\n~OPPO A83\r\n~OPPO A71\r\n~OPPO NEO 9\r\n~OPPO A57\r\n~REDMI 5\r\n~REDMI 5+\r\n~REDMI 5A\r\n~REDMI NOTE 5A\r\n~REDMI 5X /A1\r\n~REDMI NOTE 4X\r\n~VIVO V9\r\n~VIVO V7\r\n~ J2 PRO\r\n~J2 PRIME\r\n~ J7+\r\n~IPHONE 5G\r\n~IPHONE 6G\r\n~IPHONE 6G+\r\n', 40000, 10, '1', 'Reguler', '2018-07-18 13:51:02'),
-('7VL817M5', 2, 'aaabb', '<p>abcd</p>', 100000, 100, '1', 'Reguler', '2018-07-18 13:51:02'),
 ('8', 1, 'Silikon 3D Korean Cute', 'FOR TYPE HOT2 SAJA:\r\n• SAM J2PRIME *HOT*\r\n• SAM J2 PRO(2018) *HOT* • REDMI 4A\r\n• REDMI 4X\r\n• REDMI 5 *HOT*\r\n• REDMI 5+ *HOT*\r\n• REDMI 5A *HOT*\r\n• REDMI 5X/A1 *HOT*\r\n• REDMI NOTE4X *HOT*\r\n• REDMI NOTE5A *HOT* • OPPO A71 *HOT*\r\n• OPPO A39\r\n• OPPO A57\r\n• OPPO A83 *HOT*\r\n• OPPO NEO7\r\n• OPPO NEO9 *HOT*\r\n• OPPO F1S\r\n• OPPO F5 *HOT*\r\n• OPPO F7 *HOT* • VIVO V7 *HOT*\r\n• VIVI V9\r\n', 50000, 10, '0', 'Reguler', '2018-07-18 13:51:02'),
 ('9', 1, 'Case Violet ', 'Soft Case Premium Violet Original \r\nFor Type : - Iphone 6\r\n- Samsung A8 (2018)\r\n- Samsung A8+ (2018)\r\n- *Samsung Note 8 (New)*\r\n- Samsung S8\r\n- samsung S8+\r\n- Samsung S6 Edge\r\n- Samsung S9 Neww\r\n- Samsung S9+ Neww\r\n- Xiao Mi Red Mi 2S\r\n- Xiao Mi Red Mi 4X - Redmi 5+ Neww\r\n- Xiao Mi Red Mi Note 3\r\n- Xiao Mi Red Mi Note 5 Pro Neww - *Xiao Mi Max 2 New*\r\n- Xiaomi Mi Note 2\r\n- Oppo Neo 9\r\n- Oppo A39\r\n- Oppo A83\r\n- Oppo F5\r\n- *Vivo V9 Neww*\r\n- Vivo Y21/Y22\r\n', 40000, 10, '0', 'Reguler', '2018-07-18 13:51:02'),
-('KNDNW3DZ', 3, 'fsdfwe', '<p>sdfsd</p>', 1000, 100, '1', 'Promo', '2018-07-18 13:57:56'),
-('PTU861LL', 1, 'Cuba', '<p>aaa bbb</p>', 123455, 10, '0', 'Reguler', '2018-07-18 13:51:02'),
+('DDNHU3WW', 3, 'Mainan', '<p>Mainan</p>', 2000, 1000, '1', 'Reguler', '2018-07-26 10:12:13'),
+('SNVR5H7H', 1, 'Aksesoris', '<p>Aksesoris</p>', 1000, 1000, '1', 'Reguler', '2018-07-26 10:13:06'),
 ('Z4S2HTK6', 3, 'Azhary Arliansyah', '<p>asdsad</p>', 2000, 100, '1', 'Promo', '2018-07-18 13:51:02');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_pemesanan`
+-- Struktur dari tabel `detail_pemesanan`
 --
 
 CREATE TABLE `detail_pemesanan` (
@@ -126,7 +123,7 @@ CREATE TABLE `detail_pemesanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `detail_pemesanan`
+-- Dumping data untuk tabel `detail_pemesanan`
 --
 
 INSERT INTO `detail_pemesanan` (`id_detail_pemesanan`, `id_pemesanan`, `kode_barang`, `qty`) VALUES
@@ -135,12 +132,13 @@ INSERT INTO `detail_pemesanan` (`id_detail_pemesanan`, `id_pemesanan`, `kode_bar
 (10, 5, '0AVRWQCT', 1),
 (11, 5, '11', 1),
 (12, 5, '1', 1),
-(13, 6, '35', 1);
+(13, 6, '35', 1),
+(14, 7, '35', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jawaban`
+-- Struktur dari tabel `jawaban`
 --
 
 CREATE TABLE `jawaban` (
@@ -151,7 +149,7 @@ CREATE TABLE `jawaban` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jawaban`
+-- Dumping data untuk tabel `jawaban`
 --
 
 INSERT INTO `jawaban` (`id_jawaban`, `jawaban`, `id_pertanyaan`, `skor`) VALUES
@@ -209,7 +207,7 @@ INSERT INTO `jawaban` (`id_jawaban`, `jawaban`, `id_pertanyaan`, `skor`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jawaban_pengguna`
+-- Struktur dari tabel `jawaban_pengguna`
 --
 
 CREATE TABLE `jawaban_pengguna` (
@@ -220,7 +218,7 @@ CREATE TABLE `jawaban_pengguna` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jawaban_pengguna`
+-- Dumping data untuk tabel `jawaban_pengguna`
 --
 
 INSERT INTO `jawaban_pengguna` (`id_jawaban_pengguna`, `id_pengguna`, `id_pertanyaan`, `id_jawaban`) VALUES
@@ -247,7 +245,7 @@ INSERT INTO `jawaban_pengguna` (`id_jawaban_pengguna`, `id_pengguna`, `id_pertan
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kategori_barang`
+-- Struktur dari tabel `kategori_barang`
 --
 
 CREATE TABLE `kategori_barang` (
@@ -256,7 +254,7 @@ CREATE TABLE `kategori_barang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `kategori_barang`
+-- Dumping data untuk tabel `kategori_barang`
 --
 
 INSERT INTO `kategori_barang` (`id_kategori_barang`, `nama_kategori`) VALUES
@@ -269,28 +267,29 @@ INSERT INTO `kategori_barang` (`id_kategori_barang`, `nama_kategori`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kritik_saran`
+-- Struktur dari tabel `kritik_saran`
 --
 
 CREATE TABLE `kritik_saran` (
   `id_kritik_saran` int(11) NOT NULL,
+  `id_pengguna` int(11) NOT NULL,
   `kritik` text NOT NULL,
   `saran` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `kritik_saran`
+-- Dumping data untuk tabel `kritik_saran`
 --
 
-INSERT INTO `kritik_saran` (`id_kritik_saran`, `kritik`, `saran`, `created_at`) VALUES
-(1, 'tes kritik', 'tes saran', '2018-07-12 07:38:39'),
-(2, 'dsfds', 'efsd', '2018-07-15 08:05:39');
+INSERT INTO `kritik_saran` (`id_kritik_saran`, `id_pengguna`, `kritik`, `saran`, `created_at`) VALUES
+(3, 3, 'test', 'test', '2018-11-01 11:57:04'),
+(4, 3, 'test', 'test', '2018-11-01 12:02:18');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pemesanan`
+-- Struktur dari tabel `pemesanan`
 --
 
 CREATE TABLE `pemesanan` (
@@ -305,18 +304,19 @@ CREATE TABLE `pemesanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pemesanan`
+-- Dumping data untuk tabel `pemesanan`
 --
 
 INSERT INTO `pemesanan` (`id_pemesanan`, `id_pengguna`, `status`, `waktu_pemesanan`, `nama_penerima`, `alamat_penerima`, `kurir`, `ongkir`) VALUES
 (4, 5, 'Belum bayar', '2018-07-10 11:46:24', 'Ayu Lestari', 'haha huhu', 'jne', 112000),
 (5, 3, 'Belum bayar', '2018-07-12 14:21:06', 'Azhary', 'kaaa', 'tiki', 32000),
-(6, 5, 'Belum bayar', '2018-07-15 15:05:01', 'test', 'sadas', 'jne', 25000);
+(6, 5, 'Belum bayar', '2018-07-15 15:05:01', 'test', 'sadas', 'jne', 25000),
+(7, 3, 'Belum bayar', '2018-11-01 18:49:51', 'test', 'test', 'jne', 25000);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengguna`
+-- Struktur dari tabel `pengguna`
 --
 
 CREATE TABLE `pengguna` (
@@ -332,7 +332,7 @@ CREATE TABLE `pengguna` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pengguna`
+-- Dumping data untuk tabel `pengguna`
 --
 
 INSERT INTO `pengguna` (`id_pengguna`, `id_role`, `username`, `password`, `email`, `nama`, `jenis_kelamin`, `alamat`, `no_hp`) VALUES
@@ -345,7 +345,7 @@ INSERT INTO `pengguna` (`id_pengguna`, `id_role`, `username`, `password`, `email
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pertanyaan`
+-- Struktur dari tabel `pertanyaan`
 --
 
 CREATE TABLE `pertanyaan` (
@@ -354,7 +354,7 @@ CREATE TABLE `pertanyaan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pertanyaan`
+-- Dumping data untuk tabel `pertanyaan`
 --
 
 INSERT INTO `pertanyaan` (`id_pertanyaan`, `pertanyaan`) VALUES
@@ -372,7 +372,7 @@ INSERT INTO `pertanyaan` (`id_pertanyaan`, `pertanyaan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role`
+-- Struktur dari tabel `role`
 --
 
 CREATE TABLE `role` (
@@ -381,7 +381,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `role`
+-- Dumping data untuk tabel `role`
 --
 
 INSERT INTO `role` (`id_role`, `role`) VALUES
@@ -430,7 +430,8 @@ ALTER TABLE `kategori_barang`
 -- Indexes for table `kritik_saran`
 --
 ALTER TABLE `kritik_saran`
-  ADD PRIMARY KEY (`id_kritik_saran`);
+  ADD PRIMARY KEY (`id_kritik_saran`),
+  ADD KEY `id_pengguna` (`id_pengguna`);
 
 --
 -- Indexes for table `pemesanan`
@@ -466,7 +467,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `detail_pemesanan`
 --
 ALTER TABLE `detail_pemesanan`
-  MODIFY `id_detail_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_detail_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `jawaban`
@@ -490,13 +491,13 @@ ALTER TABLE `kategori_barang`
 -- AUTO_INCREMENT for table `kritik_saran`
 --
 ALTER TABLE `kritik_saran`
-  MODIFY `id_kritik_saran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_kritik_saran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  MODIFY `id_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `pengguna`
@@ -517,30 +518,36 @@ ALTER TABLE `role`
   MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `barang`
+-- Ketidakleluasaan untuk tabel `barang`
 --
 ALTER TABLE `barang`
   ADD CONSTRAINT `kategori` FOREIGN KEY (`id_kategori_barang`) REFERENCES `kategori_barang` (`id_kategori_barang`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `detail_pemesanan`
+-- Ketidakleluasaan untuk tabel `detail_pemesanan`
 --
 ALTER TABLE `detail_pemesanan`
   ADD CONSTRAINT `barang` FOREIGN KEY (`kode_barang`) REFERENCES `barang` (`kode_barang`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `pemesanan` FOREIGN KEY (`id_pemesanan`) REFERENCES `pemesanan` (`id_pemesanan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `pemesanan`
+-- Ketidakleluasaan untuk tabel `kritik_saran`
+--
+ALTER TABLE `kritik_saran`
+  ADD CONSTRAINT `kritik_saran_ibfk_1` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id_pengguna`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `pemesanan`
 --
 ALTER TABLE `pemesanan`
   ADD CONSTRAINT `pengguna` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id_pengguna`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `pengguna`
+-- Ketidakleluasaan untuk tabel `pengguna`
 --
 ALTER TABLE `pengguna`
   ADD CONSTRAINT `role` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE;

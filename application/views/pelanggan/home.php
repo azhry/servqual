@@ -1,3 +1,28 @@
+    <?php $msg = $this->session->flashdata('msg');  ?>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        <?php if (isset($msg)): ?>
+          $("#msg-modal").modal();
+        <?php endif; ?>
+      });
+    </script>
+
+    <div class="modal fade" id="msg-modal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 style="color:red;"><span class="glyphicon glyphicon-lock"></span> Pesan</h4>
+          </div>
+          <div class="modal-body">
+            <p><?= $msg ?></p>
+          </div>
+        </div>
+      </div>
+    </div> 
+
 <!-- Slide1 -->
     <section class="slide1">
         <div class="wrap-slick1">

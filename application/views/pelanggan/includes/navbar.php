@@ -11,16 +11,7 @@
                 <!-- Menu -->
                 <div class="wrap_menu">
                     <nav class="menu">
-                        <ul class="main_menu"><!-- 
-                            <li>
-                                <a href="index.html">Home</a>
-                                <ul class="sub_menu">
-                                    <li><a href="index.html">Homepage V1</a></li>
-                                    <li><a href="home-02.html">Homepage V2</a></li>
-                                    <li><a href="home-03.html">Homepage V3</a></li>
-                                </ul>
-                            </li> -->
-
+                        <ul class="main_menu">
                             <li>
                                 <a href="<?= base_url() ?>">Home</a>
                             </li>
@@ -37,16 +28,12 @@
                                <a href="<?= base_url('pelanggan/perbandingan-produk') ?>">Perbandingan Produk</a>
                             </li>
 
-                            <!-- <li>
-                                <a href="<?= base_url('pelanggan/survei') ?>">Survei</a>
-                            </li> -->
-
-                            <!-- <li>
-                                <a href="contact.html">Contact</a>
-                            </li> -->
-
+                            <?php if (isset($logged_in) && $logged_in): ?>
                             <li>
-
+                                <a href="<?= base_url('pelanggan/kritik-saran') ?>">Kritik & Saran</a>
+                            </li>
+                            <?php endif; ?>
+                            <li>
                                 <?php if(isset($username)): ?>
                                     <a href="<?= base_url('logout') ?>">Logout</a>
                                 <?php else: ?>

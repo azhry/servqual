@@ -919,7 +919,7 @@ class Admin extends MY_Controller {
         $this->load->model('kritik_saran_m');
         $this->data['title']        = 'Kritik dan Saran';
         $this->data['content']      = 'admin/kritik_saran';
-        $this->data['kritik_saran'] = $this->kritik_saran_m->get_by_order('created_at', 'DESC');
+        $this->data['kritik_saran'] = $this->kritik_saran_m->get_all();
         $this->template($this->data, 'admin');
     }
 

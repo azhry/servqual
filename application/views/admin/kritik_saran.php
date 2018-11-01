@@ -37,6 +37,7 @@
                             <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>Username</th>
                                         <th>Kritik</th>
                                         <th>Saran</th>
                                     </tr>
@@ -46,6 +47,7 @@
                                 <?php $i=1; foreach ($kritik_saran as $row): ?>
                                 <tr>
                                     <td width="4%"><?= $i ?></td>
+                                    <td><?= $row->username ?></td>
                                     <td><?= $row->kritik ?></td>
                                     <td><?= $row->saran ?></td>
                                 </tr>
