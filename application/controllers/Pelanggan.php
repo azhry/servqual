@@ -146,7 +146,7 @@ class Pelanggan extends MY_Controller
 
         if ( $this->POST( 'get_barang' ) ) {
 
-            echo json_encode( $this->barang_m->get_row_barang([ 'kode_barang' => $this->POST( 'kode_barang', 'hapus' => 0 ) ]) );
+            echo json_encode( $this->barang_m->get_row_barang([ 'kode_barang' => $this->POST( 'kode_barang' ), 'hapus' => 0 ]) );
             exit;
 
         }
