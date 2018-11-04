@@ -4,8 +4,8 @@
         <div class="container-menu-header">
             <div class="wrap_header">
                 <!-- Logo -->
-                <a href="index.html" class="logo">
-                    <img src="<?= base_url('assets/usertemplate/') ?>images/icons/logo.png" alt="IMG-LOGO">
+                <a href="<?= base_url() ?>" class="logo">
+                    <img src="<?= base_url('assets/logo.jpg') ?>" alt="IMG-LOGO" style="max-height: 80px !important;">
                 </a>
 
                 <!-- Menu -->

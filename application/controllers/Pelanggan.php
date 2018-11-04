@@ -28,6 +28,7 @@ class Pelanggan extends MY_Controller
 
         $this->data['title']    = 'Home';
         $this->data['barang']   = $this->barang_m->get_barang(['hapus' => 0]);
+        $this->data['promo']    = $this->barang_m->get_barang(['hapus' => 0, 'jenis' => 'Promo']);
         $this->data['content']  = 'pelanggan/home';
         $this->template($this->data, 'pelanggan');
     }

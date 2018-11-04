@@ -29,7 +29,7 @@
 							</div>
 						</div>
 
-						<div class="item-slick3" data-thumb="<?= base_url('assets/usertemplate/') ?>images/thumb-item-02.jpg">
+						<!-- <div class="item-slick3" data-thumb="<?= base_url('assets/usertemplate/') ?>images/thumb-item-02.jpg">
 							<div class="wrap-pic-w">
 								<img style="min-height: 400px;" src="" onerror = "this.src = '<?= base_url('assets/usertemplate/') ?>images/product-detail-02.jpg' " alt="IMG-PRODUCT">
 							</div>
@@ -39,7 +39,7 @@
 							<div class="wrap-pic-w">
 								<img src="images/product-detail-03.jpg" alt="IMG-PRODUCT">
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
