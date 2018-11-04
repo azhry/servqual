@@ -20,19 +20,6 @@ class Pelanggan extends MY_Controller
         }
 
         $this->load->model('kategori_barang_m');
-        // $fields = [
-        //  'to'    => '/topics/new_item',
-        //  'data'  => 'hehehe',
-        //  'priority'      => 'high',
-        //  'notification'  => [
-        //      'title' => 'Seseorang melakukan voting',
-        //      'body'  => 'Lihat skor sementara para finalis',
-        //      'sound' => 'default',
-        //      'icon'  => base_url( 'assets/pic.png' )
-        //  ]
-        // ];
-
-        // $this->send_push_notification( $fields );
     }
 
     public function index()
@@ -40,7 +27,7 @@ class Pelanggan extends MY_Controller
         $this->load->model('barang_m');
 
         $this->data['title']    = 'Home';
-        $this->data['barang']   = $this->barang_m->get_barang();
+        $this->data['barang']   = $this->barang_m->get_barang(['hapus' => 0]);
         $this->data['content']  = 'pelanggan/home';
         $this->template($this->data, 'pelanggan');
     }
@@ -51,7 +38,7 @@ class Pelanggan extends MY_Controller
         $this->check_allowance( !isset( $this->data['kode_barang'] ) );
         
         $this->load->model('barang_m');
-        $this->data['barang']         = $this->barang_m->get_row(['kode_barang' => $this->data['kode_barang']]);
+        $this->data['barang']         = $this->barang_m->get_row(['kode_barang' => $this->data['kode_barang', 'hapus' => 0]]);
         $this->check_allowance( !isset( $this->data['barang'] ), [ 'Data not found', 'danger' ] );
        
         $this->load->model( 'kategori_barang_m' );
@@ -59,7 +46,7 @@ class Pelanggan extends MY_Controller
         $this->check_allowance( !isset( $this->data['kategori'] ), [ 'Category not found', 'danger' ] );
 
         $this->data['title']          = 'Detail Barang';
-        $this->data['semua_barang']   = $this->barang_m->get_barang();
+        $this->data['semua_barang']   = $this->barang_m->get_barang(['hapus' => 0]);
         $this->data['content']        = 'pelanggan/detail_barang';
         $this->template($this->data, 'pelanggan');
     }
@@ -116,7 +103,7 @@ class Pelanggan extends MY_Controller
                 $id_pemesanan = $this->db->insert_id();
                 foreach ( $this->cart->contents() as $item ) {
 
-                    $barang = $this->barang_m->get_row([ 'kode_barang' => $item['id'] ]);
+                    $barang = $this->barang_m->get_row([ 'kode_barang' => $item['id'], 'hapus' => 0 ]);
                     if ( $barang ) {
                         $this->data['detail_pemesanan'] = [
                             'id_pemesanan'  => $id_pemesanan,
@@ -159,14 +146,14 @@ class Pelanggan extends MY_Controller
 
         if ( $this->POST( 'get_barang' ) ) {
 
-            echo json_encode( $this->barang_m->get_row_barang([ 'kode_barang' => $this->POST( 'kode_barang' ) ]) );
+            echo json_encode( $this->barang_m->get_row_barang([ 'kode_barang' => $this->POST( 'kode_barang', 'hapus' => 0 ) ]) );
             exit;
 
         }
 
         $this->data['title']          = 'Perbandingan Produk';
-        $this->data['barang']         = $this->barang_m->get_row(['kode_barang' => 'K405']);
-        $this->data['semua_barang']   = $this->barang_m->get();
+        $this->data['barang']         = $this->barang_m->get_row(['kode_barang' => 'K405', 'hapus' => 0]);
+        $this->data['semua_barang']   = $this->barang_m->get(['hapus' => 0]);
         $this->data['content']        = 'pelanggan/perbandingan_produk';
         $this->template($this->data, 'pelanggan');
     }
@@ -266,14 +253,14 @@ class Pelanggan extends MY_Controller
         $id_kategori_barang = $this->uri->segment(3);
 
         if(isset($id_kategori_barang)){
-            $this->data['barang2']       = $this->barang_m->get(['id_kategori_barang' => $id_kategori_barang]);
+            $this->data['barang2']       = $this->barang_m->get(['id_kategori_barang' => $id_kategori_barang, 'hapus' => 0]);
             $this->data['nama_kategori']= $this->kategori_barang_m->get_row(['id_kategori_barang' => $id_kategori_barang])->nama_kategori;
         }
 
         $this->data['title']        = 'Produk';
         $this->data['content']      = 'pelanggan/produk';
         $this->data['kategori']     = $this->kategori_barang_m->get();
-        $this->data['barang']       = $this->barang_m->get();
+        $this->data['barang']       = $this->barang_m->get(['hapus' => 0]);
         $this->template($this->data, 'pelanggan');
     }
 

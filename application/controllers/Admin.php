@@ -42,7 +42,7 @@ class Admin extends MY_Controller {
 
 		$this->data['title'] 	        = 'Dashboard ' . $this->title;
 		$this->data['content']	        = 'admin/dashboard';
-        $this->data['barang']           = $this->barang_m->get();
+        $this->data['barang']           = $this->barang_m->get(['hapus' => 0]);
         $this->data['kategori_barang']  = $this->kategori_barang_m->get();
         $this->data['pengguna']         = $this->pengguna_m->get();
         $this->data['role']             = $this->role_m->get();
@@ -86,7 +86,7 @@ class Admin extends MY_Controller {
         $this->data['title']        = 'Tambah Data Barang';
         $this->data['content']      = 'admin/barang_tambah';
         $this->data['kategori']   	= $this->kategori_barang_m->get();
-        $this->data['barang']      	= $this->barang_m->get();
+        $this->data['barang']      	= $this->barang_m->get(['hapus' => 0]);
         $this->template($this->data, 'admin');
     }
 
@@ -104,7 +104,7 @@ class Admin extends MY_Controller {
         }
 
         $this->load->model('barang_m');
-        $this->data['data']        = $this->barang_m->get_row(['kode_barang' => $this->data['id']]);
+        $this->data['data']        = $this->barang_m->get_row(['kode_barang' => $this->data['id'], 'hapus' => 0]);
         $this->data['nama_kategori'] = $this->kategori_barang_m->get_row(['id_kategori_barang' => $this->data['data']->id_kategori_barang])->nama_kategori;
 
         if (!isset($this->data['data']))
@@ -137,7 +137,7 @@ class Admin extends MY_Controller {
         $this->data['title']        = 'Edit Data Barang';
         $this->data['content']      = 'admin/barang_edit';
         $this->data['kategori']   	= $this->kategori_barang_m->get();
-        $this->data['barang']      	= $this->barang_m->get();
+        $this->data['barang']      	= $this->barang_m->get(['hapus' => 0]);
         $this->template($this->data, 'admin');
     }
 
@@ -155,7 +155,7 @@ class Admin extends MY_Controller {
         }
 
         $this->load->model('barang_m');
-        $this->data['data']        = $this->barang_m->get_row(['kode_barang' => $this->data['id']]);
+        $this->data['data']        = $this->barang_m->get_row(['kode_barang' => $this->data['id'], 'hapus' => 0]);
         if (!isset($this->data['id']))
         {
             $this->flashmsg('<i class="lnr lnr-warning"></i> Data barang tidak ditemukan', 'danger');
@@ -175,11 +175,12 @@ class Admin extends MY_Controller {
 
         if ($this->POST('delete') && $this->POST('kode_barang'))
         {
-            $this->barang_m->delete($this->POST('kode_barang'));
+            $this->barang_m->update($this->POST('kode_barang'), ['hapus' => 1]);
+            // $this->barang_m->delete($this->POST('kode_barang'));
             $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data barang berhasil dihapus');
         }
 
-        $this->data['data']        	= $this->barang_m->get();
+        $this->data['data']        	= $this->barang_m->get(['hapus' => 0]);
         $this->data['title']        = 'Data barang';
         $this->data['content']      = 'admin/barang_data';
         $this->template($this->data, 'admin');
@@ -874,7 +875,7 @@ class Admin extends MY_Controller {
 
         $this->data['title']        = 'Promo Barang';
         $this->data['content']      = 'admin/promo_data';
-        $this->data['barang']       = $this->barang_m->get_barang(['jenis' => 'Promo']);
+        $this->data['barang']       = $this->barang_m->get_barang(['jenis' => 'Promo','hapus' => 0]);
         $this->template($this->data, 'admin');
     }
 
@@ -910,7 +911,7 @@ class Admin extends MY_Controller {
         $this->data['title']        = 'Promo Barang';
         $this->data['content']      = 'admin/promo_barang';
         $this->data['kategori']     = $this->kategori_barang_m->get();
-        $this->data['barang']       = $this->barang_m->get();
+        $this->data['barang']       = $this->barang_m->get(['hapus' => 0]);
         $this->template($this->data, 'admin');
     }
 
