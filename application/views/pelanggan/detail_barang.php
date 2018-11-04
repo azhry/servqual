@@ -54,7 +54,7 @@
 				</span>
 
 				<!--  -->
-				<div class="p-t-33 p-b-60">
+				<div class="p-t-13 p-b-60">
 					<div class="flex-r-m flex-w p-t-10">
 						<div class="w-size16 flex-m flex-w">
 							<div class="flex-w bo5 of-hidden m-r-22 m-t-10 m-b-10">
@@ -75,6 +75,14 @@
 									Add to Cart
 								</button>
 							</div>
+						</div>
+					</div>
+					<div class="flex-r-m flex-w p-t-10">
+						<div class="w-size16 flex-m flex-w">
+							<!-- Button -->
+							<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('<?= base_url('open-graph/index/' . $kode_barang) ?>'),'facebook-share-dialog','width=626,height=436');">
+								Share
+							</button>
 						</div>
 					</div>
 				</div>
