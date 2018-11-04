@@ -38,7 +38,7 @@ class Pelanggan extends MY_Controller
         $this->check_allowance( !isset( $this->data['kode_barang'] ) );
         
         $this->load->model('barang_m');
-        $this->data['barang']         = $this->barang_m->get_row(['kode_barang' => $this->data['kode_barang', 'hapus' => 0]]);
+        $this->data['barang']         = $this->barang_m->get_row(['kode_barang' => $this->data['kode_barang'], 'hapus' => 0]);
         $this->check_allowance( !isset( $this->data['barang'] ), [ 'Data not found', 'danger' ] );
        
         $this->load->model( 'kategori_barang_m' );
