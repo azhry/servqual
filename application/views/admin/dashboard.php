@@ -53,6 +53,45 @@
                   </div>
                 </a>
               </div>
+              <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <a href="<?= base_url('admin/promo') ?>">
+                  <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-dollar"></i></div>
+                    <div class="count"><?= count($promo) ?></div>
+                    <h3>Promo</h3>
+                  </div>
+                </a>
+              </div>
+              <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <a href="<?= base_url('admin/pertanyaan') ?>">
+                  <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-edit"></i></div>
+                    <div class="count"><?= count($pertanyaan) ?></div>
+                    <h3>Pertanyaan</h3>
+                  </div>
+                </a>
+              </div>
+              <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <a href="<?= base_url('admin/jawaban') ?>">
+                  <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-edit"></i></div>
+                    <div class="count"><?= count($jawaban) ?></div>
+                    <h3>Jawaban</h3>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <div class="row top_tiles">
+              <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <a href="<?= base_url('admin/kritik-saran') ?>">
+                  <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-edit"></i></div>
+                    <div class="count"><?= count($kritik_saran) ?></div>
+                    <h3>Kritik & Saran</h3>
+                  </div>
+                </a>
+              </div>
             </div>
               
           </div>

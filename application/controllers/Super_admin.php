@@ -37,6 +37,9 @@ class Super_admin extends MY_Controller {
         $this->load->model('pengguna_m');
         $this->load->model('role_m');
         $this->load->model('pemesanan_m');
+        $this->load->model('pertanyaan_m');
+        $this->load->model('jawaban_m');
+        $this->load->model('kritik_saran_m');
 
 		$this->data['title'] 	        = 'Dashboard | ' . $this->title;
 		$this->data['content']	        = 'super_admin/dashboard';
@@ -45,6 +48,10 @@ class Super_admin extends MY_Controller {
         $this->data['pengguna']         = $this->pengguna_m->get();
         $this->data['role']             = $this->role_m->get();
         $this->data['pemesanan']        = $this->pemesanan_m->get();
+        $this->data['promo']            = $this->barang_m->get(['hapus' => 0, 'jenis' => 'Promo']);
+        $this->data['pertanyaan']       = $this->pertanyaan_m->get();
+        $this->data['jawaban']          = $this->jawaban_m->get();
+        $this->data['kritik_saran']     = $this->kritik_saran_m->get();
 		$this->template( $this->data , 'super_admin');
 	
 	}
