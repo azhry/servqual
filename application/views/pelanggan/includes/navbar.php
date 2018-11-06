@@ -29,9 +29,9 @@
                             </li>
 
                             <?php if (isset($logged_in) && $logged_in): ?>
-                            <li>
+                            <!-- <li>
                                 <a href="<?= base_url('pelanggan/kritik-saran') ?>">Kritik & Saran</a>
-                            </li>
+                            </li> -->
                             <?php endif; ?>
                             <li>
                                 <?php if(isset($username)): ?>
