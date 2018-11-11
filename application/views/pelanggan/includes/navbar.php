@@ -27,6 +27,9 @@
                             <li>
                                <a href="<?= base_url('pelanggan/perbandingan-produk') ?>">Perbandingan Produk</a>
                             </li>
+                            <li>
+                               <a href="<?= base_url('pelanggan/contact-us') ?>">Kontak Kami</a>
+                            </li>
 
                             <?php if (isset($logged_in) && $logged_in): ?>
                             <!-- <li>

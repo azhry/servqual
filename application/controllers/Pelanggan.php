@@ -33,6 +33,13 @@ class Pelanggan extends MY_Controller
         $this->template($this->data, 'pelanggan');
     }
 
+    public function contact_us()
+    {
+        $this->data['title']    = 'Kontak Kami';
+        $this->data['content']  = 'pelanggan/contact_us';
+        $this->template($this->data, 'pelanggan');
+    }
+
     public function detail_barang()
     {
         $this->data['kode_barang']    = $this->uri->segment(3);
