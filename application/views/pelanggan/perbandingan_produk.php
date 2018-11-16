@@ -1,3 +1,33 @@
+	<link rel="stylesheet" type="text/css" href="<?= base_url('assets/bootstrap-select/dist/css/bootstrap-select.min.css') ?>">
+	<script type="text/javascript" src="<?= base_url('assets/bootstrap-select/dist/js/bootstrap-select.min.js') ?>"></script>
+
+	<script type="text/javascript">
+		var barang = {};
+		var daftar_barang = [];
+		
+		<?php foreach ($semua_barang as $row): ?>
+
+			if (barang[<?= $row->id_kategori_barang ?>] == undefined) {
+				barang[<?= $row->id_kategori_barang ?>] = [{
+					nama: '<?= $row->nama ?>',
+					kode_barang: '<?= $row->kode_barang ?>'
+				}];
+			} else {
+				barang[<?= $row->id_kategori_barang ?>].push({
+					nama: '<?= $row->nama ?>',
+					kode_barang: '<?= $row->kode_barang ?>'
+				});
+			}
+
+			daftar_barang.push({
+				kode_barang: '<?= $row->kode_barang ?>',
+				nama: '<?= $row->nama ?>',
+				id_kategori_barang: '<?= $row->id_kategori_barang ?>'
+			});
+
+		<?php endforeach; ?>
+	</script>
+
 	<!-- breadcrumb -->
 	<div class="bread-crumb bgwhite flex-w p-l-52 p-r-15 p-t-30 p-l-15-sm">
 		<a href="<?= base_url() ?>" class="s-text16">
@@ -14,19 +44,24 @@
 	<div class="container bgwhite p-t-35 p-b-80">
 		<div class="flex-w flex-sb">
 			<h5>Pilih dua produk yang ingin dibandingkan</h5>
-			
-			<select style="width: 30% !important;" class="form-control" name="produk_1" id="produk_1">
-				<option>Pilih Produk 1</option>
-				<?php foreach ( $semua_barang as $row ): ?>
-					<option value="<?= $row->kode_barang ?>"><?= $row->nama ?></option>
-				<?php endforeach; ?>
-			</select>
-			<select style="width: 30% !important;" class="form-control" name="produk_2" id="produk_2">
-				<option>Pilih Produk 2</option>
-				<?php foreach ( $semua_barang as $row ): ?>
-					<option value="<?= $row->kode_barang ?>"><?= $row->nama ?></option>
-				<?php endforeach; ?>
-			</select>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<select style="width: 30% !important;" class="form-control" name="produk_1" id="produk_1">
+					<option>Pilih Produk 1</option>
+					<?php foreach ( $semua_barang as $row ): ?>
+						<option value="<?= $row->kode_barang ?>"><?= $row->nama ?></option>
+					<?php endforeach; ?>
+				</select>	
+			</div>
+			<div class="col-md-6">
+				<select style="width: 30% !important;" class="form-control" name="produk_2" id="produk_2">
+					<option>Pilih Produk 2</option>
+					<?php foreach ( $semua_barang as $row ): ?>
+						<option value="<?= $row->kode_barang ?>"><?= $row->nama ?></option>
+					<?php endforeach; ?>
+				</select>	
+			</div>
 		</div>
 		<div class="flex-w flex-sb">
 			<div class="w-size13 p-t-30 respon5">
@@ -131,7 +166,22 @@
 	<script type="text/javascript">
 		$( document ).ready(function() {
 
+			$('#produk_1, #produk_2').selectpicker({ liveSearch: true });
 			$( '#produk_1' ).on('change', function() {
+
+				var kode_barang = $(this).val();
+				let selected_item = daftar_barang.filter(function(x) {
+					return x.kode_barang == kode_barang;
+				});
+
+				let html = '<option value="">Pilih Produk 2</option>';
+				let x = barang[selected_item[0].id_kategori_barang];
+				for (let i = 0; i < x.length; i++) {
+					html += '<option value="' + x[i].kode_barang + '">' + x[i].nama + '</option>';
+				}
+
+				$('#produk_2').selectpicker('destroy');
+				$('#produk_2').html(html).selectpicker({ liveSearch: true });
 
 				$.ajax({
 					url: '<?= base_url( 'pelanggan/perbandingan-produk' ) ?>',
