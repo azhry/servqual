@@ -230,7 +230,7 @@ class Pelanggan extends MY_Controller
                     $jawaban = [
                         'id_pengguna'       => $this->data['id_pengguna'],
                         'id_pertanyaan'     => $this->data['pertanyaan'][$i]->id_pertanyaan,
-                        'id_jawaban'        => $this->POST('pertanyaan_'.($i + 1))
+                        'id_jawaban'        => $this->POST('pertanyaan_'.$this->data['pertanyaan'][$i]->id_pertanyaan)
                     ];
 
                     if (isset($jawaban['id_jawaban']))
