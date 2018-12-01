@@ -105,8 +105,16 @@
 					</h5>
 
 					<div class="dropdown-content dis-none p-t-15 p-b-23">
-						<p class="s-text8">
-							<?= $barang->stok ?>
+						<p class="s-text8" id="item-stock">
+							<?php 
+								$stok = $barang->stok;
+								if ($cart_idx !== false)
+								{
+									$item = array_values($cart);
+									$stok = $stok - $item[$cart_idx]['qty'];
+								}
+								echo $stok;
+							?>
 						</p>
 					</div>
 				</div>
@@ -204,24 +212,48 @@
 		    });
 
 		    $( '#add-to-cart-button' ).on('click', () => {
-		    	$.ajax({
-		    		url: '<?= base_url( 'pelanggan/add-to-cart' ) ?>',
-		    		type: 'POST',
-		    		data: {
-		    			add_to_cart: true,
-		    			id: '<?= $barang->kode_barang ?>',
-		    			qty: $( '#qty' ).val(),
-		    			price: '<?= $barang->harga ?>',
-		    			name: '<?= $barang->nama ?>',
-		    			description: '<?= json_encode($barang->deskripsi) ?>',
-		    			id_kategori: '<?= $barang->id_kategori_barang ?>'
+		    	if ($('#qty').val() > <?= $stok ?>) {
+		    		swal('<?= $barang->nama ?>', "stok tidak mencukupi", "danger");
+		    	} else {
+		    		$.ajax({
+			    		url: '<?= base_url( 'pelanggan/add-to-cart' ) ?>',
+			    		type: 'POST',
+			    		data: {
+			    			add_to_cart: true,
+			    			id: '<?= $barang->kode_barang ?>',
+			    			qty: $( '#qty' ).val(),
+			    			price: '<?= $barang->harga ?>',
+			    			name: '<?= $barang->nama ?>',
+			    			description: '<?= json_encode($barang->deskripsi) ?>',
+			    			id_kategori: '<?= $barang->id_kategori_barang ?>'
 
-		    		},
-		    		success: ( response ) => {
-		    			swal('<?= $barang->nama ?>', "is added to cart !", "success");
-		    		},
-		    		error: ( err ) => { console.log( err.responseText ); }
-		    	});
+			    		},
+			    		success: ( response ) => {
+			    			swal('<?= $barang->nama ?>', "is added to cart !", "success");
+			    			var json = $.parseJSON(response);
+			    			var total = $('#cart_subtotal_hidden_navbar').val();
+			    			var assetUrl = '<?= base_url('assets') ?>';
+			    			var badgeValue = $('#cart_badge_navbar').text();
+			    			badgeValue = Number(badgeValue) + 1;
+			    			$('#cart_badge_navbar').text(badgeValue);
+			    			$('#cart_subtotal_hidden_navbar').val(total + (json.qty * json.price));
+
+			    			$('#cart_item_navbar').append('<li class="header-cart-item">' +
+		                        '<div class="header-cart-item-img">' +
+		                            '<img src="' + assetUrl + '/produk/' + json.options.nama_kategori + '/' + json.id + '.jpg" alt="IMG">' +
+		                        '</div>' +
+		                        '<div class="header-cart-item-txt"><?= $barang->nama ?><span class="header-cart-item-info">' +
+		                                json.qty + 'x' + convertToRupiah(Number(json.price)) +
+		                            '</span>' +
+		                        '</div>' +
+		                    '</li>');
+
+		                    $('#subtotal').text('Subtotal: ' + convertToRupiah(Number(total) + (json.qty * json.price)));
+		                    $('#item-stock').text(<?= $barang->stok ?> - json.qty);
+			    		},
+			    		error: ( err ) => { console.log( err.responseText ); }
+			    	});
+		    	}
 		    });
 
 		});

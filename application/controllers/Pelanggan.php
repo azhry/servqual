@@ -53,9 +53,13 @@ class Pelanggan extends MY_Controller
         $this->data['kategori']       = $this->kategori_barang_m->get_row([ 'id_kategori_barang' => $this->data['barang']->id_kategori_barang ]);
         $this->check_allowance( !isset( $this->data['kategori'] ), [ 'Category not found', 'danger' ] );
 
-        $this->data['title']          = 'Detail Barang';
-        $this->data['semua_barang']   = $this->barang_m->get_barang(['hapus' => 0]);
-        $this->data['content']        = 'pelanggan/detail_barang';
+        $this->data['cart'] = $this->cart->contents();
+        $x = array_search($this->data['kode_barang'], array_column($this->data['cart'], 'id'));
+
+        $this->data['cart_idx']         = $x;
+        $this->data['title']            = 'Detail Barang';
+        $this->data['semua_barang']     = $this->barang_m->get_barang(['hapus' => 0]);
+        $this->data['content']          = 'pelanggan/detail_barang';
         $this->template($this->data, 'pelanggan');
     }
 
@@ -193,16 +197,34 @@ class Pelanggan extends MY_Controller
     public function update_cart() {
 
         if ( $this->POST( 'update_cart' ) ) {
+            $this->load->model('barang_m');
+            $barang = $this->barang_m->get_row(['kode_barang' => $this->POST('id')]);
+            if ($barang->stok < $this->POST('qty')) {
+                echo 'out of stock';
+            } else {
+                $item = [
+                    'rowid' => $this->POST( 'rowid' ),
+                    'qty'   => $this->POST( 'qty' )
+                ];
 
-            $item = [
-                'rowid' => $this->POST( 'rowid' ),
-                'qty'   => $this->POST( 'qty' )
-            ];
-
-            $this->cart->update( $item );
+                $this->cart->update( $item );
+            }
 
         }
 
+    }
+
+    public function delete_cart_item() 
+    {
+        if ($this->POST('delete_cart'))
+        {
+            $item = [
+                'rowid' => $this->POST('rowid'),
+                'qty'   => 0
+            ];
+
+            $this->cart->update($item);
+        }
     }
 
     public function cek_barang() {

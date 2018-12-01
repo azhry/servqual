@@ -32,6 +32,7 @@
 							<th class="column-3">Price</th>
 							<th class="column-4 p-l-70">Quantity</th>
 							<th class="column-5">Total</th>
+							<th class="column-6"></th>
 						</tr>
 
 						<?php if ( count( $this->cart->contents() ) > 0 ): ?>
@@ -49,18 +50,23 @@
 								<td class="column-3"><?= 'IDR ' . number_format($items['price'], 2, ',', '.') ?></td>
 								<td class="column-4">
 									<div class="flex-w bo5 of-hidden w-size17">
-										<button onclick="changeQty( '<?= $items['rowid'] ?>', 'down', <?= $items['price'] ?> );" class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
+										<button onclick="changeQty( '<?= $items['rowid'] ?>', 'down', <?= $items['price'] ?>, '<?= $items['id'] ?>' );" class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
 											<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
 										</button>
 
 										<input class="size8 m-text18 t-center num-product" type="number" id="<?= 'qty-' . $items['rowid'] ?>"  value="<?= $items['qty'] ?>">
 
-										<button onclick="changeQty( '<?= $items['rowid'] ?>', 'up', <?= $items['price'] ?> );" class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
+										<button onclick="changeQty( '<?= $items['rowid'] ?>', 'up', <?= $items['price'] ?>, '<?= $items['id'] ?>' );" class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
 											<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
 										</button>
 									</div>
 								</td>
 								<td class="column-5" id="<?= 'price-' . $items['rowid'] ?>"><?= 'IDR ' . number_format($items['price'] * $items['qty'], 2, ',', '.') ?></td>
+								<td>
+									<button onclick="deleteItem('<?= $items['rowid'] ?>', this);" class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
+										<i class="fs-12 fa fa-close" aria-hidden="true"></i>
+									</button>
+								</td>
 							</tr>
 							<?php $subtotal += $items['qty'] * $items['price']; endforeach; ?>
 						<?php else: ?>
@@ -255,7 +261,7 @@
 			});
 		});
 
-		function changeQty( rowid, type, price ) {
+		function changeQty( rowid, type, price, id ) {
 
 			var numProduct = Number( $( '#qty-' + rowid ).val() );
 			
@@ -274,9 +280,18 @@
 				data: {
 					update_cart: true,
 					rowid: rowid,
-					qty: numProduct
+					qty: numProduct,
+					id: id
 				},
-				success: ( response ) => {},
+				success: ( response ) => {
+					if (response == 'out of stock') {
+						numProduct--;
+						$( '#qty-' + rowid ).val( numProduct );
+						$( '#price-' + rowid ).text( convertToRupiah( price * numProduct ) );
+						swal('Peringatan', "stok tidak mencukupi", "warning");
+						updateTotal();
+					}
+				},
 				error: ( err ) => { console.log( err.responseText ); }
 			});
 
@@ -284,11 +299,33 @@
 
 		}
 
+		function deleteItem(rowid, obj) {
+			$.ajax({
+				url: '<?= base_url('pelanggan/delete-cart-item') ?>',
+				type: 'POST',
+				data: {
+					delete_cart: true,
+					rowid: rowid
+				},
+				success: ( response ) => {
+					$(obj).parent().parent().remove();
+					updateTotal();
+				},
+				error: ( err ) => { console.log( err.responseText ); }
+			});
+		}
+
 		function updateTotal() {
 
 			var total = 0;
+			var item = undefined;
 			<?php foreach ( $this->cart->contents() as $items ): ?>
-				total += Number( $( '#qty-<?= $items['rowid'] ?>' ).val() ) * <?= $items['price'] ?>;
+				item = $( '#qty-<?= $items['rowid'] ?>' ).val();
+				if (item == undefined) {
+					total += 0;
+				} else {
+					total += Number( $( '#qty-<?= $items['rowid'] ?>' ).val() ) * <?= $items['price'] ?>;
+				}
 			<?php endforeach; ?>
 			$( '#subtotal-price' ).text( convertToRupiah( total ) );
 			$( '#total-price' ).text( convertToRupiah( total + Number($( '#shipping-cost-hidden' ).val()) ) );
