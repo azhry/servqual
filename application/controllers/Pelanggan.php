@@ -120,7 +120,8 @@ class Pelanggan extends MY_Controller
                         $this->data['detail_pemesanan'] = [
                             'id_pemesanan'  => $id_pemesanan,
                             'kode_barang'   => $item['id'],
-                            'qty'           => $item['qty']
+                            'qty'           => $item['qty'],
+                            'harga_barang'  => $barang->harga
                         ];
                         $this->detail_pemesanan_m->insert( $this->data['detail_pemesanan'] );
                         $total_belanja += $barang->harga * $item['qty'];

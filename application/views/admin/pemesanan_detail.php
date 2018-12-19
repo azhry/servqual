@@ -83,7 +83,7 @@
                                                 <?php  
                                                     $total = $data->ongkir;
                                                     foreach ($barang as $row)
-                                                        $total += ($row->harga * $row->qty);
+                                                        $total += ($row->harga_barang * $row->qty);
                                                     echo 'Rp ' . number_format($total, 2, ',', '.');
                                                 ?>
                                             </td>
