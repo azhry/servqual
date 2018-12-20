@@ -145,6 +145,32 @@
 
 	</head>
 	<body>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=535486653563191&autoLogAppEvents=1';
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+			window.fbAsyncInit = function() {
+		      FB.init({
+		        appId      : '535486653563191',
+		        xfbml      : true,
+		        version    : 'v2.5'
+		      });
+
+		      FB.ui({
+			   method: 'feed',
+			   name: 'This is the content of the "name" field.',
+			   link: 'https://servqual.azurewebsites.net',
+			   caption: 'insightful thought provoking caption.',
+			   description: 'interresting".',
+			   message: 'hehehe',
+			   to: '197717970696189'
+			 });
+		    };
+		</script>
 		<div class="container">
 			<div class="row main">
 
@@ -180,6 +206,7 @@
 							</div>
 							
 						</form>
+						<!-- <div class="fb-share-button" data-href="https://www.facebook.com/pudinglab/" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/pudinglab/" class="fb-xfbml-parse-ignore">Share</a></div> -->
 					</div>
 				</div> <!-- End Login -->
 
@@ -187,4 +214,8 @@
 		</div>
 	
 	</body>
+
+	<script type="text/javascript">
+		
+	</script>
 </html>
