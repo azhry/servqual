@@ -1,0 +1,6 @@
+[gammu]
+
+device = com14:
+connection = at115200
+
+
