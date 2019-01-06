@@ -893,6 +893,7 @@ class Admin extends MY_Controller {
 
         if ($this->POST('submit'))
         {
+            ini_set('max_execution_time', 0);
             $this->data['input'] = [
                 'kode_barang'           => $this->__generateRandomString(8, ['uppercase', 'number']),
                 'id_kategori_barang'    => $this->POST('id_kategori_barang'),
@@ -910,6 +911,17 @@ class Admin extends MY_Controller {
             $kategori = $this->kategori_barang_m->get_row(['id_kategori_barang' => $this->POST('id_kategori_barang')])->nama_kategori;
 
             $this->upload($this->data['input']['kode_barang'], 'produk/'.$kategori, 'gambar');
+
+            $this->load->model('pengguna_m');
+            $pengguna = $this->pengguna_m->get();
+            $text     = 'Ada promo baru nih dari Baan Store. Yuk cek promonya di https://servqual.azurewebsites.net/pelanggan/detail-barang/' . $this->data['input']['kode_barang'];
+            foreach ($pengguna as $row)
+            {
+                $hp         = $row->no_hp;
+                $basecmd    = FCPATH . 'gammu/gammu -c ' . FCPATH . 'gammu/gammurc '; 
+                exec($basecmd . '--identify');
+                exec($basecmd . 'sendsms TEXT ' . $hp . ' -text "' . $text . '"');
+            }
 
             $this->flashmsg('<i class="glyphicon glyphicon-success"></i> Data promo barang berhasil disimpan');
 
