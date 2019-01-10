@@ -132,10 +132,10 @@
         </div>
 
         <div class="t-center p-l-15 p-r-15">
-            <!-- <a href="#">
-                <img class="h-size2" src="<?= base_url('assets/UserTemplate') ?>/images/icons/paypal.png" alt="IMG-PAYPAL">
+            <a href="https://www.facebook.com/Accessories-dan-Perlengkapan-290373584974195/?modal=admin_todo_tour">
+                <i style="font-size: 30px;" class="fa fa-facebook"></i>
             </a>
-
+            <!-- 
             <a href="#">
                 <img class="h-size2" src="<?= base_url('assets/UserTemplate') ?>/images/icons/visa.png" alt="IMG-VISA">
             </a>
